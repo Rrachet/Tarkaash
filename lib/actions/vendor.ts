@@ -37,10 +37,11 @@ export async function updateOrder(input: z.input<typeof orderUpdateSchema>): Pro
   const supabase = await createClient();
   const { error } = await supabase.rpc("vendor_update_order", {
     p_order: v.orderId,
-    p_amount: v.agreedAmount as number,
-    p_scheduled: v.scheduledFor as string,
-    p_scope: v.scope as string,
-    p_notes: v.notes as string,
+    // Every argument must be sent (null when empty) so PostgREST can match the function signature.
+    p_amount: (v.agreedAmount ?? null) as number,
+    p_scheduled: (v.scheduledFor ?? null) as string,
+    p_scope: (v.scope ?? null) as string,
+    p_notes: (v.notes ?? null) as string,
   });
   if (error) return fail(friendlyError(error));
   revalidateOrder(v.orderId);

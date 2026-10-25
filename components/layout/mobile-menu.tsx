@@ -9,7 +9,8 @@ import { buttonClass } from "@/components/ui/button";
 export function MobileMenu({ items, signedIn, portal }: { items: { href: string; label: string }[]; signedIn: boolean; portal: string | null }) {
   const [open, setOpen] = useState(false);
   const path = usePathname();
-  useEffect(() => setOpen(false), [path]);
+  const [lastPath, setLastPath] = useState(path);
+  if (path !== lastPath) { setLastPath(path); setOpen(false); }
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };

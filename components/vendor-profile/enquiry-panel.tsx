@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import { Send, ShieldCheck, Gift, CheckCircle2, Copy, Info, PhoneOff, Route, ClipboardList } from "lucide-react";
 import { submitEnquiry } from "@/lib/actions/public";
@@ -38,14 +38,17 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
   const [assistOn, setAssistOn] = useState(false);
   const selected = useMemo(() => services.find((s) => s.id === selectedId), [services, selectedId]);
   const cat = vendor.categorySlug;
+  const successRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (done) successRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [done]);
 
   // Pre-fill the request with the chosen service so the customer only adds specifics.
-  useEffect(() => {
-    if (selected && (!request || request.startsWith("I'd like to enquire about"))) {
-      setRequest(`I'd like to enquire about ${selected.title}. `);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected?.id]);
+  const [prefilledFor, setPrefilledFor] = useState<string | undefined>(undefined);
+  if (selected && prefilledFor !== selected.id) {
+    setPrefilledFor(selected.id);
+    if (!request || request.startsWith("I'd like to enquire about")) setRequest(`I'd like to enquire about ${selected.title}. `);
+  }
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -88,7 +91,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
 
   if (done) {
     return (
-      <div className="card overflow-hidden" role="status" aria-live="polite">
+      <div ref={successRef} className="card scroll-mt-24 overflow-hidden" role="status" aria-live="polite">
         <div className="bg-teal-deep px-6 py-8 text-center text-white">
           <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-gold text-teal-deep animate-fade-up"><CheckCircle2 className="size-8" /></span>
           <h2 className="mt-4 text-2xl font-semibold">Enquiry sent to Tarkaash</h2>

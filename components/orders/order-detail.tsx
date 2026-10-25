@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, MapPin, Hash, Gift, MessageSquareQuote, IndianRupee } from "lucide-react";
 import { ORDER_STATUS } from "@/lib/status";
-import { formatDate, formatDateTime, formatINR, priceLabel } from "@/lib/format";
+import { formatDate, formatDateTime, formatINR, formatSchedule, priceLabel } from "@/lib/format";
 import { StatusBadge, SampleBadge } from "@/components/ui/badge";
 import { OrderStepper } from "./order-stepper";
 import { OrderActions, ContactReveal } from "./order-actions";
@@ -55,7 +55,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
             <h2 className="font-sans text-base font-semibold">Order details</h2>
             <dl className="mt-4 grid gap-4 sm:grid-cols-3">
               <Info icon={<IndianRupee className="size-4" />} label="Agreed price" value={formatINR(order.agreed_amount)} />
-              <Info icon={<CalendarDays className="size-4" />} label="Scheduled" value={order.scheduled_for ? formatDateTime(order.scheduled_for) : "To be confirmed"} />
+              <Info icon={<CalendarDays className="size-4" />} label="Scheduled" value={formatSchedule(order.scheduled_for)} />
               <Info icon={<Hash className="size-4" />} label="Listed price" value={order.services ? priceLabel(order.services) : "Custom"} />
             </dl>
             {order.scope && <p className="mt-4 text-sm"><span className="font-semibold">Scope: </span>{order.scope}</p>}

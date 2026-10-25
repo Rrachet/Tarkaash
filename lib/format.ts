@@ -92,3 +92,10 @@ export function sizedImage(url: string | null | undefined, width: number, height
   }
   return url;
 }
+
+/** Scheduled time; date-only values (stored as UTC midnight) are shown without a time. */
+export function formatSchedule(value: string | null | undefined): string {
+  if (!value) return "To be confirmed";
+  const d = new Date(value);
+  return d.getUTCHours() === 0 && d.getUTCMinutes() === 0 ? formatDate(value) : formatDateTime(value);
+}

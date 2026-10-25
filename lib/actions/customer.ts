@@ -11,7 +11,7 @@ export async function submitReview(input: { orderId: string; rating: number; bod
   if (!parsed.success) return fail("Please check the highlighted fields.", fieldErrors(parsed.error));
   const supabase = await createClient();
   const { error } = await supabase.rpc("submit_review", {
-    p_order: parsed.data.orderId, p_rating: parsed.data.rating, p_body: parsed.data.body as string,
+    p_order: parsed.data.orderId, p_rating: parsed.data.rating, p_body: (parsed.data.body ?? null) as string,
   });
   if (error) return fail(friendlyError(error));
   revalidatePath("/account");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -20,7 +20,8 @@ export type NavItem = { href: string; label: string; icon: NavIcon; badge?: numb
 export function PortalSidebar({ items, header, footer }: { items: NavItem[]; header: React.ReactNode; footer?: React.ReactNode }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [path]);
+  const [lastPath, setLastPath] = useState(path);
+  if (path !== lastPath) { setLastPath(path); setOpen(false); }
   const nav = (
     <nav aria-label="Portal" className="flex flex-col gap-0.5 px-3">
       {items.map((i) => {
