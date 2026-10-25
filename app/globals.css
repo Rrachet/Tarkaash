@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --tk-deep-teal: #003b3c;
+  --tk-teal: #004b4b;
+  --tk-gold: #d9a441;
+  --tk-pale-gold: #f7e8c5;
+  --tk-cream: #fbf8f0;
+  --tk-ink: #122b3a;
+  --tk-slate: #5c6b73;
+  --tk-mint: #ddefea;
+  --tk-border: #e4e0d7;
+}
+
+body {
+  background: var(--tk-cream);
+  color: var(--tk-ink);
+}
