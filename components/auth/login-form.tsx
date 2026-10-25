@@ -90,7 +90,7 @@ export function LoginForm({ next, linkError, demo, demoPassword }: { next?: stri
           </form>
         ) : (
           <form onSubmit={(e) => { e.preventDefault(); verify(String(new FormData(e.currentTarget).get("code") ?? "")); }} className="space-y-4" noValidate>
-            <FormMessage tone="success">If an account exists for {email}, a code is on its way.</FormMessage>
+            <FormMessage tone="success">If an account exists for {email}, a code is on its way. Check spam if it doesn&apos;t arrive.</FormMessage>
             <Field label="One-time code" name="code" error={fieldErrors.code}>
               <Input name="code" inputMode="numeric" autoComplete="one-time-code" maxLength={8} className="text-center font-mono text-xl tracking-[0.4em]" error={fieldErrors.code} />
             </Field>

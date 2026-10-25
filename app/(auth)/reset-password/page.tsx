@@ -15,7 +15,7 @@ export default function ResetPasswordPage() {
       <h1 className="text-4xl font-semibold">Reset your password</h1>
       <p className="mt-2 text-slate">Enter your email and we&apos;ll send you a secure link to choose a new password.</p>
       {sent ? (
-        <div className="mt-8"><FormMessage tone="success">If an account exists for that email, a reset link is on its way.</FormMessage></div>
+        <div className="mt-8 space-y-3"><FormMessage tone="success">If an account exists for that email, a reset link is on its way.</FormMessage><p className="text-sm text-slate">Nothing after a few minutes? Check your spam folder or <Link href="/contact?topic=support" className="font-semibold text-teal underline">contact support</Link>.</p></div>
       ) : (
         <form className="mt-8 space-y-4" noValidate onSubmit={(e) => {
           e.preventDefault();

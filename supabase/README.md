@@ -15,6 +15,8 @@ Run the migrations in order against a fresh project (SQL editor, `psql`, or the 
 | `migrations/0005_storage.sql` | `vendor-media` bucket; vendors write only under their own folder |
 | `migrations/0006_lockdown.sql` | Internal helpers not callable from the API |
 | `migrations/0007_least_privilege.sql` | Anonymous visitors can only submit enquiries/messages and log events |
+| `migrations/0008_performance.sql` | Faster policy evaluation, one permissive policy per action, foreign-key indexes |
+| `migrations/0009_maintenance.sql` | Automatic rate-limit cleanup; preferred dates scheduled at 11:00 IST |
 
 Then optionally load demo data:
 
