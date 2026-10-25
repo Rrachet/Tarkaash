@@ -78,7 +78,13 @@ export function VendorWorkspace({ vendor, services, media, updates, reviews, rat
         <Tabs items={tabs} sticky />
         <SupportLocal name={vendor.name} />
       </div>
-      <aside ref={panelRef} className="scroll-mt-24 lg:sticky lg:top-24 lg:self-start">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 p-3 backdrop-blur lg:hidden">
+        <button type="button" onClick={() => panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+          className="flex h-12 w-full items-center justify-center rounded-full bg-teal font-semibold text-white shadow-[var(--shadow-lift)]">
+          Enquire through Tarkaash
+        </button>
+      </div>
+      <aside ref={panelRef} className="scroll-mt-24 pb-20 lg:sticky lg:top-24 lg:self-start lg:pb-0">
         <EnquiryPanel vendor={vendor} services={services} selectedId={selected} onSelect={setSelected} assist={assist} viewer={viewer} />
       </aside>
     </div>
