@@ -238,7 +238,7 @@ function SupportLocal({ name }: { name: string }) {
       <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-teal-deep text-gold"><MessageCircleHeart className="size-7" /></span>
       <div>
         <p className="font-display text-xl font-semibold">A small step for you, a big support for {name.split(" ")[0]?.replace(/'s$/, "")}.</p>
-        <p className="mt-1 text-sm text-ink/80">By choosing Tarkaash, you&apos;re not just getting a great service — you&apos;re helping local talent grow.</p>
+        <p className="mt-1 text-sm text-ink/80">By choosing Tarkaash, you&apos;re not just getting a great service. You&apos;re helping local talent grow.</p>
       </div>
     </div>
   );

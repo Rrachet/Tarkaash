@@ -27,7 +27,7 @@ export default async function BoostPage({ searchParams }: { searchParams: Promis
   return (
     <>
       <PageTitle title="Boost queue" actions={<RangeTabs base="/admin/boost" current={sp.range ?? "30d"} />}>
-        Explainable flags from exposure, conversion, response and listing quality. Every suggestion shows why, what to do and the measured numbers — never a guarantee of leads.
+        Explainable flags from exposure, conversion, response and listing quality. Every suggestion shows why, what to do and the measured numbers. It is never a guarantee of leads.
       </PageTitle>
       {!items.length ? <EmptyState icon={<Rocket className="size-6" />} title="No vendors flagged">Everyone is performing within thresholds for this period.</EmptyState> : (
         <div className="grid gap-4 lg:grid-cols-2">

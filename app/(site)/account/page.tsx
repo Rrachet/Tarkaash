@@ -1,3 +1,4 @@
+import { PRIVATE_ROBOTS } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inbox, Heart, BellRing, LogOut, Hash, CalendarDays } from "lucide-react";
@@ -12,7 +13,7 @@ import { formatDate, formatINR, timeAgo } from "@/lib/format";
 import { ReviewButton } from "@/components/account/review-button";
 import { cn } from "@/lib/cn";
 
-export const metadata: Metadata = { title: "My account" };
+export const metadata: Metadata = { title: "My account", robots: PRIVATE_ROBOTS };
 
 export default async function AccountPage() {
   const viewer = await requireViewer("/account");

@@ -1,4 +1,4 @@
-# Tarkaash — Har Hunar Ko Ek Pehchaan
+# Tarkaash: Har Hunar Ko Ek Pehchaan
 
 A local-services platform where customers discover independent providers (home bakers, home kitchens, tutors, travel planners and more) and send **Tarkaash-managed enquiries**. Tarkaash assigns each enquiry to a provider, the provider runs it through a tracked order lifecycle, and vendors and admins get analytics, a boost queue and platform P&L.
 

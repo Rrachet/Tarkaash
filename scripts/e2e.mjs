@@ -53,7 +53,7 @@ await guest.page.getByRole("button", { name: /Send enquiry/ }).click();
 await guest.page.getByText("Enquiry sent to Tarkaash").waitFor({ timeout: 30000 });
 const ref = (await guest.page.locator("p.font-mono").first().innerText()).trim();
 await shot(guest.page, "1-confirmation");
-log(`Enquiry submitted — reference ${ref}`);
+log(`Enquiry submitted, reference ${ref}`);
 await guest.ctx.close();
 
 // 2. Admin assigns from the queue
@@ -71,7 +71,7 @@ const orderLink = admin.page.locator("a[href^='/admin/orders/']").first();
 const orderRef = (await orderLink.innerText()).trim();
 const orderPath = await orderLink.getAttribute("href");
 await shot(admin.page, "2-assigned");
-log(`Assigned to Meera — order ${orderRef}`);
+log(`Assigned to Meera, order ${orderRef}`);
 
 // 3. Vendor works the order
 const vendor = await session();
@@ -84,7 +84,7 @@ const click = async (name) => { await vendor.page.getByRole("button", { name }).
 await click(/Accept enquiry/);
 await vendor.page.getByRole("button", { name: /Show contact details/ }).click();
 await vendor.page.getByText("9000012345").waitFor();
-log("Accepted — customer contact revealed (audited)");
+log("Accepted, customer contact revealed (audited)");
 await click(/Start work/);
 await vendor.page.getByRole("button", { name: /Edit price/ }).click();
 await vendor.page.fill("input[name=agreedAmount]", "1350");
@@ -101,7 +101,7 @@ await vendor.page.getByRole("button", { name: /^Record payment$/ }).last().click
 await vendor.page.waitForTimeout(2000);
 log("UPI payment needed a reference, then recorded");
 await click(/Submit to Tarkaash/);
-await vendor.page.getByText("Submitted — Tarkaash will verify").waitFor();
+await vendor.page.getByText("Submitted. Tarkaash will verify").waitFor();
 await shot(vendor.page, "3-submitted");
 log("Submitted to Tarkaash");
 

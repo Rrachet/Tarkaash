@@ -11,7 +11,7 @@ import { EnquiryAdminActions } from "@/components/admin/enquiry-actions";
 
 export const metadata: Metadata = { title: "Enquiry" };
 
-const ACTION_LABEL: Record<string, string> = { created: "Enquiry submitted", assigned: "Assigned", accepted: "Accepted by vendor", returned: "Declined — returned to queue", cancelled: "Cancelled", closed: "Closed", note: "Note", status_changed: "Status changed" };
+const ACTION_LABEL: Record<string, string> = { created: "Enquiry submitted", assigned: "Assigned", accepted: "Accepted by vendor", returned: "Declined and returned to queue", cancelled: "Cancelled", closed: "Closed", note: "Note", status_changed: "Status changed" };
 
 export default async function EnquiryDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const viewer = await requireRole(["admin", "finance"], "/admin");

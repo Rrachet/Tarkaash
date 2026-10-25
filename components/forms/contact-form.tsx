@@ -18,7 +18,7 @@ export function ContactForm({ initialTopic, initialMessage }: { initialTopic?: s
     return (
       <div className="mt-6 rounded-2xl bg-mint p-6 text-center" role="status">
         <CheckCircle2 className="mx-auto size-10 text-success" />
-        <p className="mt-3 text-lg font-semibold">Thanks — your message is with our team.</p>
+        <p className="mt-3 text-lg font-semibold">Thanks! Your message is with our team.</p>
         <p className="mt-1 text-sm text-ink/80">Reference <strong className="font-mono">{ref}</strong>. We usually reply within one working day.</p>
         <button type="button" onClick={() => setRef(null)} className="mt-4 text-sm font-semibold text-teal hover:underline">Send another message</button>
       </div>

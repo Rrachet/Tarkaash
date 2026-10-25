@@ -46,7 +46,7 @@ export function VendorAdminControls({ vendorId, status, checks, checkList, canEd
         </ul>
         <Button variant="outline" className="mt-3 w-full" loading={pending} onClick={() => start(async () => {
           const r = await setVerification(vendorId, c);
-          if (r.ok) { toast("success", r.data.status === "verified" ? "Verified — badge is now shown" : `Checks saved (${r.data.status})`); router.refresh(); } else setError(r.error);
+          if (r.ok) { toast("success", r.data.status === "verified" ? "Verified. The badge is now shown." : `Checks saved (${r.data.status})`); router.refresh(); } else setError(r.error);
         })}>Save checks</Button>
       </section>
       <section className="card p-5">

@@ -3,25 +3,25 @@ const inrCompact = new Intl.NumberFormat("en-IN", { notation: "compact", maximum
 const num = new Intl.NumberFormat("en-IN");
 
 export function formatINR(value: number | string | null | undefined): string {
-  if (value === null || value === undefined || value === "") return "—";
+  if (value === null || value === undefined || value === "") return "N/A";
   return inr.format(Number(value));
 }
 
 export function formatINRCompact(value: number | null | undefined): string {
-  if (value === null || value === undefined) return "—";
+  if (value === null || value === undefined) return "N/A";
   return `₹${inrCompact.format(value)}`;
 }
 
 export function formatNumber(value: number | null | undefined): string {
-  return value === null || value === undefined ? "—" : num.format(value);
+  return value === null || value === undefined ? "N/A" : num.format(value);
 }
 
 export function formatPercent(value: number | null | undefined, digits = 0): string {
-  return value === null || value === undefined ? "—" : `${(value * 100).toFixed(digits)}%`;
+  return value === null || value === undefined ? "N/A" : `${(value * 100).toFixed(digits)}%`;
 }
 
 export function formatDuration(minutes: number | null | undefined): string {
-  if (minutes === null || minutes === undefined) return "—";
+  if (minutes === null || minutes === undefined) return "N/A";
   if (minutes < 60) return `${Math.round(minutes)} min`;
   if (minutes < 60 * 48) return `${(minutes / 60).toFixed(1)} h`;
   return `${(minutes / 1440).toFixed(1)} days`;
@@ -32,17 +32,17 @@ const dateTimeFmt = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "s
 const shortDate = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" });
 
 export function formatDate(value: string | null | undefined): string {
-  return value ? dateFmt.format(new Date(value)) : "—";
+  return value ? dateFmt.format(new Date(value)) : "N/A";
 }
 export function formatDateTime(value: string | null | undefined): string {
-  return value ? dateTimeFmt.format(new Date(value)) : "—";
+  return value ? dateTimeFmt.format(new Date(value)) : "N/A";
 }
 export function formatShortDate(value: string | null | undefined): string {
-  return value ? shortDate.format(new Date(value)) : "—";
+  return value ? shortDate.format(new Date(value)) : "N/A";
 }
 
 export function timeAgo(value: string | null | undefined, now = Date.now()): string {
-  if (!value) return "—";
+  if (!value) return "N/A";
   const s = Math.round((now - new Date(value).getTime()) / 1000);
   if (s < 60) return "just now";
   const m = Math.round(s / 60);

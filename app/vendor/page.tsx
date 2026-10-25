@@ -35,7 +35,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
           <a href={`/api/export/orders?range=${preset}`} className="h-10 rounded-full border border-line bg-white px-4 text-sm font-semibold leading-10 hover:border-teal/40">Download report</a>
         </div>
       }>
-        See how your business is performing on Tarkaash — {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
+        See how your business is performing on Tarkaash for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
       </PageTitle>
 
       {m.pending_response > 0 && (
@@ -54,7 +54,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
         <StatCard className="xl:col-span-2" label="Median response" value={formatDuration(m.median_response_minutes)} sub={`Based on ${m.response_sample} responses`} icon={<Timer className="size-4" />} tone="sky" />
         <StatCard className="xl:col-span-2" label="Likes" value={formatNumber(m.likes_total)} sub={`+${m.likes_new} this period`} icon={<Heart className="size-4" />} tone="rose" />
         <StatCard className="xl:col-span-2" label="Followers" value={formatNumber(m.followers_total)} sub={`${m.update_subscribers} get your updates`} icon={<Users className="size-4" />} />
-        <StatCard className="xl:col-span-2" label="Rating" value={m.rating_avg ? `${Number(m.rating_avg).toFixed(1)} ★` : "—"} sub={`${m.rating_count} approved reviews`} icon={<BellRing className="size-4" />} tone="gold" />
+        <StatCard className="xl:col-span-2" label="Rating" value={m.rating_avg ? `${Number(m.rating_avg).toFixed(1)} ★` : "N/A"} sub={`${m.rating_count} approved reviews`} icon={<BellRing className="size-4" />} tone="gold" />
       </div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.4fr_1fr]">

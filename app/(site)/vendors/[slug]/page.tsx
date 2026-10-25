@@ -12,6 +12,9 @@ import { CategoryIcon } from "@/components/ui/category-icon";
 import { TrackEvent } from "@/components/marketing/track-event";
 import { VendorWorkspace } from "@/components/vendor-profile/workspace";
 import { ReactionButtons } from "@/components/vendor-profile/reactions";
+import { JsonLd } from "@/components/seo/json-ld";
+import { CATEGORY_SEO } from "@/lib/content/seo";
+import { breadcrumbLd, pageMeta, vendorLd } from "@/lib/seo";
 
 type Params = Promise<{ slug: string }>;
 
@@ -19,11 +22,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const v = await getVendorBySlug(slug);
   if (!v) return { title: "Provider not found" };
-  return {
-    title: `${v.name} — ${v.category?.name ?? "Local provider"} in ${v.locality ?? v.city}`,
-    description: v.tagline ?? v.description?.slice(0, 150) ?? undefined,
-    openGraph: { images: v.cover_url ? [sizedImage(v.cover_url, 1200, 630)!] : undefined },
-  };
+  const seo = v.category ? CATEGORY_SEO[v.category.slug] : undefined;
+  const role = seo?.noun ? seo.noun.replace(/s$/, "") : v.category?.name ?? "local provider";
+  const area = v.locality ? `${v.locality}, ${v.city}` : v.city;
+  const services = v.services.slice(0, 3).map((s) => s.title).join(", ");
+  const roleTitle = role.charAt(0).toUpperCase() + role.slice(1);
+  return pageMeta({
+    title: `${v.name}: ${roleTitle} in ${area}`,
+    description: `${v.name}${v.tagline ? `, ${v.tagline}` : ""}. ${services ? `${services} and more. ` : ""}Trusted ${role} in ${area}. Send an enquiry through Tarkaash.`.slice(0, 300),
+    path: `/vendors/${v.slug}`,
+    keywords: [`${v.name}`, `${role} in ${v.locality ?? v.city}`, ...(seo?.keywords.slice(0, 3) ?? [])],
+    image: v.cover_url ? sizedImage(v.cover_url, 1200, 630)! : undefined,
+  });
 }
 
 export default async function VendorPage({ params, searchParams }: { params: Params; searchParams: Promise<{ service?: string }> }) {
@@ -37,6 +47,14 @@ export default async function VendorPage({ params, searchParams }: { params: Par
   return (
     <>
       <TrackEvent type="profile_view" vendorId={v.id} />
+      <JsonLd data={[
+        vendorLd(v),
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          ...(v.category ? [{ name: v.category.name, path: `/services/${v.category.slug}` }] : [{ name: "Explore", path: "/services" }]),
+          { name: v.name, path: `/vendors/${v.slug}` },
+        ]),
+      ]} />
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden bg-teal-deep text-white">
         {cover && <Image src={cover} alt="" fill priority unoptimized className="animate-kenburns object-cover opacity-45" sizes="100vw" />}
@@ -44,7 +62,7 @@ export default async function VendorPage({ params, searchParams }: { params: Par
         <div className="hero-seq container-page relative py-8 sm:py-12">
           <nav aria-label="Breadcrumb" className="text-sm text-white/65">
             <Link href="/services" className="hover:text-white">Explore</Link>
-            {v.category && <> / <Link href={`/services?category=${v.category.slug}`} className="hover:text-white">{v.category.name}</Link></>}
+            {v.category && <> / <Link href={`/services/${v.category.slug}`} className="hover:text-white">{v.category.name}</Link></>}
             {" / "}<span className="text-white/90">{v.name}</span>
           </nav>
           <div style={{ "--d": "120ms" } as React.CSSProperties} className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-end">

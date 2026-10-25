@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
+import { PRIVATE_ROBOTS } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Users, TrendingUp, ShieldCheck, HeartHandshake } from "lucide-react";
 import { Logo } from "@/components/ui/misc";
 import { HOME_IMAGES } from "@/lib/content/site";
 import { sizedImage } from "@/lib/format";
+
+export const metadata: Metadata = { robots: PRIVATE_ROBOTS };
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -28,7 +32,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             </ul>
             <div style={{ "--d": "480ms" } as React.CSSProperties} className="mt-10 border-t border-white/15 pt-6">
               <p className="font-display text-2xl text-gold">Har Hunar Ko Ek Pehchaan</p>
-              <p className="mt-1 text-sm text-white/70">Every skill and small business deserves a bigger stage — one neighbourhood at a time.</p>
+              <p className="mt-1 text-sm text-white/70">Every skill and small business deserves a bigger stage, one neighbourhood at a time.</p>
             </div>
           </div>
         </div>

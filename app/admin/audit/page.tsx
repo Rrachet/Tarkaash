@@ -15,7 +15,7 @@ export default async function AuditPage() {
   const name = new Map((actors ?? []).map((a) => [a.id, `${a.full_name ?? "User"} (${a.role})`]));
   return (
     <>
-      <PageTitle title="Audit log">Assignments, status changes, payments, verification, settings and contact access — with who and when.</PageTitle>
+      <PageTitle title="Audit log">Assignments, status changes, payments, verification, settings and contact access, with who and when.</PageTitle>
       <div className="card overflow-x-auto">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="bg-cream text-left text-xs uppercase tracking-wider text-slate"><tr><th className="px-5 py-3">When</th><th className="px-5 py-3">Who</th><th className="px-5 py-3">Action</th><th className="px-5 py-3">Record</th><th className="px-5 py-3">Details</th></tr></thead>

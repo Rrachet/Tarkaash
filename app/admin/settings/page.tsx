@@ -13,7 +13,7 @@ export default async function SettingsPage() {
   const map = Object.fromEntries((data ?? []).map((r) => [r.key, r]));
   return (
     <>
-      <PageTitle title="Settings">Fees, routing rules and thresholds are configurable — nothing in the mock-ups is assumed approved.</PageTitle>
+      <PageTitle title="Settings">Fees, routing rules and thresholds are configurable. Nothing in the mock-ups is assumed approved.</PageTitle>
       <SettingsForms settings={map as never} canEdit={viewer.role === "admin"} />
     </>
   );

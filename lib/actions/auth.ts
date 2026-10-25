@@ -24,7 +24,7 @@ export async function signIn(input: { email: string; password: string; next?: st
   if (!parsed.success) return fail("Please check the highlighted fields.", fieldErrors(parsed.error));
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
-  if (error) return fail(error.code === "email_not_confirmed" ? "Please confirm your email first — check your inbox." : "Email or password is incorrect.");
+  if (error) return fail(error.code === "email_not_confirmed" ? "Please confirm your email first. Check your inbox." : "Email or password is incorrect.");
   return { ok: true, data: { redirectTo: await landingFor(input.next) } };
 }
 

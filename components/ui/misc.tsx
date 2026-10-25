@@ -7,7 +7,7 @@ import { initials, sizedImage } from "@/lib/format";
 export function Logo({ variant = "gold", className, priority }: { variant?: "gold" | "color"; className?: string; priority?: boolean }) {
   return (
     <Link href="/" aria-label="Tarkaash home" className={cn("inline-flex shrink-0 transition-opacity hover:opacity-90", className)}>
-      <Image src={`/brand/tarkaash-logo-${variant}.webp`} alt="Tarkaash — Har Hunar Ko Ek Pehchaan" width={900} height={440}
+      <Image src={`/brand/tarkaash-logo-${variant}.webp`} alt="Tarkaash, Har Hunar Ko Ek Pehchaan" width={900} height={440}
         className="h-full w-auto" priority={priority} />
     </Link>
   );

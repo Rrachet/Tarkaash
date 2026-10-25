@@ -70,20 +70,20 @@ declare
   data jsonb := $json$[
   {"slug": "meeras-home-baking", "name": "Meera's Home Baking", "cat": "food-baking",
    "tagline": "Homemade Cakes | Cookies | Snacks", "locality": "Kondapur", "area": ["Kondapur", "Gachibowli", "Madhapur", "Within 2 km of Green Valley Apartments"],
-   "desc": "Meera bakes everything to order in her home kitchen at Green Valley Apartments — birthday and anniversary cakes, cookies, brownies and evening snacks. Eggless options on request, fresh ingredients and careful packaging for delivery within 2 km.",
+   "desc": "Meera bakes everything to order in her home kitchen at Green Valley Apartments: birthday and anniversary cakes, cookies, brownies and evening snacks. Eggless options on request, fresh ingredients and careful packaging for delivery within 2 km.",
    "years": 6, "langs": ["English", "Hindi", "Telugu"], "highlights": ["Freshly baked", "Quality ingredients", "Homemade goodness"],
-   "terms": "Custom cakes need 2–3 days notice. Delivery within 2 km; pickup available.",
+   "terms": "Custom cakes need 2 to 3 days notice. Delivery within 2 km; pickup available.",
    "owner": "meera.baking@example.com", "owner_name": "Meera Iyer", "verified": true,
    "pop": 30, "conv": 0.055, "resp": 40, "cancel": 0.03,
    "services": [
-     {"title": "Custom Cakes", "desc": "Birthday, anniversary and special-occasion cakes. Choose your flavour, design and size.", "ptype": "from", "price": 800, "unit": "per kg", "lead": "2–3 days", "delivery": ["delivery", "pickup"], "attrs": {"flavours": ["Chocolate truffle", "Red velvet", "Black forest", "Pineapple"], "eggless": true}},
+     {"title": "Custom Cakes", "desc": "Birthday, anniversary and special-occasion cakes. Choose your flavour, design and size.", "ptype": "from", "price": 800, "unit": "per kg", "lead": "2 to 3 days", "delivery": ["delivery", "pickup"], "attrs": {"flavours": ["Chocolate truffle", "Red velvet", "Black forest", "Pineapple"], "eggless": true}},
      {"title": "Cookies (Pack of 6)", "desc": "Choco chip, oats, butter or walnut. Perfect for gifting or everyday treats.", "ptype": "fixed", "price": 250, "unit": "per pack", "lead": "Ready in 1 day", "delivery": ["delivery", "pickup"], "attrs": {}},
      {"title": "Evening Snacks", "desc": "Veg puff, paneer roll and bread pakoda made fresh in small batches.", "ptype": "from", "price": 150, "unit": "per box", "lead": "Ready in 1 day", "delivery": ["delivery", "pickup"], "attrs": {}},
      {"title": "Brownies (Pack of 4)", "desc": "Classic chocolate or nutty brownies.", "ptype": "fixed", "price": 300, "unit": "per pack", "lead": "Ready in 1 day", "delivery": ["delivery", "pickup"], "attrs": {}}
    ]},
   {"slug": "wings-in-air-tours-and-travel", "name": "Wings in Air Tours and Travel", "cat": "travel-tours",
    "tagline": "Your Journey. Our Passion.", "locality": "Begumpet", "area": ["Hyderabad", "Secunderabad", "Online across India"],
-   "desc": "Wings in Air is a Hyderabad-based travel company with 7+ years of experience creating memorable trips across India and abroad. Personalised itineraries, reliable partners and end-to-end support — from family holidays and honeymoons to group tours.",
+   "desc": "Wings in Air is a Hyderabad-based travel company with 7+ years of experience creating memorable trips across India and abroad. Personalised itineraries, reliable partners and end-to-end support, from family holidays and honeymoons to group tours.",
    "years": 7, "langs": ["English", "Hindi", "Telugu"], "highlights": ["Custom itineraries", "Trusted partners", "Group & family tours", "International holidays"],
    "terms": "All prices are indicative per person and confirmed only after availability check. Visa and flight costs quoted separately.",
    "owner": "wingsinair@example.com", "owner_name": "Kiran Rao", "verified": true,
@@ -93,11 +93,11 @@ declare
      {"title": "International Packages", "desc": "Thailand, Dubai, Singapore, Europe and more.", "ptype": "from", "price": 39999, "unit": "per person", "lead": "Plan 4+ weeks ahead", "delivery": ["online"], "attrs": {"inclusions": ["Hotels", "Transfers", "Visa assistance"], "destinations": ["Thailand", "Dubai", "Singapore", "Europe"]}},
      {"title": "Honeymoon Packages", "desc": "Specially curated trips for couples.", "ptype": "from", "price": 49999, "unit": "per couple", "lead": "Plan 3+ weeks ahead", "delivery": ["online"], "attrs": {"inclusions": ["Romantic stays", "Candle-light dinner", "Private transfers"]}},
      {"title": "Group Tours", "desc": "Family, friends and corporate groups.", "ptype": "from", "price": 19999, "unit": "per person", "lead": "Plan 3+ weeks ahead", "delivery": ["online"], "attrs": {"min_group": 8}},
-     {"title": "Custom Itinerary", "desc": "Tell us where and when — we design the trip around you.", "ptype": "quote", "price": null, "unit": null, "lead": "Quote within 24 hours", "delivery": ["online"], "attrs": {}}
+     {"title": "Custom Itinerary", "desc": "Tell us where and when, and we design the trip around you.", "ptype": "quote", "price": null, "unit": null, "lead": "Quote within 24 hours", "delivery": ["online"], "attrs": {}}
    ]},
   {"slug": "rohans-home-kitchen", "name": "Rohan's Home Kitchen", "cat": "home-kitchen",
    "tagline": "Authentic Homemade Food", "locality": "Banjara Hills", "area": ["Banjara Hills", "Jubilee Hills", "Within 3 km"],
-   "desc": "Rohan has been cooking for over 8 years and brings authentic home-cooked flavours to your plate — North Indian, South Indian and regional dishes made with fresh ingredients and a focus on hygiene.",
+   "desc": "Rohan has been cooking for over 8 years and brings authentic home-cooked flavours to your plate: North Indian, South Indian and regional dishes made with fresh ingredients and a focus on hygiene.",
    "years": 8, "langs": ["English", "Hindi"], "highlights": ["Hygienic kitchen", "Fresh ingredients", "Timely delivery"],
    "terms": "Tiffin subscriptions need a minimum of 5 meals. Bulk orders need 2 days notice.",
    "owner": "rohan.kitchen@example.com", "owner_name": "Rohan Mehta", "verified": true,
@@ -109,14 +109,14 @@ declare
      {"title": "Corporate Orders", "desc": "Bulk lunches for offices and meetings.", "ptype": "quote", "price": null, "unit": null, "lead": "2 days", "delivery": ["delivery"], "attrs": {"min_quantity": 20}}
    ]},
   {"slug": "brightsteps-tutors", "name": "BrightSteps Tutors", "cat": "tutors",
-   "tagline": "Maths, Science & English for Classes 4–10", "locality": "Madhapur", "area": ["Madhapur", "Kondapur", "Online"],
+   "tagline": "Maths, Science & English for Classes 4 to 10", "locality": "Madhapur", "area": ["Madhapur", "Kondapur", "Online"],
    "desc": "Small-group and one-to-one tuition for school students, with regular progress updates for parents. CBSE and state board.",
    "years": 5, "langs": ["English", "Hindi", "Telugu"], "highlights": ["Small batches", "Progress reports", "Online or at home"],
    "terms": "Monthly fees payable in advance. One free trial class.",
    "owner": "brightsteps@example.com", "owner_name": "Sunita Reddy", "verified": "partial",
    "pop": 14, "conv": 0.05, "resp": 180, "cancel": 0.05,
    "services": [
-     {"title": "Maths & Science Tuition", "desc": "Classes 4–10, CBSE and state board.", "ptype": "from", "price": 3000, "unit": "per month", "lead": "Start this week", "delivery": ["at_home", "online"], "attrs": {}},
+     {"title": "Maths & Science Tuition", "desc": "Classes 4 to 10, CBSE and state board.", "ptype": "from", "price": 3000, "unit": "per month", "lead": "Start this week", "delivery": ["at_home", "online"], "attrs": {}},
      {"title": "Spoken English", "desc": "Confidence-building conversation classes.", "ptype": "fixed", "price": 2500, "unit": "per month", "lead": "Next batch Monday", "delivery": ["online"], "attrs": {}},
      {"title": "Exam Preparation", "desc": "Board exam revision and mock tests.", "ptype": "from", "price": 4000, "unit": "per month", "lead": "Start this week", "delivery": ["at_home", "online"], "attrs": {}}
    ]},
@@ -132,7 +132,7 @@ declare
      {"title": "Sofa Shampooing", "desc": "Per seat, fabric sofas.", "ptype": "per_unit", "price": 299, "unit": "per seat", "lead": "Next available slot", "delivery": ["at_home"], "attrs": {}}
    ]},
   {"slug": "fixit-pro-repairs", "name": "FixIt Pro Repairs", "cat": "repairs",
-   "tagline": "AC, plumbing and electrical — same week", "locality": "Kukatpally", "area": ["Kukatpally", "KPHB", "Miyapur"],
+   "tagline": "AC, plumbing and electrical, same week", "locality": "Kukatpally", "area": ["Kukatpally", "KPHB", "Miyapur"],
    "desc": "Experienced technicians for AC servicing, plumbing and electrical work. Visit charge adjusted against the final bill.",
    "years": 9, "langs": ["Hindi", "Telugu"], "highlights": ["Visit charge adjusted", "Spare parts billed at cost"],
    "terms": "Spare parts billed separately.", "verified": true,
@@ -200,7 +200,7 @@ declare
    "terms": "Monthly fees.", "verified": false,
    "pop": 5, "conv": 0.05, "resp": 240, "cancel": 0.05,
    "services": [
-     {"title": "Primary Tuition (Classes 1–3)", "desc": "All subjects, small groups.", "ptype": "fixed", "price": 2000, "unit": "per month", "lead": "Start this week", "delivery": ["at_home"], "attrs": {}},
+     {"title": "Primary Tuition (Classes 1 to 3)", "desc": "All subjects, small groups.", "ptype": "fixed", "price": 2000, "unit": "per month", "lead": "Start this week", "delivery": ["at_home"], "attrs": {}},
      {"title": "Phonics & Handwriting", "desc": "8-week course.", "ptype": "fixed", "price": 3500, "unit": "per course", "lead": "Next batch", "delivery": ["at_home", "online"], "attrs": {}}
    ]},
   {"slug": "henna-art-by-zoya", "name": "Henna Art by Zoya", "cat": "beauty-wellness",
@@ -290,7 +290,7 @@ declare
   first_names text[] := array['Priya','Rahul','Ananya','Vikram','Sneha','Arjun','Kavya','Rohit','Divya','Karthik','Meghana','Sai','Lakshmi','Aditya','Pooja','Naveen','Swathi','Harsha','Ritu','Imran','Fatima','Joseph','Neha','Varun','Deepika','Suresh','Anjali','Manoj','Shreya','Farhan'];
   last_names text[] := array['Sharma','Reddy','Rao','Iyer','Khan','Gupta','Naidu','Verma','Patel','Menon','Joshi','Kumar','Das','Singh','Varma'];
   localities text[] := array['Kondapur','Gachibowli','Madhapur','Banjara Hills','Jubilee Hills','Kukatpally','Begumpet','Secunderabad','Ameerpet','Miyapur','Manikonda','HITEC City'];
-  times text[] := array['Morning (9–12)','Afternoon (12–4)','Evening (4–8)','Flexible'];
+  times text[] := array['Morning (9 to 12)','Afternoon (12 to 4)','Evening (4 to 8)','Flexible'];
   m record; d int; n int; k int;
   v_cust uuid; v_enq uuid; v_ord uuid; v_srv record; v_cat uuid; v_slug text;
   t_created timestamptz; t_assigned timestamptz; t_resp timestamptz; t_done timestamptz;
@@ -505,7 +505,7 @@ begin
   insert into public.enquiries (customer_id, user_id, requested_vendor_id, service_id, category_id, request, preferred_date,
                                 preferred_time, locality, details, status, vendor_id, assigned_at, is_demo, created_at)
   values (v_cust, v_user, v_meera, v_srv, (select primary_category_id from public.vendors where id = v_meera),
-          'Chocolate truffle cake (1 kg) with "Happy Birthday Aarav" on top.', (t + interval '2 days')::date, 'Evening (4–8)',
+          'Chocolate truffle cake (1 kg) with "Happy Birthday Aarav" on top.', (t + interval '2 days')::date, 'Evening (4 to 8)',
           'Kondapur', '{"occasion": "Birthday", "quantity": "1 kg", "fulfilment": "delivery"}', 'closed', v_meera,
           t + interval '10 minutes', true, t)
   returning id into v_enq;
@@ -533,7 +533,7 @@ begin
                                 locality, details, status, is_demo, created_at)
   values (v_cust, v_user, (select id from public.vendors where slug = 'wings-in-air-tours-and-travel'),
           (select id from public.categories where slug = 'travel-tours'),
-          'Family trip to Kerala in December — 2 adults, 1 child, 5 nights.', (now() + interval '45 days')::date, 'Flexible',
+          'Family trip to Kerala in December: 2 adults, 1 child, 5 nights.', (now() + interval '45 days')::date, 'Flexible',
           'Kondapur', '{"destination": "Kerala", "travellers": 3, "nights": 5}', 'new', true, now() - interval '2 hours');
 
   insert into public.likes (user_id, vendor_id) values (v_user, v_meera) on conflict do nothing;
@@ -555,7 +555,7 @@ on conflict do nothing;
 
 -- ---------- vendor updates ----------
 insert into public.vendor_updates (vendor_id, title, body, created_at)
-select id, 'Diwali hampers now open', 'Pre-order festive cookie and brownie hampers — limited slots each day.', now() - interval '3 days'
+select id, 'Diwali hampers now open', 'Pre-order festive cookie and brownie hampers. Limited slots each day.', now() - interval '3 days'
 from public.vendors where slug = 'meeras-home-baking'
 union all
 select id, 'December Kerala departures', 'A few family slots left for our 5-night Kerala package.', now() - interval '6 days'

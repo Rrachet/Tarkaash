@@ -98,7 +98,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
             <span className="relative flex size-16 animate-pop items-center justify-center rounded-full bg-gold text-teal-deep"><CheckCircle2 className="size-8" /></span>
           </span>
           <h2 className="mt-4 text-2xl font-semibold">Enquiry sent to Tarkaash</h2>
-          <p className="mt-1 text-sm text-white/80">{done.duplicate ? "We already have this enquiry — here is its reference." : "Our team will coordinate with the provider and get back to you."}</p>
+          <p className="mt-1 text-sm text-white/80">{done.duplicate ? "We already have this enquiry. Here is its reference." : "Our team will coordinate with the provider and get back to you."}</p>
         </div>
         <div className="space-y-5 p-6">
           <div className="rounded-2xl border border-dashed border-gold bg-gold-pale/50 p-4 text-center">
@@ -144,7 +144,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
           <Field label="Service required" name="service">
             <Select name="service" value={selectedId ?? ""} onChange={(e) => onSelect(e.target.value || undefined)}>
               <option value="">Not sure yet / something custom</option>
-              {services.map((s) => <option key={s.id} value={s.id}>{s.title} — {priceLabel(s)}</option>)}
+              {services.map((s) => <option key={s.id} value={s.id}>{s.title} ({priceLabel(s)})</option>)}
             </Select>
           </Field>
 
@@ -167,7 +167,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
             <Field label="Preferred time" name="preferred_time">
               <Select name="preferred_time" defaultValue="">
                 <option value="">Any time</option>
-                <option>Morning (9–12)</option><option>Afternoon (12–4)</option><option>Evening (4–8)</option><option>Flexible</option>
+                <option>Morning (9 to 12)</option><option>Afternoon (12 to 4)</option><option>Evening (4 to 8)</option><option>Flexible</option>
               </Select>
             </Field>
           </div>
@@ -219,7 +219,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
       <div className="card p-5">
         <h3 className="flex items-center gap-2 font-sans text-base font-semibold"><ShieldCheck className="size-5 text-teal" />Why enquire through Tarkaash?</h3>
         <ul className="mt-3 space-y-2.5 text-sm text-ink/85">
-          <li className="flex gap-2.5"><Route className="mt-0.5 size-4 shrink-0 text-gold-600" />One point of contact — no need to chase multiple providers</li>
+          <li className="flex gap-2.5"><Route className="mt-0.5 size-4 shrink-0 text-gold-600" />One point of contact, no need to chase multiple providers</li>
           <li className="flex gap-2.5"><ClipboardList className="mt-0.5 size-4 shrink-0 text-gold-600" />Clear enquiry trail with a reference ID</li>
           <li className="flex gap-2.5"><PhoneOff className="mt-0.5 size-4 shrink-0 text-gold-600" />Your number is shared only with the provider who takes your order</li>
           <li className="flex gap-2.5"><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold-600" />Support if plans change</li>

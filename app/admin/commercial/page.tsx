@@ -28,7 +28,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
   return (
     <>
       <PageTitle title="Commercial & P&L" actions={<div className="flex gap-2"><RangeTabs base="/admin/commercial" current={sp.range ?? "90d"} /><a href={`/api/export/ledger?range=${sp.range ?? "90d"}`} className="inline-flex h-10 items-center gap-1.5 rounded-full border border-line bg-white px-4 text-sm font-semibold"><Download className="size-4" />Ledger CSV</a></div>}>
-        Platform revenue is only fees and commission actually earned or recorded — vendor order value is shown separately. <SampleBadge className="ml-1 align-middle" />
+        Platform revenue is only fees and commission actually earned or recorded. Vendor order value is shown separately. <SampleBadge className="ml-1 align-middle" />
       </PageTitle>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         <StatCard label="Vendor order value" value={formatINR(s.gmv)} sub="Not Tarkaash revenue" icon={<Wallet className="size-4" />} tone="sky" />
@@ -47,9 +47,9 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
           <dl className="mt-4 space-y-3 text-sm">
             {byType.map(([k, v]) => <div key={k} className="flex justify-between"><dt className="capitalize text-slate">{k.replace("_", " ")}</dt><dd>{formatINR(v)}</dd></div>)}
             <div className="flex justify-between border-t border-line pt-3 font-semibold"><dt>Platform revenue</dt><dd>{formatINR(s.revenue)}</dd></div>
-            <div className="flex justify-between"><dt className="text-slate">Direct costs</dt><dd>– {formatINR(s.direct_costs)}</dd></div>
+            <div className="flex justify-between"><dt className="text-slate">Direct costs</dt><dd>- {formatINR(s.direct_costs)}</dd></div>
             <div className="flex justify-between border-t border-line pt-3 font-semibold"><dt>Contribution</dt><dd>{formatINR(s.contribution)}</dd></div>
-            <div className="flex justify-between"><dt className="text-slate">Operating costs</dt><dd>– {formatINR(s.operating_costs)}</dd></div>
+            <div className="flex justify-between"><dt className="text-slate">Operating costs</dt><dd>- {formatINR(s.operating_costs)}</dd></div>
             <div className={`flex justify-between border-t-2 border-ink pt-3 text-base font-bold ${s.operating_result < 0 ? "text-danger" : "text-success"}`}><dt>Operating result</dt><dd>{formatINR(s.operating_result)}</dd></div>
           </dl>
           <p className="mt-4 text-xs text-slate">Fees, commission and tax treatment are configurable and pending product-owner approval.</p>
@@ -65,7 +65,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
                 <tr key={l.id}>
                   <td className="px-5 py-2.5 text-slate">{formatDate(l.recognized_on)}</td>
                   <td className="px-3 py-2.5 capitalize">{l.txn_type.replace("_", " ")}</td>
-                  <td className="px-3 py-2.5">{l.vendors?.name ?? "—"} <span className="font-mono text-xs text-slate">{l.orders?.ref_code}</span></td>
+                  <td className="px-3 py-2.5">{l.vendors?.name ?? "N/A"} <span className="font-mono text-xs text-slate">{l.orders?.ref_code}</span></td>
                   <td className="px-3 py-2.5 text-right font-semibold">{formatINR(l.amount)}</td>
                   <td className="px-3 py-2.5"><Badge tone={l.basis === "actual" ? "mint" : l.basis === "forecast" ? "slate" : "gold"}>{l.basis}</Badge></td>
                   <td className="px-5 py-2.5 text-right">{l.basis !== "forecast" && <ReconcileButton id={l.id} reconciled={l.reconciliation === "reconciled"} />}</td>

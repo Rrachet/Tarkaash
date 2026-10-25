@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { Users, TrendingUp, ShieldCheck, LayoutDashboard, CheckCircle2, Clock } from "lucide-react";
 import { getViewer } from "@/lib/auth";
@@ -9,7 +10,12 @@ import { VendorApplicationForm } from "@/components/forms/vendor-application-for
 import { HOME_IMAGES } from "@/lib/content/site";
 import { sizedImage } from "@/lib/format";
 
-export const metadata: Metadata = { title: "List your service", description: "Grow your local business with Tarkaash." };
+export const metadata: Metadata = pageMeta({
+  title: "List Your Business Online in Hyderabad | Grow with Tarkaash",
+  description: "Home bakers, home kitchens, tutors, beauticians and local service businesses: list your business on Tarkaash and get coordinated enquiries from customers in Hyderabad. No upfront listing fee during the pilot.",
+  path: "/list-your-service",
+  keywords: ["list your business online Hyderabad", "get orders for home bakers", "grow home business India", "register home business online"],
+});
 
 export default async function ListYourServicePage() {
   const [viewer, categories] = await Promise.all([getViewer(), getCategories()]);
@@ -48,7 +54,7 @@ export default async function ListYourServicePage() {
         <div>
           <h2 className="text-3xl font-semibold">How onboarding works</h2>
           <ol className="mt-6 space-y-5" data-stagger="left">
-            {["Create your account and tell us about your business.", "Tarkaash reviews your details and verifies identity, area and any licence your category needs.", "Add services, prices and photos from your vendor portal.", "Go live — Tarkaash starts sending you coordinated enquiries."].map((s, i) => (
+            {["Create your account and tell us about your business.", "Tarkaash reviews your details and verifies identity, area and any licence your category needs.", "Add services, prices and photos from your vendor portal.", "Go live. Tarkaash starts sending you coordinated enquiries."].map((s, i) => (
               <li key={s} className="flex gap-4"><span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal font-bold text-white">{i + 1}</span><p className="pt-1.5">{s}</p></li>
             ))}
           </ol>

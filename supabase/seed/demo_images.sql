@@ -49,7 +49,7 @@ from public.vendors v, (values
   ('utsav-events-and-decor', 'Corporate Events', '1464366400600-7168b8af9bc3'),
   ('annapurna-tiffins', 'Lunch Tiffin', '1565557623262-b51c2513a641'),
   ('annapurna-tiffins', 'Monthly Meal Plan', '1680993032090-1ef7ea9b51e5'),
-  ('little-scholars-tutoring', 'Primary Tuition (Classes 1–3)', '1503676260728-1c00da094a0b'),
+  ('little-scholars-tutoring', 'Primary Tuition (Classes 1 to 3)', '1503676260728-1c00da094a0b'),
   ('little-scholars-tutoring', 'Phonics & Handwriting', '1497633762265-9d179a990aa6'),
   ('henna-art-by-zoya', 'Bridal Mehendi', '1730003873829-09b4b16444c1')
 ) as x(slug, title, img)

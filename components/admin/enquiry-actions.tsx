@@ -39,12 +39,12 @@ export function EnquiryAdminActions({ enquiryId, status, canEdit, hasActiveOrder
           <Field label="Provider" name="vendor" className="mt-3">
             <Select name="vendor" value={vendorId} onChange={(e) => setVendorId(e.target.value)}>
               <option value="">Choose provider…</option>
-              {list.map((v) => <option key={v.id} value={v.id}>{v.name}{v.id === suggestedVendorId ? " (requested)" : ""}{v.verified ? " ✓" : ""} — {v.locality}</option>)}
+              {list.map((v) => <option key={v.id} value={v.id}>{v.name}{v.id === suggestedVendorId ? " (requested)" : ""}{v.verified ? " ✓" : ""}, {v.locality}</option>)}
             </Select>
           </Field>
           {categoryId && <label className="mt-2 flex items-center gap-2 text-xs text-slate"><input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} className="accent-teal" />Show providers from all categories</label>}
           <Textarea name="assignNote" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Note for the record (optional)" className="mt-3 min-h-16" />
-          <Button className="mt-3 w-full" loading={pending} disabled={!vendorId} onClick={() => run(async () => assignEnquiry(enquiryId, vendorId, note || undefined), "Enquiry assigned — vendor notified")}>
+          <Button className="mt-3 w-full" loading={pending} disabled={!vendorId} onClick={() => run(async () => assignEnquiry(enquiryId, vendorId, note || undefined), "Enquiry assigned. Vendor notified.")}>
             <BadgeCheck className="size-4" />Assign & notify vendor
           </Button>
         </section>

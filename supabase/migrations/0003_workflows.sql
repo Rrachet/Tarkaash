@@ -296,7 +296,7 @@ begin
     update public.enquiries set status = 'new', vendor_id = null, assigned_at = null where id = e.id;
     insert into public.enquiry_events (enquiry_id, actor_id, action, from_status, to_status, vendor_id, note)
     values (e.id, auth.uid(), 'returned', e.status, 'new', o.vendor_id, v_note);
-    perform public.notify('admin', null, null, 'Declined — reassign ' || e.ref_code, v_note, '/admin/enquiries/' || e.id);
+    perform public.notify('admin', null, null, 'Declined, reassign ' || e.ref_code, v_note, '/admin/enquiries/' || e.id);
   elsif p_to = 'accepted' then
     update public.enquiries set status = 'in_fulfilment' where id = e.id;
     insert into public.enquiry_events (enquiry_id, actor_id, action, from_status, to_status, vendor_id)
@@ -308,7 +308,7 @@ begin
     perform public.notify('admin', null, null, 'Order cancelled ' || o.ref_code, v_note, '/admin/orders/' || o.id);
   elsif p_to = 'submitted' then
     perform public.notify('admin', null, null, 'Order submitted for closure ' || o.ref_code,
-                          'Agreed ₹' || coalesce(o.agreed_amount::text, '—'), '/admin/orders/' || o.id);
+                          'Agreed ₹' || coalesce(o.agreed_amount::text, 'N/A'), '/admin/orders/' || o.id);
   elsif p_to = 'payment_recorded' and v_actor = 'admin' and t.from_status = 'submitted' then
     perform public.notify('vendor', o.vendor_id, null, 'Submission returned ' || o.ref_code, v_note, '/vendor/orders/' || o.id);
   elsif p_to = 'closed' then
@@ -328,7 +328,7 @@ begin
       values ('assist_fee', o.id, e.id, o.vendor_id, e.assist_fee, 'accrued', 'Tarkaash Assist fee', auth.uid(), o.is_demo)
       on conflict do nothing;
     end if;
-    perform public.notify('vendor', o.vendor_id, null, 'Order closed ' || o.ref_code, 'Thank you — this order is complete.', '/vendor/orders/' || o.id);
+    perform public.notify('vendor', o.vendor_id, null, 'Order closed ' || o.ref_code, 'Thank you, this order is complete.', '/vendor/orders/' || o.id);
   end if;
 
   perform public.write_audit('order.' || p_to, 'order', o.id::text,

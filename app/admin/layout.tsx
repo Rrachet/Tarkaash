@@ -1,3 +1,4 @@
+import { PRIVATE_ROBOTS } from "@/lib/seo";
 import type { Metadata } from "next";
 import { requireRole } from "@/lib/auth";
 import { getAdminCounts } from "@/lib/data/admin";
@@ -5,7 +6,7 @@ import { PortalSidebar, type NavItem } from "@/components/portal/sidebar";
 import { PortalTopbar } from "@/components/portal/topbar";
 import { Logo } from "@/components/ui/misc";
 
-export const metadata: Metadata = { title: { default: "Admin", template: "%s · Tarkaash admin" } };
+export const metadata: Metadata = { title: { default: "Admin", template: "%s | Tarkaash admin" }, robots: PRIVATE_ROBOTS };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const viewer = await requireRole(["admin", "finance"], "/admin");

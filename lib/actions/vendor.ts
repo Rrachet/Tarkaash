@@ -142,7 +142,7 @@ export async function removeGalleryImage(mediaId: string): Promise<ActionResult>
 
 export async function postVendorUpdate(vendorId: string, title: string, body?: string): Promise<ActionResult> {
   const t = title.trim();
-  if (t.length < 3 || t.length > 120) return fail("Add a short title (3–120 characters).");
+  if (t.length < 3 || t.length > 120) return fail("Add a short title (3 to 120 characters).");
   const supabase = await createClient();
   const { error } = await supabase.from("vendor_updates").insert({ vendor_id: vendorId, title: t, body: body?.trim().slice(0, 1000) || null });
   if (error) return fail(friendlyError(error));

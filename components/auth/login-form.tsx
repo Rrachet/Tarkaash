@@ -11,9 +11,9 @@ import { cn } from "@/lib/cn";
 
 const DEMO_ACCOUNTS = [
   { email: "tarkaash.admin@example.com", label: "Tarkaash admin", desc: "Enquiry queue, analytics, P&L", icon: ShieldCheck },
-  { email: "meera.baking@example.com", label: "Vendor — Meera's Home Baking", desc: "Orders, services, analytics", icon: Store },
-  { email: "rohan.kitchen@example.com", label: "Vendor — Rohan's Home Kitchen", desc: "A second vendor (isolated data)", icon: Store },
-  { email: "priya.customer@example.com", label: "Customer — Priya", desc: "My enquiries and saved providers", icon: User },
+  { email: "meera.baking@example.com", label: "Vendor: Meera's Home Baking", desc: "Orders, services, analytics", icon: Store },
+  { email: "rohan.kitchen@example.com", label: "Vendor: Rohan's Home Kitchen", desc: "A second vendor (isolated data)", icon: Store },
+  { email: "priya.customer@example.com", label: "Customer: Priya", desc: "My enquiries and saved providers", icon: User },
   { email: "tarkaash.finance@example.com", label: "Finance", desc: "Ledger and payouts", icon: Wallet },
 ];
 

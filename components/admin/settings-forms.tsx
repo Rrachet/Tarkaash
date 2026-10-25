@@ -63,7 +63,7 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
             <Field label="WhatsApp / phone" name="phone"><Input name="phone" defaultValue={String(ct.phone ?? "")} /></Field>
           </div>
           <Field label="Address" name="address"><Input name="address" defaultValue={String(ct.address ?? "")} /></Field>
-          <Checkbox name="confirmed" defaultChecked={!!ct.confirmed} label="These details are confirmed — show them on the Contact page" />
+          <Checkbox name="confirmed" defaultChecked={!!ct.confirmed} label="These details are confirmed. Show them on the Contact page." />
           <Button type="submit" size="sm">Save</Button>
         </form>
       </Card>
@@ -72,8 +72,8 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
           low_views: num(fd, "low_views"), high_views: num(fd, "high_views"), min_enquiry_rate: num(fd, "min_enquiry_rate"), slow_response_hours: num(fd, "slow_response_hours"),
           min_enquiries_for_response: num(fd, "min_enquiries_for_response"), cancel_ratio: num(fd, "cancel_ratio"), min_rating: num(fd, "min_rating"), min_completeness: num(fd, "min_completeness"),
         }))} className="grid gap-3 sm:grid-cols-4">
-          {[["low_views", "Low exposure: views below"], ["high_views", "High exposure: views from"], ["min_enquiry_rate", "Min enquiry rate (0–1)", "0.01"], ["slow_response_hours", "Slow response (hours)"],
-            ["min_enquiries_for_response", "Min assignments to judge response"], ["cancel_ratio", "Cancel ratio flag (0–1)", "0.05"], ["min_rating", "Min average rating", "0.1"], ["min_completeness", "Listing complete (%)"]].map(([k, l, step]) => (
+          {[["low_views", "Low exposure: views below"], ["high_views", "High exposure: views from"], ["min_enquiry_rate", "Min enquiry rate (0 to 1)", "0.01"], ["slow_response_hours", "Slow response (hours)"],
+            ["min_enquiries_for_response", "Min assignments to judge response"], ["cancel_ratio", "Cancel ratio flag (0 to 1)", "0.05"], ["min_rating", "Min average rating", "0.1"], ["min_completeness", "Listing complete (%)"]].map(([k, l, step]) => (
             <Field key={k} label={l!} name={k!}><Input name={k} type="number" step={step ?? "1"} defaultValue={Number(b[k!] ?? 0)} /></Field>
           ))}
           <div className="sm:col-span-4"><Button type="submit" size="sm">Save thresholds</Button></div>

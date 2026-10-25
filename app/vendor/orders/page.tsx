@@ -22,7 +22,7 @@ export default async function VendorOrdersPage({ searchParams }: { searchParams:
 
   return (
     <>
-      <PageTitle title="Orders & bookings">Every order from acceptance to completion — managed through Tarkaash.</PageTitle>
+      <PageTitle title="Orders & bookings">Every order from acceptance to completion, managed through Tarkaash.</PageTitle>
       <div className="mb-5 flex gap-2 overflow-x-auto scrollbar-none">
         {Object.entries(ORDER_FILTERS).map(([k, f]) => (
           <Link key={k} href={`/vendor/orders?filter=${k}`} aria-current={filter === k ? "page" : undefined}

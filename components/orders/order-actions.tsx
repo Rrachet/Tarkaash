@@ -56,7 +56,7 @@ export function OrderActions({ orderId, status, role, agreedAmount, scheduledFor
         {editable && <Button variant="outline" className="w-full" onClick={() => setEditOpen(true)}><Pencil className="size-4" />Edit price & schedule</Button>}
         {actions.length === 0 && !canPay && !editable && (
           <p className="flex items-center gap-2 rounded-xl bg-cream px-3 py-2.5 text-sm text-slate">
-            <CheckCircle2 className="size-4 text-success" />{status === "submitted" ? "Submitted — Tarkaash will verify and close this order." : "No further action needed."}
+            <CheckCircle2 className="size-4 text-success" />{status === "submitted" ? "Submitted. Tarkaash will verify and close this order." : "No further action needed."}
           </p>
         )}
       </div>

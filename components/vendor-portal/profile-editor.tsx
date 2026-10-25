@@ -61,7 +61,7 @@ export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: strin
           <Field label="Languages" name="languages" hint="Comma separated"><Input name="languages" defaultValue={vendor.languages.join(", ")} /></Field>
         </div>
         <Field label="Service area" name="serviceArea" hint="Comma separated localities"><Input name="serviceArea" defaultValue={vendor.service_area.join(", ")} /></Field>
-        <Field label="Highlights" name="highlights" hint="Up to 8, comma separated — e.g. Freshly baked, Eggless options"><Input name="highlights" defaultValue={vendor.highlights.join(", ")} /></Field>
+        <Field label="Highlights" name="highlights" hint="Up to 8, comma separated, for example: Freshly baked, Eggless options"><Input name="highlights" defaultValue={vendor.highlights.join(", ")} /></Field>
         <Field label="Key terms" name="keyTerms" hint="Notice period, delivery radius, advance payment…"><Textarea name="keyTerms" defaultValue={vendor.key_terms ?? ""} className="min-h-20" /></Field>
         <Button type="submit" loading={pending}>Save profile</Button>
       </form>

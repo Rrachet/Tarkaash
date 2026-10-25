@@ -51,9 +51,9 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
             <h2 className="font-sans text-base font-semibold">About</h2>
             <p className="mt-2 text-sm leading-relaxed">{v.description ?? "No description yet."}</p>
             <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-              <div><dt className="text-xs font-semibold uppercase text-slate">Service area</dt><dd>{v.service_area.join(", ") || "—"}</dd></div>
+              <div><dt className="text-xs font-semibold uppercase text-slate">Service area</dt><dd>{v.service_area.join(", ") || "N/A"}</dd></div>
               <div><dt className="text-xs font-semibold uppercase text-slate">Listing strength</dt><dd>{m.completeness}%</dd></div>
-              <div><dt className="text-xs font-semibold uppercase text-slate">Key terms</dt><dd>{v.key_terms ?? "—"}</dd></div>
+              <div><dt className="text-xs font-semibold uppercase text-slate">Key terms</dt><dd>{v.key_terms ?? "N/A"}</dd></div>
               <div><dt className="text-xs font-semibold uppercase text-slate">Followers / likes</dt><dd>{m.followers_total} / {m.likes_total}</dd></div>
             </dl>
             {tickets?.length ? <p className="mt-4 rounded-xl bg-cream p-3 text-sm">Application {tickets[0]!.ref_code}: {tickets[0]!.message}</p> : null}

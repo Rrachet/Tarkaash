@@ -47,7 +47,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
           <button className="h-10 rounded-full bg-teal px-4 text-sm font-semibold text-white">Apply</button>
         </form>
       }>
-        Platform performance, vendor growth, service demand and revenue — {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
+        Platform performance, vendor growth, service demand and revenue for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
       </PageTitle>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -70,7 +70,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
           <h2 className="font-sans text-base font-semibold">Enquiry outcomes</h2>
           <div className="mt-4"><Donut data={statusData} height={180} centerValue={formatNumber(m.leads)} centerLabel="enquiries" /></div>
           <div className="mt-5 rounded-2xl bg-cream p-4 text-sm">
-            <p className="flex items-center justify-between"><span>Rating across providers</span><strong>{m.rating_avg ? `${Number(m.rating_avg).toFixed(2)} ★` : "—"}</strong></p>
+            <p className="flex items-center justify-between"><span>Rating across providers</span><strong>{m.rating_avg ? `${Number(m.rating_avg).toFixed(2)} ★` : "N/A"}</strong></p>
             <p className="mt-1 flex items-center justify-between"><span>Enquiry → order conversion</span><strong>{formatPercent(m.conversion_rate)}</strong></p>
           </div>
         </section>
@@ -123,12 +123,12 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
           <dl className="mt-4 space-y-2.5 text-sm">
             <Row label="Total order value (vendor GMV)" value={formatINR(money.gmv)} muted />
             <Row label="Platform revenue (fees & commission)" value={formatINR(money.revenue)} />
-            <Row label="Direct costs" value={`– ${formatINR(money.direct_costs)}`} />
+            <Row label="Direct costs" value={`- ${formatINR(money.direct_costs)}`} />
             <Row label="Contribution" value={formatINR(money.contribution)} strong />
-            <Row label="Operating costs" value={`– ${formatINR(money.operating_costs)}`} />
+            <Row label="Operating costs" value={`- ${formatINR(money.operating_costs)}`} />
             <Row label="Net profit (estimated)" value={formatINR(money.operating_result)} strong tone={money.operating_result < 0 ? "danger" : "success"} />
           </dl>
-          <p className="mt-3 text-xs text-slate">Revenue counts only fees actually earned/recorded — never total vendor order value.</p>
+          <p className="mt-3 text-xs text-slate">Revenue counts only fees actually earned or recorded, never total vendor order value.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <a href={`/api/export/orders?range=${preset}`} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line px-3 text-sm font-semibold hover:border-teal/40"><Download className="size-4" />Orders</a>
             <a href={`/api/export/enquiries?range=${preset}`} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line px-3 text-sm font-semibold hover:border-teal/40"><Download className="size-4" />Enquiries</a>

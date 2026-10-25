@@ -3,8 +3,16 @@ import { Search, MessageSquareText, UserCheck, ClipboardCheck, Star, ShieldCheck
 import { PageHero } from "@/components/marketing/page-hero";
 import { ButtonLink } from "@/components/ui/button";
 import { HOME_IMAGES } from "@/lib/content/site";
+import { HOW_FAQS } from "@/lib/content/seo";
+import { FaqSection } from "@/components/marketing/faq";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "How it works" };
+export const metadata: Metadata = pageMeta({
+  title: "How Tarkaash Works | Book Trusted Local Services in Hyderabad",
+  description: "See how Tarkaash coordinates every enquiry: discover local providers in Hyderabad, send one enquiry with a reference ID, and get the service delivered. For customers and providers.",
+  path: "/how-it-works",
+  keywords: ["how to book local services Hyderabad", "how Tarkaash works", "list my business online Hyderabad"],
+});
 
 const CUSTOMER = [
   { i: Search, t: "Discover providers", d: "Search by need, category and locality. Profiles show services, indicative prices, lead times and checked details." },
@@ -33,11 +41,12 @@ export default function HowItWorksPage() {
           <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-teal-deep text-gold"><ShieldCheck className="size-7" /></span>
           <div className="flex-1">
             <h2 className="text-2xl font-semibold">Your contact details stay protected</h2>
-            <p className="mt-1 text-slate">Customer phone numbers and emails are shared only with the provider who accepts the order — never published, never sold.</p>
+            <p className="mt-1 text-slate">Customer phone numbers and emails are shared only with the provider who accepts the order. They are never published and never sold.</p>
           </div>
           <ButtonLink href="/services" size="lg">Explore services</ButtonLink>
         </div>
       </section>
+      <FaqSection faqs={HOW_FAQS} />
     </>
   );
 }

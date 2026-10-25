@@ -37,7 +37,7 @@ export default async function PayoutsPage() {
                   <td className="px-5 py-3 text-slate">{formatDateTime(p.created_at)}</td>
                   <td className="px-5 py-3"><Link href={`/vendor/orders/${p.orders.id}`} className="font-mono font-semibold text-teal hover:underline">{p.orders.ref_code}</Link><span className="block text-xs text-slate">{p.orders.title}</span></td>
                   <td className="px-5 py-3 uppercase">{p.method.replace("_", " ")}</td>
-                  <td className="px-5 py-3 font-mono text-xs">{p.transaction_ref ?? "—"}</td>
+                  <td className="px-5 py-3 font-mono text-xs">{p.transaction_ref ?? "N/A"}</td>
                   <td className="px-5 py-3 font-semibold">{formatINR(p.amount)}</td>
                   <td className="px-5 py-3"><Badge tone={p.status === "verified" ? "mint" : p.status === "rejected" ? "danger" : "gold"}>{p.status}</Badge></td>
                 </tr>

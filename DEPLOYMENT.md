@@ -1,4 +1,4 @@
-# Tarkaash — deployment & hosting runbook
+# Tarkaash deployment and hosting runbook
 
 ## Live environment
 
@@ -73,3 +73,25 @@ Checks after any database change:
 - `GET /api/health` returns database reachability and latency.
 - Vercel → Observability / Logs for runtime errors; Supabase → Logs for database and auth.
 - End-to-end checks: `DEMO_PASSWORD=… APP_URL=https://tarkaash.vercel.app npm run smoke` and `node scripts/e2e.mjs`.
+
+## SEO, AEO and GEO launch checklist
+
+The site ships with full SEO (keyword-targeted category and area pages, structured data, sitemap, `llms.txt` for AI assistants) but stays **noindex** until you switch it on, so demo vendors and sample reviews never appear in Google.
+
+Before flipping indexing on:
+1. Replace demo vendors and reviews with real ones (or remove rows where `is_demo = true`).
+2. Connect a custom domain (for example `tarkaash.in`). A brand domain ranks far better than `*.vercel.app`. Update `NEXT_PUBLIC_SITE_URL` to it.
+3. Confirm contact details in Admin > Settings so they appear on the Contact page.
+
+Go live:
+1. In Vercel, set `NEXT_PUBLIC_ALLOW_INDEXING=1` and redeploy. `/robots.txt` then allows crawlers (including AI search bots) and links the sitemap.
+2. Add the site to Google Search Console, set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`, and submit `/sitemap.xml`. Do the same in Bing Webmaster Tools (Bing also feeds ChatGPT search).
+3. Create a Google Business Profile for Tarkaash in Hyderabad with the same name, logo and description as the site.
+4. List Tarkaash consistently on Justdial, Sulekha, IndiaMART, LinkedIn and Instagram. Consistent details help both local ranking and AI answers.
+5. Encourage providers to link to their Tarkaash profile from Instagram and WhatsApp Business.
+
+Pages built for search:
+- `/services/<category>`: one landing page per category, for example "Home Bakers and Custom Cakes in Hyderabad", with an intro, provider list, area links and FAQs. Copy lives in `lib/content/seo.ts`.
+- `/hyderabad/<area>`: one page per neighbourhood (Kondapur, Gachibowli, Madhapur and more). Only areas with providers are listed in the sitemap.
+- `/vendors/<slug>`: LocalBusiness structured data with services and prices. Star ratings are marked up only for real (non-demo) providers.
+- `/llms.txt`: plain text summary of Tarkaash, its categories, areas, providers and FAQs for AI assistants.

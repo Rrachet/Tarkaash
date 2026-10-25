@@ -15,7 +15,7 @@ export async function SiteFooter() {
           </p>
           <p className="mt-4 font-display text-lg text-gold">Real People · Real Skills · Real Community</p>
         </div>
-        <FooterCol title="Explore" links={categories.slice(0, 6).map((c) => ({ href: `/services?category=${c.slug}`, label: c.name }))} />
+        <FooterCol title="Explore" links={categories.slice(0, 6).map((c) => ({ href: `/services/${c.slug}`, label: c.name }))} />
         <FooterCol title="Tarkaash" links={[
           { href: "/how-it-works", label: "How it works" }, { href: "/about", label: "About us" },
           { href: "/contact", label: "Contact" }, { href: "/list-your-service", label: "List your service" },
@@ -28,7 +28,7 @@ export async function SiteFooter() {
       <div className="relative border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Tarkaash. Har Hunar Ko Ek Pehchaan.</p>
-          <p>Demo environment — prices, reviews, metrics and fees shown are illustrative.</p>
+          <p>Demo environment. Prices, reviews, metrics and fees shown are illustrative.</p>
         </div>
       </div>
     </footer>

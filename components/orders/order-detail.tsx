@@ -38,9 +38,9 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
           <section className="card p-5">
             <h2 className="font-sans text-base font-semibold">Customer request</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
-              <Info icon={<MessageSquareQuote className="size-4" />} label="Customer" value={order.customer_display_name ?? "—"} />
+              <Info icon={<MessageSquareQuote className="size-4" />} label="Customer" value={order.customer_display_name ?? "N/A"} />
               <Info icon={<CalendarDays className="size-4" />} label="Preferred date" value={e?.preferred_date ? `${formatDate(e.preferred_date)}${e.preferred_time ? ` · ${e.preferred_time}` : ""}` : "Flexible"} />
-              <Info icon={<MapPin className="size-4" />} label="Locality" value={e?.locality ?? "—"} />
+              <Info icon={<MapPin className="size-4" />} label="Locality" value={e?.locality ?? "N/A"} />
             </div>
             <blockquote className="mt-4 rounded-xl border-l-4 border-gold bg-cream px-4 py-3 text-sm leading-relaxed">{e?.request}</blockquote>
             {details.length > 0 && (
@@ -69,7 +69,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
                 {payments.map((p) => (
                   <li key={p.id} className="flex flex-wrap items-center justify-between gap-2 py-3">
                     <span className="font-semibold">{formatINR(p.amount)} <span className="font-normal uppercase text-slate">· {p.method.replace("_", " ")}</span></span>
-                    <span className="font-mono text-xs text-slate">{p.transaction_ref ?? "—"}</span>
+                    <span className="font-mono text-xs text-slate">{p.transaction_ref ?? "N/A"}</span>
                     <span className="text-xs text-slate">{formatDateTime(p.created_at)} · <span className={p.status === "verified" ? "font-semibold text-success" : ""}>{p.status}</span></span>
                   </li>
                 ))}
@@ -98,7 +98,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
           <div className="rounded-2xl bg-teal-deep p-5 text-white">
             <p className="font-display text-lg font-semibold">Tarkaash order promise</p>
             <ul className="mt-3 space-y-2 text-sm text-white/80">
-              <li>• One order record — enquiry, acceptance, delivery and payment in one place.</li>
+              <li>• One order record: enquiry, acceptance, delivery and payment in one place.</li>
               <li>• Clear completion trail, auditable with timestamps.</li>
               <li>• Support if something goes wrong.</li>
             </ul>

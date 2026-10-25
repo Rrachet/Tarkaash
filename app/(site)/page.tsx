@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,10 +16,20 @@ import { sizedImage } from "@/lib/format";
 import { PointerGlow } from "@/components/motion/pointer-glow";
 import { RotatingSearchInput } from "@/components/motion/rotating-input";
 import { CountUp } from "@/components/motion/count-up";
+import { FaqSection } from "@/components/marketing/faq";
+import { CATEGORY_SEO, HOME_FAQS, LOCALITY_PAGES, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/content/seo";
 
 const SEARCH_EXAMPLES = ["Cakes, tiffins, tuition, travel", "A birthday cake for Saturday", "Daily lunch tiffin in Kondapur", "Maths tutor for class 8", "A weekend trip to Coorg", "Bridal mehendi artist"];
 
 export const revalidate = 300;
+
+export const metadata: Metadata = pageMeta({
+  title: "Tarkaash | Trusted Local Services in Hyderabad: Home Bakers, Tiffins, Tutors",
+  description: SITE_DESCRIPTION,
+  path: "/",
+  keywords: SITE_KEYWORDS,
+  absoluteTitle: true,
+});
 
 export default async function HomePage() {
   const [categories, vendors, stats] = await Promise.all([getCategories(), getFeaturedVendors(8), getPlatformStats()]);
@@ -36,7 +48,7 @@ export default async function HomePage() {
               Good services.<br /><span className="text-shine">Closer to home.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/80" style={{ "--d": "340ms" } as React.CSSProperties}>
-              Discover trusted home bakers, tutors, home kitchens, travel planners and more — and let Tarkaash coordinate every enquiry for you.
+              Trusted local services in Hyderabad. Find home bakers, tiffin services, home tutors, beauticians and travel planners near you, and let Tarkaash coordinate every enquiry.
             </p>
 
             <form action="/services" method="get" role="search" style={{ "--d": "480ms" } as React.CSSProperties}
@@ -92,7 +104,7 @@ export default async function HomePage() {
           action={<Link href="/services" className="text-sm font-semibold text-teal hover:underline">View all →</Link>} />
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9" data-stagger="zoom">
           {categories.map((c) => (
-            <Link key={c.id} href={`/services?category=${c.slug}`}
+            <Link key={c.id} href={`/services/${c.slug}`}
               className="group card flex flex-col items-center gap-3 px-2 py-5 text-center transition duration-300 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[var(--shadow-lift)]">
               <span className={`flex size-14 items-center justify-center rounded-2xl ${CATEGORY_TINTS[c.slug] ?? "bg-gold-pale text-teal"} transition duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-rotate-6 group-hover:scale-115`}>
                 <CategoryIcon icon={c.icon} className="size-6" />
@@ -119,7 +131,7 @@ export default async function HomePage() {
       {/* ---------- How it works ---------- */}
       <section className="container-page py-16 sm:py-24">
         <SectionHeading align="center" eyebrow="How Tarkaash works" title="One enquiry. One point of contact.">
-          You tell us what you need — we coordinate with the right provider and stay with you until it&apos;s done.
+          You tell us what you need. We coordinate with the right provider and stay with you until it&apos;s done.
         </SectionHeading>
         <div className="relative">
         <div data-reveal="line" className="absolute left-[16%] right-[16%] top-10 hidden h-px bg-gradient-to-r from-gold/0 via-gold to-gold/0 md:block" aria-hidden />
@@ -156,13 +168,13 @@ export default async function HomePage() {
         </div>
         <div data-reveal="right">
           <p className="eyebrow">Why choose Tarkaash</p>
-          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Trust, support and value — built into every enquiry</h2>
+          <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Trust, support and value, built into every enquiry</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2" data-stagger>
             {[
               { icon: ShieldCheck, t: "Checked profiles", d: "Verification badges appear only after Tarkaash completes identity, area and quality checks." },
               { icon: Headset, t: "Better support", d: "A real team coordinates your request and helps if plans change." },
               { icon: HeartHandshake, t: "Supports local", d: "Your spend goes to independent entrepreneurs and home businesses." },
-              { icon: Sparkles, t: "Clear enquiry trail", d: "Every request gets a reference ID and a traceable status — no lost messages." },
+              { icon: Sparkles, t: "Clear enquiry trail", d: "Every request gets a reference ID and a traceable status, so no message gets lost." },
             ].map((f) => (
               <div key={f.t} className="group rounded-2xl border border-line bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[var(--shadow-card)]">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-deep text-gold transition duration-500 group-hover:rotate-[-8deg] group-hover:bg-gold group-hover:text-teal-deep"><f.icon className="size-5" aria-hidden /></span>
@@ -181,7 +193,7 @@ export default async function HomePage() {
             { v: <CountUp value={stats.vendors} />, l: "Local providers listed" },
             { v: <CountUp value={stats.categories} />, l: "Service categories" },
             { v: <CountUp value={stats.reviews} />, l: "Customer reviews" },
-            { v: stats.avgRating ? <CountUp value={stats.avgRating} decimals={1} suffix=" ★" /> : "—", l: "Average rating" },
+            { v: stats.avgRating ? <CountUp value={stats.avgRating} decimals={1} suffix=" ★" /> : "N/A", l: "Average rating" },
           ].map((s) => (
             <div key={s.l} className="bg-white px-6 py-7 text-center transition-colors duration-300 hover:bg-cream">
               <p className="font-display text-3xl font-semibold text-teal sm:text-4xl">{s.v}</p>
@@ -192,8 +204,39 @@ export default async function HomePage() {
         <p className="mt-3 text-center"><SampleBadgeInline /></p>
       </section>
 
+      {/* ---------- Popular in Hyderabad (internal links for local search) ---------- */}
+      <section className="container-page mt-16 sm:mt-24" aria-labelledby="popular-title">
+        <div data-reveal className="grid gap-8 rounded-[2rem] border border-line bg-white p-6 sm:p-10 lg:grid-cols-[1fr_1.4fr]">
+          <div>
+            <p className="eyebrow">Popular in Hyderabad</p>
+            <h2 id="popular-title" className="mt-3 text-3xl font-semibold">Find services by need and neighbourhood</h2>
+            <p className="mt-3 text-slate">From custom cakes in Kondapur to tiffin services in Gachibowli and home tutors in Madhapur, explore trusted providers near you.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <h3 className="font-sans text-sm font-semibold uppercase tracking-widest text-gold-600">Services</h3>
+              <ul className="mt-3 space-y-2 text-sm">
+                {Object.entries(CATEGORY_SEO).map(([slug, c]) => (
+                  <li key={slug}><Link href={`/services/${slug}`} className="link-underline text-ink hover:text-teal">{c.h1}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-sans text-sm font-semibold uppercase tracking-widest text-gold-600">Areas</h3>
+              <ul className="mt-3 space-y-2 text-sm">
+                {LOCALITY_PAGES.map((l) => (
+                  <li key={l.slug}><Link href={`/hyderabad/${l.slug}`} className="link-underline text-ink hover:text-teal">Local services in {l.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FaqSection faqs={HOME_FAQS} title="Questions about Tarkaash" eyebrow="FAQ" className="container-page py-16 sm:py-20" />
+
       {/* ---------- Vendor CTA ---------- */}
-      <section className="container-page mt-16 sm:mt-24">
+      <section className="container-page">
         <PointerGlow className="overflow-hidden rounded-[2rem] bg-teal-deep px-6 py-12 text-white sm:px-12 lg:px-16">
           <div className="pattern-jaali absolute inset-0 opacity-30" aria-hidden />
           <div className="absolute -right-24 -bottom-24 size-80 animate-drift rounded-full bg-gold/15 blur-3xl" aria-hidden />
@@ -201,7 +244,7 @@ export default async function HomePage() {
             <div data-reveal>
               <p className="eyebrow">For providers</p>
               <h2 className="mt-3 text-3xl font-semibold sm:text-5xl">Grow your business <span className="text-gold">with Tarkaash</span></h2>
-              <p className="mt-4 max-w-xl text-white/80">Be part of a trusted community that connects your skills with real people and real opportunities. We bring the enquiries — you focus on your craft.</p>
+              <p className="mt-4 max-w-xl text-white/80">Be part of a trusted community that connects your skills with real people and real opportunities. We bring the enquiries, you focus on your craft.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink href="/list-your-service" variant="gold" size="lg">List your service <ArrowRight className="size-4" /></ButtonLink>
                 <ButtonLink href="/login?next=/vendor" variant="light" size="lg">Vendor login</ButtonLink>
