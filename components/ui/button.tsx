@@ -6,8 +6,8 @@ type Variant = "primary" | "gold" | "ghost" | "outline" | "danger" | "light";
 type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-teal text-white hover:bg-teal-600 shadow-sm",
-  gold: "bg-gold text-teal-deep hover:bg-gold-600 hover:text-white shadow-sm",
+  primary: "bg-teal text-white hover:bg-teal-600 shadow-sm hover:shadow-[0_10px_24px_-12px_rgb(0_75_75/0.7)]",
+  gold: "btn-sheen bg-gold text-teal-deep hover:bg-gold-600 hover:text-white shadow-sm hover:shadow-[0_10px_24px_-10px_rgb(217_164_65/0.8)]",
   ghost: "bg-transparent text-teal hover:bg-teal/5",
   outline: "border border-line bg-white text-ink hover:border-teal/40 hover:bg-cream",
   danger: "bg-danger text-white hover:bg-danger/90",
@@ -22,7 +22,8 @@ const sizes: Record<Size, string> = {
 export function buttonClass(variant: Variant = "primary", size: Size = "md", className?: string) {
   return cn(
     "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200",
-    "disabled:pointer-events-none disabled:opacity-55 active:scale-[0.98] whitespace-nowrap",
+    "disabled:pointer-events-none disabled:opacity-55 active:scale-[0.98] whitespace-nowrap hover:-translate-y-px",
+    "[&>svg:last-child:not(:first-child)]:transition-transform [&>svg:last-child:not(:first-child)]:duration-300 hover:[&>svg:last-child:not(:first-child)]:translate-x-1",
     variants[variant], sizes[size], className,
   );
 }

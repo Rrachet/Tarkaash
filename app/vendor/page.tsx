@@ -58,22 +58,22 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
       </div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.4fr_1fr]">
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <div className="flex items-center justify-between"><h2 className="font-sans text-base font-semibold">Profile views</h2><span className="text-sm text-slate">{formatNumber(m.profile_views)} total</span></div>
           <div className="mt-4"><AreaTrend data={m.series} keys={[{ key: "views", label: "Profile views" }]} /></div>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Enquiries & bookings</h2>
           <div className="mt-4"><BarCompare data={m.series} keys={[{ key: "enquiries", label: "Enquiries" }, { key: "orders", label: "Bookings" }]} /></div>
         </section>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">How customers found you</h2>
           <div className="mt-4">{sourceData.length ? <Donut data={sourceData} height={170} centerValue={formatNumber(m.profile_views)} centerLabel="views" /> : <p className="text-sm text-slate">No views in this period.</p>}</div>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Top performing services</h2>
           <ul className="mt-4 space-y-4">
             {topServices.map((s) => (
@@ -84,7 +84,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
             ))}
           </ul>
         </section>
-        <section className="card flex flex-col p-5">
+        <section data-reveal className="card flex flex-col p-5">
           <h2 className="font-sans text-base font-semibold">Listing strength</h2>
           <div className="mt-4 flex items-center gap-5">
             <div className="relative size-28 shrink-0 rounded-full" style={{ background: `conic-gradient(#D9A441 ${m.completeness * 3.6}deg, #F4EFE2 0)` }}>
@@ -99,7 +99,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
         </section>
       </div>
 
-      <section className="card mt-6 overflow-hidden">
+      <section data-reveal className="card mt-6 overflow-hidden">
         <div className="flex items-center justify-between p-5">
           <h2 className="font-sans text-base font-semibold">Recent orders</h2>
           <ButtonLink href="/vendor/orders" variant="ghost" size="sm">View all <ArrowRight className="size-4" /></ButtonLink>

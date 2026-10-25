@@ -17,7 +17,7 @@ export function Dialog({ open, onClose, title, description, children, className 
   }, [open]);
   return (
     <dialog ref={ref} onClose={onClose} onClick={(e) => e.target === ref.current && onClose()}
-      className={cn("m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl border border-line bg-white p-0 text-ink shadow-[var(--shadow-lift)] backdrop:bg-ink/50 backdrop:backdrop-blur-sm open:animate-fade-up", className)}>
+      className={cn("m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl border border-line bg-white p-0 text-ink shadow-[var(--shadow-lift)] backdrop:bg-ink/50 backdrop:backdrop-blur-sm open:animate-fade-up backdrop:animate-fade-in", className)}>
       <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
         <div>
           <h2 className="text-xl font-semibold">{title}</h2>

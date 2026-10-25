@@ -31,11 +31,11 @@ export default async function ServicesPage({ searchParams }: { searchParams: SP 
     <>
       {hasFilters && <TrackEvent type="search" source="explore" meta={{ q: sp.q ?? "", category: sp.category ?? "", locality: sp.locality ?? "", results: vendors.length }} />}
       <section className="bg-teal-deep text-white">
-        <div className="container-page py-10 sm:py-14">
+        <div className="hero-seq container-page py-10 sm:py-14">
           <nav aria-label="Breadcrumb" className="text-sm text-white/60"><Link href="/" className="hover:text-white">Home</Link> / <span className="text-white/90">Explore services</span></nav>
-          <h1 className="mt-3 text-4xl font-semibold sm:text-5xl">{active ? active.name : "Explore services"}</h1>
-          <p className="mt-2 max-w-2xl text-white/75">{active?.description ?? "Independent providers across Hyderabad — every enquiry coordinated by Tarkaash."}</p>
-          <form action="/services" method="get" role="search" className="mt-7 grid gap-2 rounded-2xl bg-white p-2 text-ink shadow-[var(--shadow-lift)] md:grid-cols-[1fr_200px_200px_auto]">
+          <h1 style={{ "--d": "80ms" } as React.CSSProperties} className="mt-3 text-4xl font-semibold sm:text-5xl">{active ? active.name : "Explore services"}</h1>
+          <p style={{ "--d": "160ms" } as React.CSSProperties} className="mt-2 max-w-2xl text-white/75">{active?.description ?? "Independent providers across Hyderabad — every enquiry coordinated by Tarkaash."}</p>
+          <form action="/services" method="get" role="search" style={{ "--d": "240ms" } as React.CSSProperties} className="mt-7 grid gap-2 rounded-2xl bg-white p-2 text-ink shadow-[var(--shadow-lift)] md:grid-cols-[1fr_200px_200px_auto]">
             {sp.category && <input type="hidden" name="category" value={sp.category} />}
             <label className="flex items-center gap-3 px-3">
               <Search className="size-5 text-teal" aria-hidden /><span className="sr-only">Keyword</span>
@@ -56,7 +56,7 @@ export default async function ServicesPage({ searchParams }: { searchParams: SP 
                 <option value="price">Lowest price</option>
               </select>
             </label>
-            <button className="h-11 rounded-xl bg-gold px-6 font-semibold text-teal-deep hover:bg-gold-600 hover:text-white md:rounded-full">Search</button>
+            <button className="btn-sheen h-11 rounded-xl bg-gold px-6 font-semibold text-teal-deep hover:bg-gold-600 hover:text-white md:rounded-full">Search</button>
           </form>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default async function ServicesPage({ searchParams }: { searchParams: SP 
         </div>
 
         {vendors.length ? (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-stagger>
             {vendors.map((v, i) => <VendorCard key={v.id} v={v} priority={i < 4} />)}
           </div>
         ) : (
@@ -105,5 +105,5 @@ export default async function ServicesPage({ searchParams }: { searchParams: SP 
 
 function chip(active: boolean) {
   return cn("inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-sm font-semibold transition",
-    active ? "border-teal bg-teal text-white" : "border-line bg-white text-ink hover:border-teal/40");
+    active ? "border-teal bg-teal text-white shadow-[0_8px_20px_-10px_rgb(0_75_75/0.8)]" : "border-line bg-white text-ink hover:-translate-y-0.5 hover:border-teal/40");
 }

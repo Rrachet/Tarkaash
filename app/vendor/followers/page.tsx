@@ -28,7 +28,7 @@ export default async function FollowersPage() {
       </div>
       <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
         <PostUpdateForm vendorId={vendorId} />
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Your updates</h2>
           {updates?.length ? (
             <ul className="mt-3 divide-y divide-line">

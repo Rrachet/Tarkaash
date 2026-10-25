@@ -93,7 +93,10 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
     return (
       <div ref={successRef} className="card scroll-mt-24 overflow-hidden" role="status" aria-live="polite">
         <div className="bg-teal-deep px-6 py-8 text-center text-white">
-          <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-gold text-teal-deep animate-fade-up"><CheckCircle2 className="size-8" /></span>
+          <span className="relative mx-auto flex size-16 items-center justify-center">
+            <span className="absolute inset-0 animate-ping rounded-full bg-gold/40 [animation-iteration-count:2]" aria-hidden />
+            <span className="relative flex size-16 animate-pop items-center justify-center rounded-full bg-gold text-teal-deep"><CheckCircle2 className="size-8" /></span>
+          </span>
           <h2 className="mt-4 text-2xl font-semibold">Enquiry sent to Tarkaash</h2>
           <p className="mt-1 text-sm text-white/80">{done.duplicate ? "We already have this enquiry — here is its reference." : "Our team will coordinate with the provider and get back to you."}</p>
         </div>

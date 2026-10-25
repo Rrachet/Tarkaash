@@ -6,7 +6,7 @@ import { initials, sizedImage } from "@/lib/format";
 
 export function Logo({ variant = "gold", className, priority }: { variant?: "gold" | "color"; className?: string; priority?: boolean }) {
   return (
-    <Link href="/" aria-label="Tarkaash home" className={cn("inline-flex shrink-0", className)}>
+    <Link href="/" aria-label="Tarkaash home" className={cn("inline-flex shrink-0 transition-opacity hover:opacity-90", className)}>
       <Image src={`/brand/tarkaash-logo-${variant}.webp`} alt="Tarkaash — Har Hunar Ko Ek Pehchaan" width={900} height={440}
         className="h-full w-auto" priority={priority} />
     </Link>
@@ -51,7 +51,7 @@ export function EmptyState({ icon, title, children, action, className }: { icon?
 
 export function SectionHeading({ eyebrow, title, children, align = "left", action }: { eyebrow?: string; title: React.ReactNode; children?: React.ReactNode; align?: "left" | "center"; action?: React.ReactNode }) {
   return (
-    <div className={cn("mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between", align === "center" && "sm:flex-col sm:items-center text-center")}>
+    <div data-reveal className={cn("mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between", align === "center" && "sm:flex-col sm:items-center text-center")}>
       <div className={cn(align === "center" && "mx-auto max-w-2xl")}>
         {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
         <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{title}</h2>
@@ -65,9 +65,9 @@ export function SectionHeading({ eyebrow, title, children, align = "left", actio
 export function StatCard({ label, value, sub, icon, tone = "teal", className }: { label: string; value: React.ReactNode; sub?: React.ReactNode; icon?: React.ReactNode; tone?: "teal" | "gold" | "mint" | "rose" | "violet" | "sky"; className?: string }) {
   const chip = { teal: "bg-teal/10 text-teal", gold: "bg-gold-pale text-gold-600", mint: "bg-mint text-success", rose: "bg-rose-50 text-rose-600", violet: "bg-violet-50 text-violet-600", sky: "bg-sky-50 text-sky-700" }[tone];
   return (
-    <div className={cn("card p-4 sm:p-5", className)}>
+    <div data-reveal className={cn("group card p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] sm:p-5", className)}>
       <div className="flex items-center gap-2.5">
-        {icon && <span className={cn("flex size-9 items-center justify-center rounded-xl", chip)}>{icon}</span>}
+        {icon && <span className={cn("flex size-9 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6", chip)}>{icon}</span>}
         <p className="text-sm font-medium text-slate">{label}</p>
       </div>
       <p className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">{value}</p>

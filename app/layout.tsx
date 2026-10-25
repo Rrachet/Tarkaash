@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { ToastProvider } from "@/components/ui/toast";
+import { RevealObserver, MOTION_BOOT_SCRIPT } from "@/components/motion/reveal-observer";
+import { NavProgress } from "@/components/motion/nav-progress";
 import "./globals.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["SOFT", "opsz"] });
@@ -22,8 +24,13 @@ export const viewport: Viewport = { themeColor: "#003B3C" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: MOTION_BOOT_SCRIPT }} />
+      </head>
       <body className="min-h-screen">
+        <NavProgress />
+        <RevealObserver />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-teal-deep">
           Skip to content
         </a>

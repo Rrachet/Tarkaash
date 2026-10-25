@@ -23,12 +23,13 @@ export default async function ListYourServicePage() {
     <>
       <section className="relative overflow-hidden bg-teal-deep text-white">
         <div className="pattern-jaali absolute inset-0 opacity-25" />
+        <div className="absolute -left-32 -top-32 size-[420px] animate-drift rounded-full bg-gold/10 blur-3xl" aria-hidden />
         <div className="container-page relative grid items-center gap-10 py-16 lg:grid-cols-2 lg:py-20">
-          <div>
+          <div className="hero-seq">
             <p className="eyebrow">Vendor portal</p>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-6xl">Grow your business <span className="text-gold">with Tarkaash</span></h1>
-            <p className="mt-5 max-w-xl text-lg text-white/80">Join a trusted community that connects your skills with real customers nearby. No upfront listing fee during the pilot.</p>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            <h1 style={{ "--d": "120ms" } as React.CSSProperties} className="mt-4 text-4xl font-semibold leading-tight sm:text-6xl">Grow your business <span className="text-shine">with Tarkaash</span></h1>
+            <p style={{ "--d": "240ms" } as React.CSSProperties} className="mt-5 max-w-xl text-lg text-white/80">Join a trusted community that connects your skills with real customers nearby. No upfront listing fee during the pilot.</p>
+            <ul style={{ "--d": "360ms" } as React.CSSProperties} className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
                 { i: Users, t: "More customers", d: "Reach new and local customers" }, { i: TrendingUp, t: "Higher visibility", d: "Get discovered on Tarkaash" },
                 { i: ShieldCheck, t: "Secure & transparent", d: "Clear orders and payment records" }, { i: LayoutDashboard, t: "Your dashboard", d: "Views, enquiries and earnings" },
@@ -37,8 +38,8 @@ export default async function ListYourServicePage() {
               ))}
             </ul>
           </div>
-          <div className="relative hidden aspect-[4/3.6] overflow-hidden rounded-[2rem] lg:block">
-            <Image src={sizedImage(HOME_IMAGES.vendorLogin, 1000, 900)!} alt="Local entrepreneurs at work" fill unoptimized className="object-cover" sizes="50vw" />
+          <div className="tile-in relative hidden aspect-[4/3.6] overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift)] lg:block" style={{ "--d": "300ms" } as React.CSSProperties}>
+            <Image src={sizedImage(HOME_IMAGES.vendorLogin, 1000, 900)!} alt="Local entrepreneurs at work" fill unoptimized className="animate-kenburns object-cover" sizes="50vw" />
           </div>
         </div>
       </section>
@@ -46,13 +47,13 @@ export default async function ListYourServicePage() {
       <section className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <h2 className="text-3xl font-semibold">How onboarding works</h2>
-          <ol className="mt-6 space-y-5">
+          <ol className="mt-6 space-y-5" data-stagger="left">
             {["Create your account and tell us about your business.", "Tarkaash reviews your details and verifies identity, area and any licence your category needs.", "Add services, prices and photos from your vendor portal.", "Go live — Tarkaash starts sending you coordinated enquiries."].map((s, i) => (
               <li key={s} className="flex gap-4"><span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal font-bold text-white">{i + 1}</span><p className="pt-1.5">{s}</p></li>
             ))}
           </ol>
         </div>
-        <div className="card p-6 sm:p-8">
+        <div data-reveal="right" className="card p-6 sm:p-8">
           {existing ? (
             <div className="text-center">
               {existing.status === "active" ? <CheckCircle2 className="mx-auto size-12 text-success" /> : <Clock className="mx-auto size-12 text-gold-600" />}

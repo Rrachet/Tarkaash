@@ -30,7 +30,7 @@ export function PortalSidebar({ items, header, footer }: { items: NavItem[]; hea
         return (
           <Link key={i.href} href={i.href} aria-current={active ? "page" : undefined}
             className={cn("flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium transition",
-              active ? "bg-gold text-teal-deep shadow-sm" : "text-white/75 hover:bg-white/8 hover:text-white")}>
+              active ? "bg-gold text-teal-deep shadow-sm" : "text-white/75 hover:translate-x-1 hover:bg-white/8 hover:text-white")}>
             <Icon className="size-[18px] shrink-0" />
             <span className="flex-1">{i.label}</span>
             {!!i.badge && <span className={cn("rounded-full px-2 py-0.5 text-[11px] font-bold", active ? "bg-teal-deep text-gold" : "bg-gold text-teal-deep")}>{i.badge}</span>}
@@ -45,8 +45,8 @@ export function PortalSidebar({ items, header, footer }: { items: NavItem[]; hea
         className="fixed left-3 top-3 z-50 flex size-11 items-center justify-center rounded-full bg-teal-deep text-white shadow-lg lg:hidden">
         <Menu className="size-5" />
       </button>
-      {open && <div className="fixed inset-0 z-40 bg-ink/50 lg:hidden" onClick={() => setOpen(false)} aria-hidden />}
-      <aside className={cn("fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto bg-teal-deep pb-6 text-white transition-transform lg:translate-x-0",
+      {open && <div className="fixed inset-0 z-40 animate-fade-in bg-ink/50 backdrop-blur-[2px] lg:hidden" onClick={() => setOpen(false)} aria-hidden />}
+      <aside className={cn("fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto bg-teal-deep pb-6 text-white transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:translate-x-0",
         open ? "translate-x-0" : "-translate-x-full")}>
         <button type="button" onClick={() => setOpen(false)} aria-label="Close navigation" className="absolute right-3 top-3 flex size-10 items-center justify-center rounded-full text-white/70 hover:bg-white/10 lg:hidden">
           <X className="size-5" />

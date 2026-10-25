@@ -12,8 +12,9 @@ export function NavLinks({ items }: { items: { href: string; label: string }[] }
         const active = i.href === "/" ? path === "/" : path.startsWith(i.href);
         return (
           <Link key={i.href} href={i.href} aria-current={active ? "page" : undefined}
-            className={cn("relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-              active ? "text-white after:absolute after:inset-x-4 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-gold" : "text-white/75 hover:text-white")}>
+            className={cn("relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300",
+              "after:absolute after:inset-x-4 after:-bottom-0.5 after:h-0.5 after:origin-center after:rounded-full after:bg-gold after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)]",
+              active ? "text-white after:scale-x-100" : "text-white/75 after:scale-x-0 hover:text-white hover:after:scale-x-100")}>
             {i.label}
           </Link>
         );

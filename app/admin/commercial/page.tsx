@@ -38,11 +38,11 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
         <StatCard label="Unreconciled entries" value={s.unreconciled} sub={`Forecast next: ${formatINR(s.revenue_forecast)}`} icon={<AlertTriangle className="size-4" />} tone="violet" />
       </div>
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Monthly revenue vs costs</h2>
           <div className="mt-4"><BarCompare data={s.monthly} xKey="month" money keys={[{ key: "revenue", label: "Revenue", color: "#004B4B" }, { key: "direct", label: "Direct costs", color: "#D9A441" }, { key: "operating", label: "Operating costs", color: "#C76B4A" }]} height={280} /></div>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Estimated P&amp;L</h2>
           <dl className="mt-4 space-y-3 text-sm">
             {byType.map(([k, v]) => <div key={k} className="flex justify-between"><dt className="capitalize text-slate">{k.replace("_", " ")}</dt><dd>{formatINR(v)}</dd></div>)}
@@ -56,7 +56,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
         </section>
       </div>
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <section className="card overflow-x-auto">
+        <section data-reveal className="card overflow-x-auto">
           <h2 className="p-5 font-sans text-base font-semibold">Recent ledger entries</h2>
           <table className="w-full min-w-[640px] text-sm">
             <thead className="bg-cream text-left text-xs uppercase tracking-wider text-slate"><tr><th className="px-5 py-2.5">Date</th><th className="px-3 py-2.5">Type</th><th className="px-3 py-2.5">Vendor / order</th><th className="px-3 py-2.5 text-right">Amount</th><th className="px-3 py-2.5">Basis</th><th className="px-5 py-2.5"></th></tr></thead>
@@ -74,7 +74,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
             </tbody>
           </table>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Costs</h2>
           <ul className="mt-3 max-h-72 divide-y divide-line overflow-y-auto text-sm">
             {(costs ?? []).map((c) => <li key={c.id} className="flex justify-between gap-2 py-2"><span>{c.label} <span className="text-xs text-slate">· {c.cost_type} · {formatDate(c.incurred_on)}{c.basis !== "actual" ? ` · ${c.basis}` : ""}</span></span><span className="font-semibold">{formatINR(c.amount)}</span></li>)}

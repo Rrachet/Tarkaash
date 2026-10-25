@@ -7,7 +7,7 @@ export async function SiteFooter() {
   return (
     <footer className="relative mt-24 overflow-hidden bg-teal-deep text-white/80">
       <div className="pattern-jaali absolute inset-0 opacity-40" aria-hidden />
-      <div className="container-page relative grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="container-page relative grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]" data-stagger="fade">
         <div>
           <Logo className="h-16" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed">
@@ -41,7 +41,7 @@ function FooterCol({ title, links }: { title: string; links: { href: string; lab
       <h3 className="font-sans text-sm font-semibold uppercase tracking-widest text-gold">{title}</h3>
       <ul className="mt-4 space-y-2.5 text-sm">
         {links.map((l) => (
-          <li key={l.href}><Link href={l.href} className="hover:text-white">{l.label}</Link></li>
+          <li key={l.href}><Link href={l.href} className="link-underline pb-0.5 transition-colors hover:text-white">{l.label}</Link></li>
         ))}
       </ul>
     </div>

@@ -62,11 +62,11 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
       </div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Enquiry funnel trend</h2>
           <div className="mt-4"><LineTrend data={m.series} keys={[{ key: "leads", label: "Enquiries", color: "#D9A441" }, { key: "accepted", label: "Accepted", color: "#004B4B" }, { key: "completed", label: "Completed", color: "#2E8B7A" }]} /></div>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <h2 className="font-sans text-base font-semibold">Enquiry outcomes</h2>
           <div className="mt-4"><Donut data={statusData} height={180} centerValue={formatNumber(m.leads)} centerLabel="enquiries" /></div>
           <div className="mt-5 rounded-2xl bg-cream p-4 text-sm">
@@ -77,7 +77,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
       </div>
 
       <div className="mt-6 grid gap-6 2xl:grid-cols-2">
-        <section className="card overflow-hidden">
+        <section data-reveal className="card overflow-hidden">
           <div className="flex items-center justify-between p-5"><h2 className="font-sans text-base font-semibold">Top performing vendors</h2><a href={`/api/export/vendors?range=${preset}`} className="inline-flex items-center gap-1 text-sm font-semibold text-teal"><Download className="size-4" />CSV</a></div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
@@ -91,7 +91,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
             </table>
           </div>
         </section>
-        <section className="card overflow-hidden">
+        <section data-reveal className="card overflow-hidden">
           <div className="flex items-center justify-between p-5"><h2 className="font-sans text-base font-semibold">Service category performance</h2><a href={`/api/export/categories?range=${preset}`} className="inline-flex items-center gap-1 text-sm font-semibold text-teal"><Download className="size-4" />CSV</a></div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] text-sm">
@@ -107,7 +107,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
       </div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[1fr_1fr]">
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <div className="flex items-center justify-between"><h2 className="flex items-center gap-2 font-sans text-base font-semibold"><Rocket className="size-5 text-gold-600" />Vendors needing a boost</h2><Link href="/admin/boost" className="text-sm font-semibold text-teal">View all →</Link></div>
           <ul className="mt-3 divide-y divide-line">
             {boost.slice(0, 5).map((b) => (
@@ -118,7 +118,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
             ))}
           </ul>
         </section>
-        <section className="card p-5">
+        <section data-reveal className="card p-5">
           <div className="flex items-center justify-between"><h2 className="font-sans text-base font-semibold">Financial summary</h2><Link href="/admin/commercial" className="text-sm font-semibold text-teal">P&amp;L →</Link></div>
           <dl className="mt-4 space-y-2.5 text-sm">
             <Row label="Total order value (vendor GMV)" value={formatINR(money.gmv)} muted />

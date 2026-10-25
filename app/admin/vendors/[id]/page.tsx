@@ -47,7 +47,7 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
       </div>
       <div className="mt-6 grid gap-6 xl:grid-cols-[1fr_380px]">
         <div className="space-y-6">
-          <section className="card p-5">
+          <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">About</h2>
             <p className="mt-2 text-sm leading-relaxed">{v.description ?? "No description yet."}</p>
             <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
@@ -58,7 +58,7 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
             </dl>
             {tickets?.length ? <p className="mt-4 rounded-xl bg-cream p-3 text-sm">Application {tickets[0]!.ref_code}: {tickets[0]!.message}</p> : null}
           </section>
-          <section className="card p-5">
+          <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">Services ({services?.length ?? 0})</h2>
             <ul className="mt-3 divide-y divide-line text-sm">
               {(services ?? []).map((s) => <li key={s.id} className="flex justify-between py-2.5"><span className={s.active ? "" : "text-slate line-through"}>{s.title}</span><span className="font-semibold">{priceLabel(s)}</span></li>)}

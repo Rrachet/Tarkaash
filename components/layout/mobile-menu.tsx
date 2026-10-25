@@ -19,19 +19,20 @@ export function MobileMenu({ items, signedIn, portal }: { items: { href: string;
     <div className="lg:hidden">
       <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Close menu" : "Open menu"}
         className="flex size-11 items-center justify-center rounded-full text-white hover:bg-white/10">
-        {open ? <X className="size-6" /> : <Menu className="size-6" />}
+        <span key={open ? "x" : "m"} className="animate-[pop_0.35s_ease-out]">{open ? <X className="size-6" /> : <Menu className="size-6" />}</span>
       </button>
       {open && (
         <div id="mobile-nav" className="fixed inset-x-0 top-[76px] bottom-0 z-50 overflow-y-auto bg-teal-deep px-4 pb-10 pt-4 animate-fade-in">
           <nav aria-label="Mobile" className="flex flex-col">
-            {items.map((i) => (
-              <Link key={i.href} href={i.href} className="border-b border-white/10 py-4 font-display text-xl text-white">{i.label}</Link>
+            {items.map((i, n) => (
+              <Link key={i.href} href={i.href} style={{ animationDelay: `${60 + n * 45}ms` }}
+                className="animate-fade-up border-b border-white/10 py-4 font-display text-xl text-white transition-colors hover:text-gold">{i.label}</Link>
             ))}
             <Link href={portal ?? (signedIn ? "/account" : "/login")} className="border-b border-white/10 py-4 font-display text-xl text-white">
               {portal ? "My dashboard" : signedIn ? "My account" : "Sign in"}
             </Link>
           </nav>
-          <Link href="/list-your-service" className={buttonClass("gold", "lg", "mt-8 w-full")}>List Your Service</Link>
+          <Link href="/list-your-service" className={buttonClass("gold", "lg", "btn-sheen mt-8 w-full animate-fade-up [animation-delay:350ms]")}>List Your Service</Link>
         </div>
       )}
     </div>

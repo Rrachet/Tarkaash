@@ -42,7 +42,7 @@ export function VendorWorkspace({ vendor, services, media, updates, reviews, rat
     services.length > 0 && {
       id: "services", label: `Services (${services.length})`,
       content: (
-        <div className="space-y-4">
+        <div className="space-y-4" data-stagger>
           {services.map((s) => <ServiceRow key={s.id} s={s} selected={selected === s.id} onSelect={() => choose(s.id)} />)}
         </div>
       ),
@@ -58,11 +58,11 @@ export function VendorWorkspace({ vendor, services, media, updates, reviews, rat
     media.length > 0 && {
       id: "gallery", label: "Gallery",
       content: (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3" data-stagger="zoom">
           {media.map((m, i) => (
             <figure key={m.id} className={cn("group relative overflow-hidden rounded-2xl bg-cream-200", i === 0 && "col-span-2 row-span-2")}>
               <div className={cn("relative", i === 0 ? "aspect-square" : "aspect-[4/3]")}>
-                <Image src={sizedImage(m.url, i === 0 ? 900 : 500, i === 0 ? 900 : 375)!} alt={m.caption ?? ""} fill unoptimized className="object-cover transition duration-500 group-hover:scale-105" sizes="33vw" />
+                <Image src={sizedImage(m.url, i === 0 ? 900 : 500, i === 0 ? 900 : 375)!} alt={m.caption ?? ""} fill unoptimized className="object-cover transition duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110" sizes="33vw" />
               </div>
               {m.caption && <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 text-sm text-white">{m.caption}</figcaption>}
             </figure>
@@ -108,10 +108,10 @@ function attributeChips(a: Record<string, unknown>): string[] {
 function ServiceRow({ s, selected, onSelect }: { s: PublicService; selected: boolean; onSelect: () => void }) {
   const chips = attributeChips(s.attributes ?? {});
   return (
-    <article className={cn("card flex flex-col gap-4 overflow-hidden p-3 transition sm:flex-row sm:items-stretch", selected && "ring-2 ring-gold")}>
+    <article className={cn("group card flex flex-col gap-4 overflow-hidden p-3 transition duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-stretch", selected && "ring-2 ring-gold")}>
       <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl bg-cream-200 sm:aspect-auto sm:h-auto sm:w-44">
         {s.image_url ? (
-          <Image src={sizedImage(s.image_url, 400, 300)!} alt={s.title} fill unoptimized className="object-cover" sizes="180px" />
+          <Image src={sizedImage(s.image_url, 400, 300)!} alt={s.title} fill unoptimized className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110" sizes="180px" />
         ) : <div className="pattern-jaali h-full min-h-28 bg-teal-deep" />}
       </div>
       <div className="flex flex-1 flex-col gap-2 py-1 pr-1">
@@ -146,7 +146,7 @@ function About({ vendor, updates }: { vendor: WorkspaceVendor; updates: Props["u
     <div className="space-y-6">
       {vendor.description && <p className="text-[17px] leading-relaxed text-ink/90">{vendor.description}</p>}
       {vendor.highlights.length > 0 && (
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3" data-stagger>
           {vendor.highlights.map((h, i) => {
             const Icon = icons[i % icons.length]!;
             return (
@@ -201,16 +201,16 @@ function Reviews({ reviews, rating }: { reviews: Props["reviews"]; rating: NonNu
           {rating.distribution.map((n, i) => (
             <div key={i} className="flex items-center gap-3 text-sm">
               <span className="w-8 text-slate">{5 - i} ★</span>
-              <span className="h-2 flex-1 overflow-hidden rounded-full bg-cream-200"><span className="block h-full rounded-full bg-teal" style={{ width: `${(n / rating.count) * 100}%` }} /></span>
+              <span className="h-2 flex-1 overflow-hidden rounded-full bg-cream-200"><span data-reveal="line" className="block h-full rounded-full bg-teal" style={{ width: `${(n / rating.count) * 100}%` }} /></span>
               <span className="w-10 text-right text-slate">{Math.round((n / rating.count) * 100)}%</span>
             </div>
           ))}
         </div>
       </div>
       <p className="text-xs text-slate">Only customers with a completed Tarkaash order can leave a review. Reviews are moderated.</p>
-      <ul className="grid gap-4 sm:grid-cols-2">
+      <ul className="grid gap-4 sm:grid-cols-2" data-stagger>
         {reviews.slice(0, shown).map((r) => (
-          <li key={r.id} className="rounded-2xl border border-line bg-white p-5">
+          <li key={r.id} className="rounded-2xl border border-line bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-3">
                 <span className="flex size-10 items-center justify-center rounded-full bg-gold-pale font-display font-semibold text-teal">{r.author_name[0]}</span>
@@ -234,7 +234,7 @@ function Reviews({ reviews, rating }: { reviews: Props["reviews"]; rating: NonNu
 
 function SupportLocal({ name }: { name: string }) {
   return (
-    <div className="mt-10 flex flex-col items-start gap-4 rounded-3xl bg-gold-pale/70 p-6 sm:flex-row sm:items-center">
+    <div data-reveal className="mt-10 flex flex-col items-start gap-4 rounded-3xl bg-gold-pale/70 p-6 sm:flex-row sm:items-center">
       <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-teal-deep text-gold"><MessageCircleHeart className="size-7" /></span>
       <div>
         <p className="font-display text-xl font-semibold">A small step for you, a big support for {name.split(" ")[0]?.replace(/'s$/, "")}.</p>

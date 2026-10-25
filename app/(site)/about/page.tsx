@@ -19,13 +19,13 @@ export default function AboutPage() {
       </PageHero>
 
       <section className="container-page -mt-10 relative z-10">
-        <div className="card grid grid-cols-2 divide-line md:grid-cols-4 md:divide-x">
+        <div className="card grid grid-cols-2 divide-line md:grid-cols-4 md:divide-x" data-stagger="zoom">
           {[
             { i: FlaskConical, t: "Research-backed approach" }, { i: Target, t: "Execution-focused mindset" },
             { i: HeartHandshake, t: "Customer-centric platform" }, { i: Users, t: "Real people, real opportunities" },
           ].map(({ i: I, t }) => (
-            <div key={t} className="flex flex-col items-center gap-3 p-6 text-center">
-              <span className="flex size-12 items-center justify-center rounded-full bg-gold-pale text-teal"><I className="size-6" /></span>
+            <div key={t} className="group flex flex-col items-center gap-3 p-6 text-center">
+              <span className="flex size-12 items-center justify-center rounded-full bg-gold-pale text-teal transition duration-500 group-hover:scale-110 group-hover:bg-teal-deep group-hover:text-gold"><I className="size-6" /></span>
               <p className="text-sm font-semibold">{t}</p>
             </div>
           ))}
@@ -34,9 +34,9 @@ export default function AboutPage() {
 
       <section className="container-page space-y-10 py-16 sm:py-24">
         {FOUNDERS.map((f, idx) => (
-          <article key={f.name} className={`card grid items-stretch overflow-hidden ${idx % 2 ? "md:grid-cols-[1fr_320px]" : "md:grid-cols-[320px_1fr]"}`}>
+          <article key={f.name} data-reveal={idx % 2 ? "right" : "left"} className={`group card grid items-stretch overflow-hidden ${idx % 2 ? "md:grid-cols-[1fr_320px]" : "md:grid-cols-[320px_1fr]"}`}>
             <div className={`relative min-h-80 bg-cream-200 ${idx % 2 ? "md:order-2" : ""}`}>
-              <Image src={f.photo} alt={`${f.name}, ${f.role}`} fill className="object-cover object-top" sizes="320px" />
+              <Image src={f.photo} alt={`${f.name}, ${f.role}`} fill className="object-cover object-top transition-transform duration-[1.4s] ease-out group-hover:scale-105" sizes="320px" />
             </div>
             <div className={`p-7 sm:p-10 ${idx % 2 ? "md:order-1" : ""}`}>
               <h2 className="text-3xl font-semibold">{f.name}</h2>
@@ -55,8 +55,8 @@ export default function AboutPage() {
       </section>
 
       <section className="container-page">
-        <div className="relative overflow-hidden rounded-[2rem] bg-teal-deep px-6 py-14 text-white sm:px-14">
-          <Image src={sizedImage(HOME_IMAGES.vision, 1600, 700)!} alt="" fill unoptimized className="object-cover opacity-25" sizes="100vw" />
+        <div data-reveal="zoom" className="relative overflow-hidden rounded-[2rem] bg-teal-deep px-6 py-14 text-white sm:px-14">
+          <Image src={sizedImage(HOME_IMAGES.vision, 1600, 700)!} alt="" fill unoptimized className="animate-kenburns object-cover opacity-25" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-teal-deep to-teal-deep/50" />
           <div className="relative max-w-2xl">
             <p className="eyebrow">Our vision</p>

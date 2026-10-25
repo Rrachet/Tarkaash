@@ -29,7 +29,7 @@ export default function HowItWorksPage() {
       <Flow title="For customers" steps={CUSTOMER} />
       <Flow title="For providers" steps={VENDOR} tone="gold" />
       <section className="container-page">
-        <div className="card flex flex-col items-start gap-6 p-8 sm:flex-row sm:items-center">
+        <div data-reveal className="card flex flex-col items-start gap-6 p-8 sm:flex-row sm:items-center">
           <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-teal-deep text-gold"><ShieldCheck className="size-7" /></span>
           <div className="flex-1">
             <h2 className="text-2xl font-semibold">Your contact details stay protected</h2>
@@ -45,12 +45,12 @@ export default function HowItWorksPage() {
 function Flow({ title, steps, tone = "teal" }: { title: string; steps: { i: React.ComponentType<{ className?: string }>; t: string; d: string }[]; tone?: "teal" | "gold" }) {
   return (
     <section className="container-page py-14">
-      <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
-      <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+      <h2 data-reveal className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+      <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5" data-stagger>
         {steps.map((s, i) => (
-          <li key={s.t} className="card relative p-6">
-            <span className="absolute right-5 top-4 font-display text-5xl font-semibold text-cream-200">{i + 1}</span>
-            <span className={`relative flex size-12 items-center justify-center rounded-xl ${tone === "gold" ? "bg-gold text-teal-deep" : "bg-teal-deep text-gold"}`}><s.i className="size-6" /></span>
+          <li key={s.t} className="group card relative p-6 transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[var(--shadow-lift)]">
+            <span className="absolute right-5 top-4 font-display text-5xl font-semibold text-cream-200 transition-colors duration-500 group-hover:text-gold-pale">{i + 1}</span>
+            <span className={`relative flex size-12 items-center justify-center rounded-xl transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${tone === "gold" ? "bg-gold text-teal-deep" : "bg-teal-deep text-gold"}`}><s.i className="size-6" /></span>
             <h3 className="relative mt-4 font-sans text-base font-semibold">{s.t}</h3>
             <p className="relative mt-1 text-sm leading-relaxed text-slate">{s.d}</p>
           </li>

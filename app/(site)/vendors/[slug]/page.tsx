@@ -39,16 +39,16 @@ export default async function VendorPage({ params, searchParams }: { params: Par
       <TrackEvent type="profile_view" vendorId={v.id} />
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden bg-teal-deep text-white">
-        {cover && <Image src={cover} alt="" fill priority unoptimized className="object-cover opacity-45" sizes="100vw" />}
+        {cover && <Image src={cover} alt="" fill priority unoptimized className="animate-kenburns object-cover opacity-45" sizes="100vw" />}
         <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/85 to-teal-deep/30" aria-hidden />
-        <div className="container-page relative py-8 sm:py-12">
+        <div className="hero-seq container-page relative py-8 sm:py-12">
           <nav aria-label="Breadcrumb" className="text-sm text-white/65">
             <Link href="/services" className="hover:text-white">Explore</Link>
             {v.category && <> / <Link href={`/services?category=${v.category.slug}`} className="hover:text-white">{v.category.name}</Link></>}
             {" / "}<span className="text-white/90">{v.name}</span>
           </nav>
-          <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-end">
-            <Avatar src={v.avatar_url} name={v.name} size={128} className="ring-4 ring-gold shadow-[var(--shadow-lift)]" />
+          <div style={{ "--d": "120ms" } as React.CSSProperties} className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-end">
+            <Avatar src={v.avatar_url} name={v.name} size={128} className="animate-pop ring-4 ring-gold shadow-[var(--shadow-lift)] [animation-delay:250ms]" />
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 {v.category && (

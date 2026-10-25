@@ -42,7 +42,7 @@ export default async function AccountPage() {
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_340px]">
-        <section>
+        <section data-reveal>
           <h2 className="flex items-center gap-2 text-2xl font-semibold"><Inbox className="size-6 text-gold-600" />My enquiries</h2>
           {!enquiries?.length ? (
             <EmptyState className="mt-4" icon={<Inbox className="size-6" />} title="No enquiries yet" action={<ButtonLink href="/services">Explore services</ButtonLink>}>

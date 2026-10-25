@@ -34,7 +34,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
 
       <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
         <div className="space-y-6">
-          <section className="card p-5">
+          <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">Request</h2>
             <p className="mt-1 text-sm text-slate">{e.services ? <>{e.services.title} · {priceLabel(e.services)}</> : e.categories?.name ?? "General"} {e.requested && <>· requested <Link href={`/vendors/${e.requested.slug}`} className="font-semibold text-teal hover:underline">{e.requested.name}</Link></>}</p>
             <blockquote className="mt-4 rounded-xl border-l-4 border-gold bg-cream px-4 py-3 text-sm leading-relaxed">{e.request}</blockquote>
@@ -47,7 +47,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
           </section>
 
           {orders.length > 0 && (
-            <section className="card p-5">
+            <section data-reveal className="card p-5">
               <h2 className="font-sans text-base font-semibold">Orders</h2>
               <ul className="mt-3 divide-y divide-line">
                 {orders.map((o) => (
@@ -61,7 +61,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
             </section>
           )}
 
-          <section className="card p-5">
+          <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">Timeline</h2>
             <ol className="relative mt-4 space-y-5 border-l-2 border-line pl-6">
               {events.map((ev) => (
@@ -77,7 +77,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
         </div>
 
         <aside className="space-y-6">
-          <section className="card p-5">
+          <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">Customer</h2>
             <p className="mt-2 font-semibold">{e.customers?.name}</p>
             {e.customers?.phone && <a href={`tel:${e.customers.phone}`} className="mt-1 flex items-center gap-2 text-sm text-teal hover:underline"><Phone className="size-4" />{e.customers.phone}</a>}

@@ -28,10 +28,10 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <PageHero eyebrow="Contact us" title={<>Let&apos;s build a stronger local community together</>} image={HOME_IMAGES.contact}>
         Have a question, suggestion or partnership idea? We&apos;d love to hear from you.
       </PageHero>
-      <section className="container-page -mt-10 relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="container-page -mt-10 relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
         {channels.map((c) => (
-          <div key={c.t} className="card p-6 text-center">
-            <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-gold-pale text-teal"><c.icon className="size-6" /></span>
+          <div key={c.t} className="group card p-6 text-center transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
+            <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-gold-pale text-teal transition duration-500 group-hover:scale-110 group-hover:bg-teal-deep group-hover:text-gold"><c.icon className="size-6" /></span>
             <p className="mt-3 font-semibold">{c.t}</p>
             <p className="mt-1 text-sm font-medium text-teal">{contact.confirmed || c.t === "Our location" || c.t === "Partnerships" ? c.v : "Details coming soon — please use the form"}</p>
             <p className="mt-1 text-xs text-slate">{c.d}</p>
@@ -39,12 +39,12 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         ))}
       </section>
       <section className="container-page grid gap-8 py-16 lg:grid-cols-[1.3fr_1fr]">
-        <div className="card p-6 sm:p-8">
+        <div data-reveal="left" className="card p-6 sm:p-8">
           <h2 className="text-3xl font-semibold">Send us a message</h2>
           <p className="mt-1 text-slate">Fill in the details and the right Tarkaash team will get back to you.</p>
           <ContactForm initialTopic={sp.topic} initialMessage={sp.message} />
         </div>
-        <div className="card p-6 sm:p-8">
+        <div data-reveal="right" className="card p-6 sm:p-8">
           <h2 className="text-2xl font-semibold">Common topics</h2>
           <ul className="mt-4 divide-y divide-line">
             {TOPICS.map((t) => (
