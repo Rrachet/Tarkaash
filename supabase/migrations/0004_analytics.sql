@@ -1,10 +1,10 @@
 -- Analytics derived from events, enquiries, orders and the ledger (spec §11).
 -- Periods are inclusive dates in Asia/Kolkata.
 
-create or replace function public._range_start(d date) returns timestamptz language sql immutable as $$
+create or replace function public._range_start(d date) returns timestamptz language sql immutable set search_path = public as $$
   select (d::timestamp at time zone 'Asia/Kolkata');
 $$;
-create or replace function public._range_end(d date) returns timestamptz language sql immutable as $$
+create or replace function public._range_end(d date) returns timestamptz language sql immutable set search_path = public as $$
   select ((d + 1)::timestamp at time zone 'Asia/Kolkata');
 $$;
 
@@ -317,6 +317,3 @@ begin
   );
   return r;
 end $$;
-
-revoke execute on function public._range_start(date) from public, anon;
-revoke execute on function public._range_end(date) from public, anon;

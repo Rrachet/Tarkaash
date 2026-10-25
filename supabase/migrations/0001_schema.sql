@@ -79,7 +79,7 @@ create table public.vendors (
   tagline text,
   description text,
   locality text,
-  city text not null default 'Lucknow',
+  city text not null default 'Hyderabad',
   service_area text[] not null default '{}',
   primary_category_id uuid references public.categories (id),
   avatar_url text,

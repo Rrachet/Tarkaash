@@ -23,7 +23,6 @@ begin
   insert into public.rate_limits (key, window_start, hits) values (p_key, v_bucket, 1)
   on conflict (key, window_start) do update set hits = public.rate_limits.hits + 1
   returning hits into v_hits;
-  delete from public.rate_limits where window_start < now() - interval '2 days';
   return v_hits <= p_max;
 end $$;
 
@@ -419,7 +418,7 @@ begin
 end $$;
 
 -- ---------- Vendors ----------
-create or replace function public.slugify(p text) returns text language sql immutable as $$
+create or replace function public.slugify(p text) returns text language sql immutable set search_path = public as $$
   select trim(both '-' from regexp_replace(lower(coalesce(p, '')), '[^a-z0-9]+', '-', 'g'));
 $$;
 
@@ -455,7 +454,7 @@ begin
   insert into public.vendors (owner_user_id, slug, name, tagline, description, locality, city, service_area,
                               primary_category_id, status)
   values (auth.uid(), v_slug, v_name, nullif(trim(p ->> 'tagline'), ''), nullif(trim(p ->> 'description'), ''),
-          trim(p ->> 'locality'), coalesce(nullif(trim(p ->> 'city'), ''), 'Lucknow'),
+          trim(p ->> 'locality'), coalesce(nullif(trim(p ->> 'city'), ''), 'Hyderabad'),
           coalesce(array(select trim(x) from unnest(string_to_array(coalesce(p ->> 'service_area', ''), ',')) x where trim(x) <> ''), '{}'),
           v_cat, 'pending')
   returning * into v;
@@ -625,10 +624,3 @@ returns void language sql security definer set search_path = public as $$
           or (audience = 'vendor' and vendor_id in (select public.my_vendor_ids()))
           or (audience = 'admin' and public.is_staff()));
 $$;
-
--- Lock down: internal helpers are not callable from the API
-revoke execute on function public._assign_enquiry(uuid, uuid, text) from public, anon, authenticated;
-revoke execute on function public.hit_rate_limit(text, int, interval) from public, anon, authenticated;
-revoke execute on function public.notify(text, uuid, uuid, text, text, text) from public, anon, authenticated;
-revoke execute on function public.write_audit(text, text, text, jsonb) from public, anon, authenticated;
-revoke execute on function public.handle_new_user() from public, anon, authenticated;
