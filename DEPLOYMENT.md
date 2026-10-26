@@ -4,7 +4,7 @@
 
 | Piece | Where |
 | --- | --- |
-| Website | https://tarkaash.vercel.app (Vercel project `tarkaash`, team "Amar's projects") |
+| Website | https://www.tarkkash.com (GoDaddy domain; `tarkkash.com` and `tarkaash.vercel.app` redirect here. Vercel project `tarkaash`, team "Amar's projects") |
 | Functions region | `bom1` Mumbai, next to the database |
 | Database / Auth / Storage | Supabase project `tarkaash` (`mimlefjoxiagejvyopfd`, ap-south-1 Mumbai) |
 | Source | GitHub `Rrachet/Tarkaash`, branch `main` (Vercel production branch) |
@@ -17,7 +17,7 @@ Every push to the production branch builds and deploys automatically. GitHub Act
 | --- | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://mimlefjoxiagejvyopfd.supabase.co` | |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_…` | Browser-safe; row level security protects data. No service-role key is used anywhere. |
-| `NEXT_PUBLIC_SITE_URL` | `https://tarkaash.vercel.app` | Used in auth email links. Change if you add a domain. |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.tarkkash.com` | Canonical address: page links, sitemap, share previews and auth email links. |
 | `NEXT_PUBLIC_DEMO_MODE` | `1` | Shows demo-account buttons on `/login`. **Remove for real launch.** |
 | `DEMO_PASSWORD` | demo password (sensitive, server only) | Used by the one-click demo sign-in on the server. Never exposed to the browser. **Remove for real launch.** |
 
@@ -26,8 +26,8 @@ After changing env vars, redeploy (Vercel → Deployments → ⋯ → Redeploy).
 ## Supabase settings
 
 **Authentication → URL Configuration**
-- Site URL: `https://tarkaash.vercel.app`
-- Redirect URLs: `https://tarkaash.vercel.app/**` (add `http://localhost:3000/**` for local development)
+- Site URL: `https://www.tarkkash.com`
+- Redirect URLs: `https://www.tarkkash.com/**`, `https://tarkkash.com/**`, `https://tarkaash.vercel.app/**` (add `http://localhost:3000/**` for local development)
 
 **Authentication → Providers → Email**
 - *Confirm email*: **off** for the demo, so signups work instantly. Supabase's built-in mailer only delivers to your own team's addresses.
@@ -72,7 +72,7 @@ Checks after any database change:
 
 - `GET /api/health` returns database reachability and latency.
 - Vercel → Observability / Logs for runtime errors; Supabase → Logs for database and auth.
-- End-to-end checks: `DEMO_PASSWORD=… APP_URL=https://tarkaash.vercel.app npm run smoke` and `node scripts/e2e.mjs`.
+- End-to-end checks: `DEMO_PASSWORD=… APP_URL=https://www.tarkkash.com npm run smoke` and `node scripts/e2e.mjs`.
 
 ## SEO, AEO and GEO launch checklist
 
@@ -80,7 +80,7 @@ The site ships with full SEO (keyword-targeted category and area pages, structur
 
 Before flipping indexing on:
 1. Replace demo vendors and reviews with real ones (or remove rows where `is_demo = true`).
-2. Connect a custom domain (for example `tarkaash.in`). A brand domain ranks far better than `*.vercel.app`. Update `NEXT_PUBLIC_SITE_URL` to it.
+2. Custom domain: done (`www.tarkkash.com`). Optionally also buy the brand spelling (`tarkaash.com` / `tarkaash.in`) and redirect it to the main address.
 3. Confirm contact details in Admin > Settings so they appear on the Contact page.
 
 Go live:

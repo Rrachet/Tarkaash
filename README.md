@@ -6,7 +6,7 @@
 
 **A managed local-services marketplace for Hyderabad.** Customers discover trusted independent providers (home bakers, home kitchens, tutors, beauticians, repair technicians, travel planners) and send one enquiry. Tarkaash coordinates it with the provider and tracks it from request to payment.
 
-[**Live demo**](https://tarkaash.vercel.app) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
+[**Live demo**](https://www.tarkkash.com) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
 
 [![CI](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs)
@@ -221,7 +221,7 @@ npm run dev                  # http://localhost:3000
 
 **Database:** apply the migrations in `supabase/migrations` in order, then optionally load the demo seed. Roles, the order lifecycle and the demo accounts are documented in [supabase/README.md](supabase/README.md).
 
-**Try it without installing:** open the [live demo](https://tarkaash.vercel.app/login) and use the one-click demo accounts (admin and finance are view only).
+**Try it without installing:** open the [live demo](https://www.tarkkash.com/login) and use the one-click demo accounts (admin and finance are view only).
 
 ## Project structure
 
