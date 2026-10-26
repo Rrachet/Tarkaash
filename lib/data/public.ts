@@ -36,7 +36,7 @@ type VendorRow = {
   id: string; slug: string; name: string; tagline: string | null; locality: string | null; city: string; avatar_url: string | null;
   cover_url: string | null; verification: string; is_demo: boolean; description: string | null; service_area: string[];
   categories: { slug: string; name: string; icon: string } | null;
-  services: { title: string; description: string | null; price_amount: number | null; price_type: string; active: boolean }[];
+  services: { title: string; description: string | null; price_amount: number | null; price_type: string; active: boolean; moderation: string }[];
 };
 
 async function ratingsFor(vendorIds: string[]): Promise<Map<string, { avg: number; count: number }>> {
@@ -54,7 +54,7 @@ async function ratingsFor(vendorIds: string[]): Promise<Map<string, { avg: numbe
 }
 
 function toCard(v: VendorRow, ratings: Map<string, { avg: number; count: number }>): VendorCardData {
-  const active = v.services.filter((s) => s.active);
+  const active = v.services.filter((s) => s.active && s.moderation === "approved");
   const prices = active.map((s) => s.price_amount).filter((p): p is number => p !== null);
   return {
     id: v.id, slug: v.slug, name: v.name, tagline: v.tagline, locality: v.locality, city: v.city, avatar_url: v.avatar_url,
@@ -64,7 +64,7 @@ function toCard(v: VendorRow, ratings: Map<string, { avg: number; count: number 
 }
 
 const VENDOR_SELECT =
-  "id, slug, name, tagline, locality, city, avatar_url, cover_url, verification, is_demo, description, service_area, categories:primary_category_id(slug, name, icon), services(title, description, price_amount, price_type, active)";
+  "id, slug, name, tagline, locality, city, avatar_url, cover_url, verification, is_demo, description, service_area, categories:primary_category_id(slug, name, icon), services(title, description, price_amount, price_type, active, moderation)";
 
 /** Search active providers by keyword (name, tagline, description, services), category and locality. */
 export async function searchVendors(params: { q?: string; category?: string; locality?: string; sort?: string }): Promise<VendorCardData[]> {
@@ -124,9 +124,9 @@ export const getVendorBySlug = cache(async (slug: string): Promise<VendorProfile
   if (!v) return null;
   const [services, media, updates, reviews] = await Promise.all([
     supabase.from("services").select("id, title, description, price_type, price_amount, price_unit, lead_time, delivery_options, availability, attributes, image_url")
-      .eq("vendor_id", v.id).eq("active", true).order("sort").order("created_at"),
-    supabase.from("vendor_media").select("id, url, caption").eq("vendor_id", v.id).order("sort"),
-    supabase.from("vendor_updates").select("id, title, body, created_at").eq("vendor_id", v.id).order("created_at", { ascending: false }).limit(5),
+      .eq("vendor_id", v.id).eq("active", true).eq("moderation", "approved").order("sort").order("created_at"),
+    supabase.from("vendor_media").select("id, url, caption").eq("vendor_id", v.id).eq("moderation", "approved").order("sort"),
+    supabase.from("vendor_updates").select("id, title, body, created_at").eq("vendor_id", v.id).eq("moderation", "approved").order("created_at", { ascending: false }).limit(5),
     supabase.from("reviews").select("id, author_name, rating, body, created_at, is_demo").eq("vendor_id", v.id).eq("status", "approved")
       .order("created_at", { ascending: false }).limit(200),
   ]);

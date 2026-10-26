@@ -1,4 +1,3 @@
-// Generated from the Supabase schema. Regenerate after migrations.
 export type Json =
   | string
   | number
@@ -771,29 +770,38 @@ export type Database = {
       }
       profiles: {
         Row: {
+          blocked_at: string | null
+          blocked_reason: string | null
           created_at: string
           email: string | null
           full_name: string | null
           id: string
           phone: string | null
+          read_only: boolean
           role: Database["public"]["Enums"]["app_role"]
           updated_at: string
         }
         Insert: {
+          blocked_at?: string | null
+          blocked_reason?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id: string
           phone?: string | null
+          read_only?: boolean
           role?: Database["public"]["Enums"]["app_role"]
           updated_at?: string
         }
         Update: {
+          blocked_at?: string | null
+          blocked_reason?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
+          read_only?: boolean
           role?: Database["public"]["Enums"]["app_role"]
           updated_at?: string
         }
@@ -894,6 +902,10 @@ export type Database = {
           image_url: string | null
           is_demo: boolean
           lead_time: string | null
+          moderated_at: string | null
+          moderated_by: string | null
+          moderation: Database["public"]["Enums"]["moderation_status"]
+          moderation_note: string | null
           price_amount: number | null
           price_type: string
           price_unit: string | null
@@ -914,6 +926,10 @@ export type Database = {
           image_url?: string | null
           is_demo?: boolean
           lead_time?: string | null
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           price_amount?: number | null
           price_type?: string
           price_unit?: string | null
@@ -934,6 +950,10 @@ export type Database = {
           image_url?: string | null
           is_demo?: boolean
           lead_time?: string | null
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           price_amount?: number | null
           price_type?: string
           price_unit?: string | null
@@ -1084,6 +1104,10 @@ export type Database = {
           caption: string | null
           created_at: string
           id: string
+          moderated_at: string | null
+          moderated_by: string | null
+          moderation: Database["public"]["Enums"]["moderation_status"]
+          moderation_note: string | null
           sort: number
           url: string
           vendor_id: string
@@ -1092,6 +1116,10 @@ export type Database = {
           caption?: string | null
           created_at?: string
           id?: string
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           sort?: number
           url: string
           vendor_id: string
@@ -1100,6 +1128,10 @@ export type Database = {
           caption?: string | null
           created_at?: string
           id?: string
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           sort?: number
           url?: string
           vendor_id?: string
@@ -1148,6 +1180,10 @@ export type Database = {
           body: string | null
           created_at: string
           id: string
+          moderated_at: string | null
+          moderated_by: string | null
+          moderation: Database["public"]["Enums"]["moderation_status"]
+          moderation_note: string | null
           title: string
           vendor_id: string
         }
@@ -1155,6 +1191,10 @@ export type Database = {
           body?: string | null
           created_at?: string
           id?: string
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           title: string
           vendor_id: string
         }
@@ -1162,6 +1202,10 @@ export type Database = {
           body?: string | null
           created_at?: string
           id?: string
+          moderated_at?: string | null
+          moderated_by?: string | null
+          moderation?: Database["public"]["Enums"]["moderation_status"]
+          moderation_note?: string | null
           title?: string
           vendor_id?: string
         }
@@ -1191,6 +1235,8 @@ export type Database = {
           name: string
           owner_user_id: string | null
           primary_category_id: string | null
+          removed_at: string | null
+          removed_reason: string | null
           service_area: string[]
           slug: string
           status: Database["public"]["Enums"]["vendor_status"]
@@ -1216,6 +1262,8 @@ export type Database = {
           name: string
           owner_user_id?: string | null
           primary_category_id?: string | null
+          removed_at?: string | null
+          removed_reason?: string | null
           service_area?: string[]
           slug: string
           status?: Database["public"]["Enums"]["vendor_status"]
@@ -1241,6 +1289,8 @@ export type Database = {
           name?: string
           owner_user_id?: string | null
           primary_category_id?: string | null
+          removed_at?: string | null
+          removed_reason?: string | null
           service_area?: string[]
           slug?: string
           status?: Database["public"]["Enums"]["vendor_status"]
@@ -1340,9 +1390,37 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      admin_erase_user: {
+        Args: { p_reason: string; p_user: string }
+        Returns: undefined
+      }
       admin_link_vendor_member: {
         Args: { p_email: string; p_vendor: string }
         Returns: undefined
+      }
+      admin_list_users: {
+        Args: {
+          p_blocked?: boolean
+          p_limit?: number
+          p_offset?: number
+          p_role?: Database["public"]["Enums"]["app_role"]
+          p_search?: string
+        }
+        Returns: {
+          blocked_at: string
+          blocked_reason: string
+          created_at: string
+          email: string
+          enquiries: number
+          full_name: string
+          id: string
+          last_sign_in_at: string
+          phone: string
+          read_only: boolean
+          role: Database["public"]["Enums"]["app_role"]
+          total: number
+          vendor_name: string
+        }[]
       }
       admin_metrics: {
         Args: {
@@ -1353,6 +1431,19 @@ export type Database = {
           p_vendor?: string
         }
         Returns: Json
+      }
+      admin_moderate: {
+        Args: {
+          p_action: string
+          p_id: string
+          p_kind: string
+          p_note?: string
+        }
+        Returns: undefined
+      }
+      admin_remove_vendor: {
+        Args: { p_permanent?: boolean; p_reason: string; p_vendor: string }
+        Returns: string
       }
       admin_set_enquiry_status: {
         Args: {
@@ -1367,6 +1458,10 @@ export type Database = {
           p_role: Database["public"]["Enums"]["app_role"]
           p_user: string
         }
+        Returns: undefined
+      }
+      admin_set_user_blocked: {
+        Args: { p_blocked: boolean; p_reason?: string; p_user: string }
         Returns: undefined
       }
       admin_set_vendor_status: {
@@ -1413,7 +1508,9 @@ export type Database = {
         Returns: boolean
       }
       is_admin: { Args: never; Returns: boolean }
+      is_blocked: { Args: never; Returns: boolean }
       is_staff: { Args: never; Returns: boolean }
+      is_staff_writer: { Args: never; Returns: boolean }
       is_vendor_member: { Args: { v: string }; Returns: boolean }
       listing_completeness: { Args: { p_vendor: string }; Returns: number }
       log_event: {
@@ -1432,6 +1529,7 @@ export type Database = {
         Args: { p_ids?: string[] }
         Returns: undefined
       }
+      moderation_required: { Args: never; Returns: boolean }
       my_customer_ids: { Args: never; Returns: string[] }
       my_role: { Args: never; Returns: Database["public"]["Enums"]["app_role"] }
       my_vendor_ids: { Args: never; Returns: string[] }
@@ -1447,6 +1545,7 @@ export type Database = {
         Returns: undefined
       }
       order_contact: { Args: { p_order: string }; Returns: Json }
+      purge_rate_limits: { Args: never; Returns: undefined }
       record_payment: {
         Args: {
           p_amount: number
@@ -1604,7 +1703,13 @@ export type Database = {
         | "cancelled"
       payment_status: "recorded" | "verified" | "rejected"
       ticket_status: "open" | "in_progress" | "resolved" | "closed"
-      vendor_status: "draft" | "pending" | "active" | "paused" | "rejected"
+      vendor_status:
+        | "draft"
+        | "pending"
+        | "active"
+        | "paused"
+        | "rejected"
+        | "removed"
       verification_status: "unverified" | "pending" | "verified"
     }
     CompositeTypes: {
@@ -1756,7 +1861,14 @@ export const Constants = {
       ],
       payment_status: ["recorded", "verified", "rejected"],
       ticket_status: ["open", "in_progress", "resolved", "closed"],
-      vendor_status: ["draft", "pending", "active", "paused", "rejected"],
+      vendor_status: [
+        "draft",
+        "pending",
+        "active",
+        "paused",
+        "rejected",
+        "removed",
+      ],
       verification_status: ["unverified", "pending", "verified"],
     },
   },

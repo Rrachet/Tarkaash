@@ -5,7 +5,9 @@ import { resolveRange } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
 
-const REPORTS = ["orders", "enquiries", "ledger", "categories", "vendors"] as const;
+const REPORTS = ["orders", "enquiries", "ledger", "categories", "vendors", "customers", "payments", "tickets", "reviews", "posts", "services", "users", "audit"] as const;
+// Data centre exports: staff only, on top of row level security.
+const STAFF_ONLY = new Set<string>(["customers", "payments", "tickets", "reviews", "posts", "services", "users", "audit", "ledger", "categories", "vendors"]);
 type Report = (typeof REPORTS)[number];
 
 /**
@@ -19,6 +21,10 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ report:
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Sign in required" }, { status: 401 });
+  if (STAFF_ONLY.has(report)) {
+    const { data: me } = await supabase.from("profiles").select("role, blocked_at").eq("id", user.id).single();
+    if (!me || me.blocked_at || !["admin", "finance"].includes(me.role)) return NextResponse.json({ error: "Staff access required" }, { status: 403 });
+  }
 
   const sp = request.nextUrl.searchParams;
   const range = resolveRange({ range: sp.get("range") ?? undefined, from: sp.get("from") ?? undefined, to: sp.get("to") ?? undefined });
@@ -45,6 +51,53 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ report:
     headers = ["enquiry_ref", "status", "category", "requested_vendor", "source", "locality", "preferred_date", "assist_opt_in", "created_at", "sample_data"];
     rows = (data ?? []).map((e) => [e.ref_code, e.status, e.categories?.name ?? null, e.requested?.name ?? null, e.source, e.locality,
       e.preferred_date, e.assist_opt_in, e.created_at, e.is_demo]);
+  } else if (report === "customers") {
+    const { data, error } = await supabase.from("customers").select("name, email, phone, consent_at, created_at, is_demo")
+      .order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["name", "email", "phone", "consent_at", "created_at", "sample_data"];
+    rows = (data ?? []).map((c) => [c.name, c.email, c.phone, c.consent_at, c.created_at, c.is_demo]);
+  } else if (report === "payments") {
+    const { data, error } = await supabase.from("payments").select("amount, method, transaction_ref, status, created_at, is_demo, orders(ref_code, vendors(name))")
+      .gte("created_at", start).lt("created_at", end).order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["order_ref", "vendor", "amount_inr", "method", "transaction_ref", "status", "recorded_at", "sample_data"];
+    rows = (data ?? []).map((p) => [p.orders?.ref_code ?? null, p.orders?.vendors?.name ?? null, p.amount, p.method, p.transaction_ref, p.status, p.created_at, p.is_demo]);
+  } else if (report === "tickets") {
+    const { data, error } = await supabase.from("support_tickets").select("ref_code, topic, status, name, email, phone, message, created_at, is_demo")
+      .gte("created_at", start).lt("created_at", end).order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["ticket_ref", "topic", "status", "name", "email", "phone", "message", "created_at", "sample_data"];
+    rows = (data ?? []).map((t) => [t.ref_code, t.topic, t.status, t.name, t.email, t.phone, t.message, t.created_at, t.is_demo]);
+  } else if (report === "reviews") {
+    const { data, error } = await supabase.from("reviews").select("author_name, rating, body, status, created_at, is_demo, vendors(name)")
+      .order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["vendor", "author", "rating", "review", "moderation", "created_at", "sample_data"];
+    rows = (data ?? []).map((r) => [r.vendors?.name ?? null, r.author_name, r.rating, r.body, r.status, r.created_at, r.is_demo]);
+  } else if (report === "posts") {
+    const { data, error } = await supabase.from("vendor_updates").select("title, body, moderation, moderation_note, created_at, vendors(name)")
+      .order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["vendor", "title", "body", "moderation", "moderation_note", "created_at"];
+    rows = (data ?? []).map((u) => [u.vendors?.name ?? null, u.title, u.body, u.moderation, u.moderation_note, u.created_at]);
+  } else if (report === "services") {
+    const { data, error } = await supabase.from("services").select("title, description, price_type, price_amount, price_unit, active, moderation, created_at, vendors(name)")
+      .order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["vendor", "service", "description", "price_type", "price_inr", "unit", "active", "moderation", "created_at"];
+    rows = (data ?? []).map((x) => [x.vendors?.name ?? null, x.title, x.description, x.price_type, x.price_amount, x.price_unit, x.active, x.moderation, x.created_at]);
+  } else if (report === "users") {
+    const { data, error } = await supabase.rpc("admin_list_users", { p_limit: 200, p_offset: 0 });
+    if (error) return NextResponse.json({ error: "Staff access required" }, { status: 403 });
+    headers = ["name", "email", "phone", "role", "view_only", "blocked_at", "blocked_reason", "joined", "last_sign_in", "enquiries", "vendor"];
+    rows = (data ?? []).map((u) => [u.full_name, u.email, u.phone, u.role, u.read_only, u.blocked_at, u.blocked_reason, u.created_at, u.last_sign_in_at, Number(u.enquiries), u.vendor_name]);
+  } else if (report === "audit") {
+    const { data, error } = await supabase.from("audit_log").select("created_at, action, entity, entity_id, actor_id, data")
+      .gte("created_at", start).lt("created_at", end).order("created_at", { ascending: false }).limit(10000);
+    if (error) return NextResponse.json({ error: "Could not export" }, { status: 400 });
+    headers = ["at", "action", "entity", "entity_id", "actor_id", "details"];
+    rows = (data ?? []).map((a) => [a.created_at, a.action, a.entity, a.entity_id, a.actor_id, JSON.stringify(a.data)]);
   } else if (report === "ledger") {
     const { data, error } = await supabase.from("platform_ledger")
       .select("recognized_on, txn_type, amount, direct_cost, tax_amount, basis, reconciliation, note, is_demo, vendors(name), orders(ref_code)")

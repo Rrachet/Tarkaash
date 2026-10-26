@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, Inbox, ClipboardList, Package, UserRound, Star, Users, Wallet, LifeBuoy, Bell, Store, ShieldCheck,
-  TrendingUp, Receipt, MessageSquare, Settings, History, Rocket, BarChart3, Menu, X,
+  TrendingUp, Receipt, MessageSquare, Settings, History, Rocket, BarChart3, Menu, X, ShieldAlert, UsersRound, Database,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -13,6 +13,7 @@ const ICONS = {
   dashboard: LayoutDashboard, inbox: Inbox, orders: ClipboardList, services: Package, profile: UserRound, reviews: Star,
   followers: Users, payouts: Wallet, support: LifeBuoy, bell: Bell, vendors: Store, shield: ShieldCheck, boost: Rocket,
   commercial: Receipt, tickets: MessageSquare, settings: Settings, audit: History, analytics: BarChart3, growth: TrendingUp,
+  moderation: ShieldAlert, users: UsersRound, data: Database,
 } as const;
 export type NavIcon = keyof typeof ICONS;
 export type NavItem = { href: string; label: string; icon: NavIcon; badge?: number; exact?: boolean };

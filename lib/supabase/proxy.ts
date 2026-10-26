@@ -31,6 +31,20 @@ export async function updateSession(request: NextRequest) {
   const required = requiredRoleFor(path);
   if (!required) return response;
 
+  // Suspended accounts: end the session and explain why on the sign-in page.
+  if (user) {
+    const { data: p } = await supabase.from("profiles").select("role, blocked_at").eq("id", user.id).single();
+    if (p?.blocked_at) {
+      await supabase.auth.signOut();
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.search = "?error=suspended";
+      const redirect = NextResponse.redirect(url);
+      response.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+      return redirect;
+    }
+  }
+
   if (!user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";

@@ -13,7 +13,12 @@ export function friendlyError(err: PgLikeError): string {
   if (!err) return "Something went wrong. Please try again.";
   const code = err.code ?? "";
   const message = (err.message ?? "").trim();
-  if (code === "42501") return message && !/permission denied/i.test(message) ? message : "You do not have access to do that.";
+  if (code === "42501") {
+    if (/^not authori[sz]ed$/i.test(message) || /row-level security/i.test(message))
+      return "You do not have permission to do that. Demo staff accounts are view only.";
+    if (!message || /permission denied/i.test(message)) return "You do not have access to do that.";
+    return message;
+  }
   if (code === "P0429") return message || "Too many requests. Please try again later.";
   if (code === "22023" || code === "P0001") return message || "Please check the details and try again.";
   if (code === "23505") return "This has already been submitted.";

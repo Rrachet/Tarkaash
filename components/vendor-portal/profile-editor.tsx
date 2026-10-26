@@ -19,7 +19,7 @@ type V = {
 
 const list = (s: string) => s.split(",").map((x) => x.trim()).filter(Boolean);
 
-export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: string; url: string; caption: string | null }[] }) {
+export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: string; url: string; caption: string | null; moderation?: string }[] }) {
   const [avatar, setAvatar] = useState(vendor.avatar_url);
   const [cover, setCover] = useState(vendor.cover_url);
   const [fe, setFe] = useState<Record<string, string>>({});
@@ -78,10 +78,16 @@ export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: strin
         </div>
         <div className="card p-5">
           <h2 className="font-sans text-base font-semibold">Gallery</h2>
+          <p className="mt-0.5 text-xs text-slate">New photos appear on your public profile after Tarkaash approves them.</p>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {media.map((m) => (
               <div key={m.id} className="group relative aspect-square overflow-hidden rounded-lg bg-cream-200">
                 <Image src={sizedImage(m.url, 300, 300)!} alt={m.caption ?? ""} fill unoptimized className="object-cover" sizes="150px" />
+                {m.moderation && m.moderation !== "approved" && (
+                  <span className={`absolute inset-x-1.5 bottom-1.5 rounded-md px-1.5 py-0.5 text-center text-[10px] font-semibold ${m.moderation === "pending" ? "bg-gold-pale text-[#7a5210]" : "bg-danger text-white"}`}>
+                    {m.moderation === "pending" ? "Waiting for approval" : "Not approved"}
+                  </span>
+                )}
                 <button type="button" aria-label="Remove photo" onClick={() => start(async () => { const r = await removeGalleryImage(m.id); if (r.ok) router.refresh(); else toast("error", r.error); })}
                   className="absolute right-1.5 top-1.5 flex size-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition group-hover:opacity-100 focus:opacity-100"><Trash2 className="size-4" /></button>
               </div>

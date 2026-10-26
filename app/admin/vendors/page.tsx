@@ -23,7 +23,7 @@ export default async function AdminVendors({ searchParams }: { searchParams: Pro
     <>
       <PageTitle title="Vendors">Approve new providers, manage listing status and complete verification checks.</PageTitle>
       <div className="mb-5 flex gap-2 overflow-x-auto">
-        {[["", "All"], ["pending", "Pending review"], ["active", "Live"], ["paused", "Paused"], ["rejected", "Rejected"]].map(([k, l]) => (
+        {[["", "All"], ["pending", "Pending review"], ["active", "Live"], ["paused", "Paused"], ["rejected", "Rejected"], ["removed", "Removed"]].map(([k, l]) => (
           <Link key={k} href={k ? `/admin/vendors?status=${k}` : "/admin/vendors"} className={cn("inline-flex min-h-10 shrink-0 items-center rounded-full border px-4 text-sm font-semibold", (sp.status ?? "") === k ? "border-teal bg-teal text-white" : "border-line bg-white")}>{l}</Link>
         ))}
       </div>

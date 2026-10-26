@@ -22,7 +22,7 @@ export function VendorAdminControls({ vendorId, status, checks, checkList, canEd
     const r = await fn();
     if (r.ok) { toast("success", msg); router.refresh(); } else setError(r.error ?? "Failed");
   });
-  if (!canEdit) return <p className="card p-5 text-sm text-slate">Read-only for finance users.</p>;
+  if (!canEdit) return <p className="card p-5 text-sm text-slate">View only. Changes need a full admin account.</p>;
   return (
     <aside className="space-y-6">
       {error && <FormMessage>{error}</FormMessage>}

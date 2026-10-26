@@ -13,6 +13,17 @@ import { DEMO_ACCOUNTS, isDemoKey } from "@/lib/demo";
 const emailSchema = z.email("Please enter a valid email address.");
 const passwordSchema = z.string().min(10, "Use at least 10 characters.").max(72);
 
+/** Signed in but suspended: end the session straight away. */
+async function rejectIfBlocked(): Promise<string | null> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return null;
+  const { data } = await supabase.from("profiles").select("blocked_at").eq("id", user.id).single();
+  if (!data?.blocked_at) return null;
+  await supabase.auth.signOut();
+  return "This account has been suspended. Contact Tarkaash support if you think this is a mistake.";
+}
+
 async function landingFor(next?: string | null): Promise<string> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -27,6 +38,8 @@ export async function signIn(input: { email: string; password: string; next?: st
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) return fail(error.code === "email_not_confirmed" ? "Please confirm your email first. Check your inbox." : "Email or password is incorrect.");
+  const blocked = await rejectIfBlocked();
+  if (blocked) return fail(blocked);
   return { ok: true, data: { redirectTo: await landingFor(input.next) } };
 }
 
@@ -50,6 +63,8 @@ export async function demoSignIn(key: string): Promise<ActionResult<{ redirectTo
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email: DEMO_ACCOUNTS[key], password: process.env.DEMO_PASSWORD });
   if (error) return fail("Demo sign-in is unavailable right now.");
+  const blocked = await rejectIfBlocked();
+  if (blocked) return fail(blocked);
   return { ok: true, data: { redirectTo: await landingFor() } };
 }
 
@@ -100,6 +115,8 @@ export async function verifySignInCode(input: { email: string; code: string; nex
   const supabase = await createClient();
   const { error } = await supabase.auth.verifyOtp({ email: parsed.data.email, token: parsed.data.code, type: "email" });
   if (error) return fail("That code is invalid or has expired.");
+  const blocked = await rejectIfBlocked();
+  if (blocked) return fail(blocked);
   return { ok: true, data: { redirectTo: await landingFor(input.next) } };
 }
 

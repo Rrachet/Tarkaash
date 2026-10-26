@@ -16,7 +16,7 @@ import { ImageUpload } from "./image-upload";
 
 type Service = {
   id: string; title: string; description: string | null; price_type: string; price_amount: number | null; price_unit: string | null;
-  lead_time: string | null; delivery_options: string[]; availability: string | null; image_url: string | null; active: boolean;
+  lead_time: string | null; delivery_options: string[]; availability: string | null; image_url: string | null; active: boolean; moderation?: string; moderation_note?: string | null;
 };
 
 export function ServicesManager({ vendorId, services, openNew }: { vendorId: string; services: Service[]; openNew?: boolean }) {
@@ -39,9 +39,13 @@ export function ServicesManager({ vendorId, services, openNew }: { vendorId: str
               <div className="relative aspect-[16/9] bg-cream-200">
                 {s.image_url ? <Image src={sizedImage(s.image_url, 640, 360)!} alt="" fill unoptimized className="object-cover" sizes="400px" /> : <div className="pattern-jaali h-full bg-teal-deep" />}
                 {!s.active && <Badge tone="slate" className="absolute left-3 top-3">Paused</Badge>}
+                {s.moderation && s.moderation !== "approved" && (
+                  <Badge tone={s.moderation === "pending" ? "gold" : "danger"} className="absolute right-3 top-3">{s.moderation === "pending" ? "Waiting for approval" : "Not approved"}</Badge>
+                )}
               </div>
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2"><h3 className="font-display text-lg font-semibold">{s.title}</h3><span className="text-sm font-semibold text-teal">{priceLabel(s)}</span></div>
+                {s.moderation === "rejected" && s.moderation_note && <p className="mt-1 rounded-lg bg-danger-soft px-2.5 py-1.5 text-xs text-danger">Not approved: {s.moderation_note}. Edit and save to resubmit.</p>}
                 {s.description && <p className="mt-1 line-clamp-2 text-sm text-slate">{s.description}</p>}
                 <p className="mt-2 flex flex-wrap gap-x-3 text-xs text-slate">
                   {s.lead_time && <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{s.lead_time}</span>}

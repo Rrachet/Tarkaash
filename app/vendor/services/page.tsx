@@ -11,11 +11,11 @@ export default async function VendorServicesPage({ searchParams }: { searchParam
   const sp = await searchParams;
   const supabase = await createClient();
   const { data } = await supabase.from("services")
-    .select("id, title, description, price_type, price_amount, price_unit, lead_time, delivery_options, availability, image_url, active")
+    .select("id, title, description, price_type, price_amount, price_unit, lead_time, delivery_options, availability, image_url, active, moderation, moderation_note")
     .eq("vendor_id", vendorId).order("active", { ascending: false }).order("sort").order("created_at");
   return (
     <>
-      <PageTitle title="Services">What customers can enquire about. Prices are indicative and confirmed per order.</PageTitle>
+      <PageTitle title="Services">What customers can enquire about. Prices are indicative and confirmed per order. New and edited services go live after Tarkaash approves them.</PageTitle>
       <ServicesManager vendorId={vendorId} services={data ?? []} openNew={sp.new === "1"} />
     </>
   );

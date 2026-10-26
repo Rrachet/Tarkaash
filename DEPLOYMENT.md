@@ -95,3 +95,19 @@ Pages built for search:
 - `/hyderabad/<area>`: one page per neighbourhood (Kondapur, Gachibowli, Madhapur and more). Only areas with providers are listed in the sitemap.
 - `/vendors/<slug>`: LocalBusiness structured data with services and prices. Star ratings are marked up only for real (non-demo) providers.
 - `/llms.txt`: plain text summary of Tarkaash, its categories, areas, providers and FAQs for AI assistants.
+
+## Security model
+
+- **Database:** row level security on every table. All privileged changes go through database functions that check the caller's role and write to an append-only audit log. The app uses only the publishable key.
+- **Staff accounts:** `profiles.read_only` makes a staff account view only (the demo Admin and Finance accounts). Real admins are created by an existing admin from Admin > Users & access, or by SQL.
+- **Blocking:** Admin > Users & access can block an account (signed out, cannot sign in) or erase a person's personal data on request.
+- **Vendor content:** new or edited services, posts and photos wait in Admin > Content approval until approved (switch in Admin > Settings). Rejected items show the reason to the vendor.
+- **Removing a vendor:** Admin > Vendors > vendor > Danger zone. Open orders are cancelled and their enquiries return to the queue. Permanent deletion is allowed only when the vendor has no orders.
+- **Demo sign-in:** one-click buttons use the server-only `DEMO_PASSWORD`; it is never sent to the browser.
+- **Headers:** Content-Security-Policy, HSTS (2 years, preload), X-Frame-Options DENY, COOP, nosniff, strict referrer and permissions policies (`next.config.ts`).
+- **Dependencies:** CI fails on high or critical `npm audit` findings.
+
+Dashboard settings to turn on (Supabase > Authentication):
+- Leaked password protection (Password security).
+- Minimum password length 10 (the app already enforces 10).
+- Decide on "Confirm email" (Providers > Email).

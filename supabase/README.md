@@ -18,6 +18,8 @@ Run the migrations in order against a fresh project (SQL editor, `psql`, or the 
 | `migrations/0008_performance.sql` | Faster policy evaluation, one permissive policy per action, foreign-key indexes |
 | `migrations/0009_maintenance.sql` | Automatic rate-limit cleanup; preferred dates scheduled at 11:00 IST |
 | `migrations/0010_copy_cleanup.sql` | Notification wording without long dashes |
+| `migrations/0011_vendor_removed_status.sql` | Adds the `removed` vendor status |
+| `migrations/0012_security_admin.sql` | View-only staff, account blocking, vendor content approval, vendor removal, user management and data erasure |
 
 Then optionally load demo data:
 

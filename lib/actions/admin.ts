@@ -108,6 +108,7 @@ const SETTING_SCHEMAS = {
   }),
   contact: z.object({ email: z.email().nullable(), phone: z.string().max(20).nullable(), address: z.string().max(200).nullable(), confirmed: z.boolean() }),
   enquiry: z.object({ auto_assign_requested_vendor: z.boolean(), max_per_contact_per_hour: z.number().int().min(1).max(100) }),
+  moderation: z.object({ require_approval: z.boolean() }),
 } as const;
 export type SettingKey = keyof typeof SETTING_SCHEMAS;
 
@@ -157,5 +158,89 @@ export async function setLedgerReconciled(ledgerId: string, reconciled: boolean)
     .eq("id", ledgerId);
   if (error) return fail(friendlyError(error));
   revalidatePath("/admin/commercial");
+  return { ok: true, data: undefined };
+}
+
+
+// ---------- Global admin control ----------
+const reason = z.string().trim().min(3, "Please give a short reason.").max(500);
+
+export type ContentKind = "service" | "update" | "media";
+
+/** Approve, reject (with reason) or delete a vendor's service, post or photo. */
+export async function moderateContent(kind: ContentKind, contentId: string, action: "approve" | "reject" | "delete", note?: string): Promise<ActionResult> {
+  if (!["service", "update", "media"].includes(kind) || !id.safeParse(contentId).success) return fail("Unknown item.");
+  if (action !== "approve") {
+    const r = reason.safeParse(note ?? "");
+    if (!r.success) return fail("Please give a short reason. The vendor will see it.");
+  }
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("admin_moderate", { p_kind: kind, p_id: contentId, p_action: action, p_note: note?.trim() || undefined });
+  if (error) return fail(friendlyError(error));
+  revalidateAdmin();
+  revalidatePath("/", "layout");
+  return { ok: true, data: undefined };
+}
+
+/** Remove a vendor (hidden, open orders cancelled and re-queued). Permanent delete only when no orders exist. */
+export async function removeVendor(vendorId: string, why: string, permanent: boolean): Promise<ActionResult<{ result: string }>> {
+  if (!id.safeParse(vendorId).success) return fail("Unknown vendor.");
+  const r = z.string().trim().min(5, "Please give a reason (at least 5 characters).").max(500).safeParse(why);
+  if (!r.success) return fail(r.error.issues[0]!.message);
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("admin_remove_vendor", { p_vendor: vendorId, p_reason: r.data, p_permanent: permanent });
+  if (error) return fail(friendlyError(error));
+  revalidateAdmin();
+  revalidatePath("/", "layout");
+  return { ok: true, data: { result: String(data) } };
+}
+
+const listingSchema = z.object({
+  name: z.string().trim().min(2).max(120),
+  tagline: z.string().trim().max(160).optional().transform((v) => v || null),
+  description: z.string().trim().max(4000).optional().transform((v) => v || null),
+  locality: z.string().trim().max(80).optional().transform((v) => v || null),
+  serviceArea: z.string().max(600).optional(),
+  primaryCategoryId: z.uuid().optional().or(z.literal("")),
+});
+
+/** Admin edit of any vendor's public listing. */
+export async function updateVendorListing(vendorId: string, input: z.input<typeof listingSchema>): Promise<ActionResult> {
+  if (!id.safeParse(vendorId).success) return fail("Unknown vendor.");
+  const parsed = listingSchema.safeParse(input);
+  if (!parsed.success) return fail("Please check the highlighted fields.", fieldErrors(parsed.error));
+  const v = parsed.data;
+  const supabase = await createClient();
+  const { error, count } = await supabase.from("vendors").update({
+    name: v.name, tagline: v.tagline, description: v.description, locality: v.locality,
+    service_area: (v.serviceArea ?? "").split(",").map((x) => x.trim()).filter(Boolean).slice(0, 20),
+    ...(v.primaryCategoryId ? { primary_category_id: v.primaryCategoryId } : {}),
+  }, { count: "exact" }).eq("id", vendorId);
+  if (error) return fail(friendlyError(error));
+  if (!count) return fail("You do not have permission to do that. Demo staff accounts are view only.");
+  revalidateAdmin();
+  revalidatePath("/", "layout");
+  return { ok: true, data: undefined };
+}
+
+export async function setUserBlocked(userId: string, blocked: boolean, why?: string): Promise<ActionResult> {
+  if (!id.safeParse(userId).success) return fail("Unknown user.");
+  if (blocked && !reason.safeParse(why ?? "").success) return fail("Please give a short reason.");
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("admin_set_user_blocked", { p_user: userId, p_blocked: blocked, p_reason: why?.trim() || undefined });
+  if (error) return fail(friendlyError(error));
+  revalidatePath("/admin/users");
+  return { ok: true, data: undefined };
+}
+
+/** Erase a person's personal details (data deletion request) and block the account. */
+export async function eraseUser(userId: string, why: string): Promise<ActionResult> {
+  if (!id.safeParse(userId).success) return fail("Unknown user.");
+  const r = reason.safeParse(why);
+  if (!r.success) return fail("Please give a short reason.");
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("admin_erase_user", { p_user: userId, p_reason: r.data });
+  if (error) return fail(friendlyError(error));
+  revalidatePath("/admin/users");
   return { ok: true, data: undefined };
 }

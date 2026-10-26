@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   return (
     <>
       <PageTitle title="Settings">Fees, routing rules and thresholds are configurable. Nothing in the mock-ups is assumed approved.</PageTitle>
-      <SettingsForms settings={map as never} canEdit={viewer.role === "admin"} />
+      <SettingsForms settings={map as never} canEdit={viewer.role === "admin" && !viewer.readOnly} />
     </>
   );
 }

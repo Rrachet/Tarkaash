@@ -85,7 +85,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
             <p className="mt-2 text-xs text-slate">Consent recorded {formatDateTime(e.customers?.consent_at)}</p>
           </section>
           <EnquiryAdminActions
-            enquiryId={e.id} status={e.status} canEdit={viewer.role === "admin"} hasActiveOrder={!!activeOrder}
+            enquiryId={e.id} status={e.status} canEdit={viewer.role === "admin" && !viewer.readOnly} hasActiveOrder={!!activeOrder}
             suggestedVendorId={e.requested?.id} categoryId={e.categories?.id}
             vendors={vendors.map((v) => ({ id: v.id, name: v.name, locality: v.locality, categoryId: v.primary_category_id, verified: v.verification === "verified" }))}
           />

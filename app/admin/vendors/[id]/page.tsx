@@ -11,6 +11,8 @@ import { VENDOR_STATUS } from "@/lib/status";
 import { StatusBadge } from "@/components/ui/badge";
 import { Avatar, StatCard } from "@/components/ui/misc";
 import { VendorAdminControls } from "@/components/admin/vendor-controls";
+import { VendorDangerZone, VendorListingForm } from "@/components/admin/control-actions";
+import { getCategories } from "@/lib/data/public";
 import { formatDuration, formatINR, formatNumber, formatPercent, priceLabel } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Vendor" };
@@ -22,12 +24,14 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
   const { data: v } = await supabase.from("vendors").select("*, categories:primary_category_id(name)").eq("id", id).maybeSingle();
   if (!v) notFound();
   const range = resolveRange({ range: "30d" });
-  const [{ data: services }, settings, m, { data: tickets }] = await Promise.all([
-    supabase.from("services").select("id, title, price_type, price_amount, price_unit, active").eq("vendor_id", id).order("sort"),
+  const [{ data: services }, settings, m, { data: tickets }, categories] = await Promise.all([
+    supabase.from("services").select("id, title, price_type, price_amount, price_unit, active, moderation").eq("vendor_id", id).order("sort"),
     getPublicSettings(),
     getVendorMetrics(id, range.from, range.to),
     supabase.from("support_tickets").select("ref_code, message, created_at, details").eq("linked_id", id).limit(3),
+    getCategories(),
   ]);
+  const canEdit = viewer.role === "admin" && !viewer.readOnly;
   return (
     <>
       <Link href="/admin/vendors" className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:underline"><ArrowLeft className="size-4" />All vendors</Link>
@@ -61,11 +65,27 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
           <section data-reveal className="card p-5">
             <h2 className="font-sans text-base font-semibold">Services ({services?.length ?? 0})</h2>
             <ul className="mt-3 divide-y divide-line text-sm">
-              {(services ?? []).map((s) => <li key={s.id} className="flex justify-between py-2.5"><span className={s.active ? "" : "text-slate line-through"}>{s.title}</span><span className="font-semibold">{priceLabel(s)}</span></li>)}
+              {(services ?? []).map((s) => (
+                <li key={s.id} className="flex items-center justify-between gap-3 py-2.5">
+                  <span className={s.active ? "" : "text-slate line-through"}>{s.title}</span>
+                  <span className="flex items-center gap-2">
+                    {s.moderation !== "approved" && <Link href="/admin/moderation?kind=service" className="text-xs font-semibold text-gold-600 hover:underline">{s.moderation === "pending" ? "Waiting for approval" : "Not approved"}</Link>}
+                    <span className="font-semibold">{priceLabel(s)}</span>
+                  </span>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
-        <VendorAdminControls vendorId={v.id} status={v.status} checks={(v.verification_checks ?? {}) as Record<string, boolean>} checkList={settings.verification.checks} canEdit={viewer.role === "admin"} />
+        <div className="space-y-6">
+          {v.status === "removed" && (
+            <p className="card border-danger/30 p-4 text-sm text-danger">Removed {v.removed_at ? new Date(v.removed_at).toLocaleDateString("en-IN") : ""}{v.removed_reason ? `: ${v.removed_reason}` : ""}</p>
+          )}
+          <VendorAdminControls vendorId={v.id} status={v.status} checks={(v.verification_checks ?? {}) as Record<string, boolean>} checkList={settings.verification.checks} canEdit={canEdit} />
+          <VendorListingForm readOnly={!canEdit} categories={categories.map((c) => ({ id: c.id, name: c.name }))}
+            vendor={{ id: v.id, name: v.name, tagline: v.tagline, description: v.description, locality: v.locality, serviceArea: v.service_area, categoryId: v.primary_category_id }} />
+          <VendorDangerZone vendorId={v.id} name={v.name} status={v.status} readOnly={!canEdit} />
+        </div>
       </div>
     </>
   );

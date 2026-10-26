@@ -34,6 +34,13 @@ export const VENDOR_STATUS: Record<string, { label: string; tone: Tone }> = {
   active: { label: "Live", tone: "mint" },
   paused: { label: "Paused", tone: "slate" },
   rejected: { label: "Rejected", tone: "danger" },
+  removed: { label: "Removed", tone: "danger" },
+};
+
+export const MODERATION_STATUS: Record<string, { label: string; tone: Tone }> = {
+  pending: { label: "Waiting for approval", tone: "gold" },
+  approved: { label: "Approved", tone: "mint" },
+  rejected: { label: "Not approved", tone: "danger" },
 };
 
 /** Lifecycle shown in the stepper (declined/cancelled are off-path). */

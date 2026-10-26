@@ -28,6 +28,7 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
   const on = (fd: FormData, k: string) => fd.get(k) === "on";
   const a = settings.assist?.value ?? {}; const c = settings.commission?.value ?? {}; const b = settings.boost_thresholds?.value ?? {};
   const ct = settings.contact?.value ?? {}; const en = settings.enquiry?.value ?? {};
+  const md = settings.moderation?.value ?? { require_approval: true };
 
   return (
     <fieldset disabled={!canEdit || pending} className="grid gap-6 xl:grid-cols-2">
@@ -46,6 +47,13 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
         <form onSubmit={save("commission", (fd) => ({ pct: num(fd, "pct"), approved: on(fd, "approved") }))} className="space-y-3">
           <Field label="Commission on closed orders (%)" name="pct" hint="Booked to the ledger when Tarkaash closes an order."><Input name="pct" type="number" min={0} max={50} step="0.5" defaultValue={Number(c.pct ?? 0)} /></Field>
           <Checkbox name="approved" defaultChecked={!!c.approved} label="Commission approved by product owner" />
+          <Button type="submit" size="sm">Save</Button>
+        </form>
+      </Card>
+      <Card title="Vendor content approval" row={settings.moderation}>
+        <form onSubmit={save("moderation", (fd) => ({ require_approval: on(fd, "require") }))} className="space-y-3">
+          <Checkbox name="require" defaultChecked={md.require_approval !== false} label="New or edited vendor services, posts and photos need admin approval before they appear publicly" />
+          <p className="text-xs text-slate">Turn off to let vendor content go live straight away. You can still reject or delete anything from Content approval.</p>
           <Button type="submit" size="sm">Save</Button>
         </form>
       </Card>
