@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import { ToastProvider } from "@/components/ui/toast";
 import { RevealObserver, MOTION_BOOT_SCRIPT } from "@/components/motion/reveal-observer";
 import { NavProgress } from "@/components/motion/nav-progress";
+import { Splash } from "@/components/brand/splash";
 import "./globals.css";
 import { BRAND, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/content/seo";
 import { indexingAllowed, organizationLd, siteUrl, websiteLd } from "@/lib/seo";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </head>
       <body className="min-h-screen">
+        <Splash />
         <NavProgress />
         <RevealObserver />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-teal-deep">

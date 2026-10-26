@@ -81,4 +81,4 @@ export function RevealObserver() {
 }
 
 /** Runs before first paint: opt into reveal animations, with a fail-safe if JS never hydrates. */
-export const MOTION_BOOT_SCRIPT = `(function(){try{var d=document.documentElement;if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');setTimeout(function(){if(!window.__tkReveal)d.classList.remove('motion')},3500)}catch(e){}})();`;
+export const MOTION_BOOT_SCRIPT = `(function(){try{var d=document.documentElement;try{if(sessionStorage.getItem('tk_splash'))d.classList.add('splash-seen')}catch(e){}if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');setTimeout(function(){if(!window.__tkReveal)d.classList.remove('motion')},3500)}catch(e){}})();`;

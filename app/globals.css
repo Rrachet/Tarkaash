@@ -233,3 +233,48 @@ html.motion [data-reveal="line"] { opacity: 1; transform: scaleX(0); }
   .scrollbar-none::-webkit-scrollbar { display: none; }
   .scrollbar-none { scrollbar-width: none; }
 }
+
+/* ---------- Brand "क" mark: opening splash and route loaders ----------
+   The splash plays once per browser session. MOTION_BOOT_SCRIPT adds html.splash-seen before
+   paint on later loads; the fail-safe animation hides it even if JavaScript never runs. */
+@keyframes k-draw { to { stroke-dashoffset: 0; } }
+@keyframes k-fill { to { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes k-tile-in { from { opacity: 0; transform: scale(0.7) rotate(-8deg); } to { opacity: 1; transform: none; } }
+@keyframes k-fade { from { opacity: 0; } }
+@keyframes k-spin { to { transform: rotate(360deg); } }
+@keyframes k-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); opacity: 0.85; } }
+@keyframes splash-ring { from { opacity: 0.8; transform: scale(0.85); } to { opacity: 0; transform: scale(1.35); } }
+@keyframes splash-text { from { opacity: 0; transform: translateY(12px); letter-spacing: 0.5em; } }
+@keyframes splash-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+.k-mark-animated .k-mark-tile { transform-origin: center; animation: k-tile-in 0.7s var(--ease-out-expo) backwards; }
+.k-mark-animated .k-mark-glyph {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  fill-opacity: 0;
+  animation: k-draw 0.95s var(--ease-out-expo) 0.2s forwards, k-fill 0.5s ease 0.85s forwards;
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: radial-gradient(circle at 50% 42%, #0b5f5c 0%, #004b4b 38%, #003b3c 78%);
+  animation: splash-failsafe 0.6s ease 3.4s forwards;
+  transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo), visibility 0s linear 0.65s;
+}
+html.splash-seen .splash { display: none; }
+.splash[data-state="out"] { opacity: 0; transform: scale(1.04); visibility: hidden; pointer-events: none; }
+.splash-inner { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; }
+.splash-mark { position: relative; display: grid; place-items: center; }
+.splash-mark .k-mark { border-radius: 28px; filter: drop-shadow(0 18px 40px rgb(0 0 0 / 0.35)) drop-shadow(0 0 28px rgb(217 164 65 / 0.25)); }
+.splash-ring { position: absolute; inset: -16px; border-radius: 40px; border: 2px solid rgb(217 164 65 / 0.6); animation: splash-ring 1.5s ease-out 0.6s infinite backwards; }
+.splash-name { margin-top: 1.75rem; font-size: 2.25rem; font-weight: 600; letter-spacing: 0.02em; animation: splash-text 0.8s var(--ease-out-expo) 0.75s backwards; }
+.splash-tag { margin-top: 0.35rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--color-gold-pale); animation: splash-text 0.8s var(--ease-out-expo) 0.95s backwards; }
+
+.k-loader { position: relative; display: grid; place-items: center; width: 104px; height: 104px; animation: k-fade 0.3s ease 0.12s backwards; }
+.k-loader-ring { position: absolute; inset: 0; border-radius: 9999px; border: 3px solid rgb(217 164 65 / 0.18); border-top-color: var(--color-gold); animation: k-spin 0.9s linear infinite; }
+.k-loader-mark { border-radius: 16px; animation: k-pulse 1.4s ease-in-out infinite; }
