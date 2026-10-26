@@ -8,7 +8,7 @@
 
 [**Live demo**](https://tarkaash.vercel.app) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
 
-[![CI](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml/badge.svg?branch=claude/sweet-knuth-kkunv8)](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml)
+[![CI](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs)
 ![React 19](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
