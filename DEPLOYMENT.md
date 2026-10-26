@@ -7,7 +7,7 @@
 | Website | https://tarkaash.vercel.app (Vercel project `tarkaash`, team "Amar's projects") |
 | Functions region | `bom1` Mumbai, next to the database |
 | Database / Auth / Storage | Supabase project `tarkaash` (`mimlefjoxiagejvyopfd`, ap-south-1 Mumbai) |
-| Source | GitHub `Rrachet/Tarkaash`, branch `claude/sweet-knuth-kkunv8` (Vercel production branch) |
+| Source | GitHub `Rrachet/Tarkaash`, branch `main` (Vercel production branch) |
 
 Every push to the production branch builds and deploys automatically. GitHub Actions runs lint, typecheck, unit tests and build on each push.
 
