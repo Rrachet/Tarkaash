@@ -47,8 +47,9 @@ check(!!crossMetrics, "other vendor cannot read Meera's analytics");
 const { data: vm, error: vmErr } = await meera.client.rpc("vendor_metrics", { p_vendor: meeraVendor.id, p_from: from, p_to: today });
 check(!vmErr && vm.profile_views > 0, `vendor reads own analytics (${vm?.profile_views} views, ${vm?.enquiries} enquiries)`);
 
-const { data: priyaEnq } = await priya.client.from("enquiries").select("ref_code");
-check(priyaEnq?.length === 2, `customer sees only own enquiries (${priyaEnq?.length})`);
+const { data: { user: priyaUser } } = await priya.client.auth.getUser();
+const { data: priyaEnq } = await priya.client.from("enquiries").select("ref_code, user_id");
+check(!!priyaEnq?.length && priyaEnq.every((e) => e.user_id === priyaUser.id), `customer sees only own enquiries (${priyaEnq?.length})`);
 
 const { data: boost, error: boostErr } = await admin.client.rpc("boost_queue", { p_from: from, p_to: today });
 check(!boostErr && boost.length > 0, `admin boost queue (${boost?.length} flags)`);
