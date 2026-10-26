@@ -2,6 +2,28 @@
   "name": "tarkaash",
   "version": "0.1.0",
   "private": true,
+  "description": "Tarkaash: a managed local-services marketplace for Hyderabad. Next.js 16, React 19, Supabase (Postgres + RLS), Tailwind CSS v4.",
+  "homepage": "https://tarkaash.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rrachet/Tarkaash.git"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "marketplace",
+    "local-services",
+    "saas",
+    "nextjs",
+    "supabase",
+    "postgres",
+    "row-level-security",
+    "tailwindcss",
+    "hyderabad",
+    "india"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +31,8 @@
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
-    "smoke": "node --env-file=.env.local scripts/smoke.mjs"
+    "smoke": "node --env-file=.env.local scripts/smoke.mjs",
+    "e2e": "node --env-file=.env.local scripts/e2e.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
