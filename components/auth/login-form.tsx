@@ -4,25 +4,26 @@ import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { KeyRound, Mail, ShieldCheck, Store, User, Wallet, ArrowRight } from "lucide-react";
-import { signIn, sendSignInCode, verifySignInCode } from "@/lib/actions/auth";
+import { signIn, sendSignInCode, verifySignInCode, demoSignIn } from "@/lib/actions/auth";
+import type { DemoKey } from "@/lib/demo";
 import { Field, Input, FormMessage } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-const DEMO_ACCOUNTS = [
-  { email: "tarkaash.admin@example.com", label: "Tarkaash admin", desc: "Enquiry queue, analytics, P&L", icon: ShieldCheck },
-  { email: "meera.baking@example.com", label: "Vendor: Meera's Home Baking", desc: "Orders, services, analytics", icon: Store },
-  { email: "rohan.kitchen@example.com", label: "Vendor: Rohan's Home Kitchen", desc: "A second vendor (isolated data)", icon: Store },
-  { email: "priya.customer@example.com", label: "Customer: Priya", desc: "My enquiries and saved providers", icon: User },
-  { email: "tarkaash.finance@example.com", label: "Finance", desc: "Ledger and payouts", icon: Wallet },
+const DEMO_ACCOUNTS: { key: DemoKey; label: string; desc: string; icon: typeof Store }[] = [
+  { key: "admin", label: "Tarkaash admin (view only)", desc: "Enquiry queue, analytics, P&L", icon: ShieldCheck },
+  { key: "meera", label: "Vendor: Meera's Home Baking", desc: "Orders, services, analytics", icon: Store },
+  { key: "rohan", label: "Vendor: Rohan's Home Kitchen", desc: "A second vendor (isolated data)", icon: Store },
+  { key: "priya", label: "Customer: Priya", desc: "My enquiries and saved providers", icon: User },
+  { key: "finance", label: "Finance (view only)", desc: "Ledger and payouts", icon: Wallet },
 ];
 
-export function LoginForm({ next, linkError, demo, demoPassword }: { next?: string; linkError?: boolean; demo?: boolean; demoPassword?: string }) {
+export function LoginForm({ next, linkError, demo, notice }: { next?: string; linkError?: boolean; demo?: boolean; notice?: string }) {
   const [mode, setMode] = useState<"password" | "code">("password");
   const [codeSent, setCodeSent] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(linkError ? "That link has expired or was already used. Please sign in again." : null);
+  const [error, setError] = useState<string | null>(linkError ? "That link has expired or was already used. Please sign in again." : notice ?? null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [pending, start] = useTransition();
   const router = useRouter();
@@ -35,6 +36,14 @@ export function LoginForm({ next, linkError, demo, demoPassword }: { next?: stri
       const r = await signIn({ email: em, password: pw, next });
       if (r.ok) go(r.data.redirectTo);
       else { setError(r.error); setFieldErrors(r.fieldErrors ?? {}); }
+    });
+  };
+
+  const demoLogin = (key: DemoKey) => {
+    setError(null);
+    start(async () => {
+      const r = await demoSignIn(key);
+      if (r.ok) go(r.data.redirectTo); else setError(r.error);
     });
   };
 
@@ -108,12 +117,11 @@ export function LoginForm({ next, linkError, demo, demoPassword }: { next?: stri
       {demo && (
         <div className="mt-8 rounded-2xl border border-dashed border-gold bg-white p-4">
           <p className="text-xs font-bold uppercase tracking-widest text-gold-600">Demo accounts</p>
-          <p className="mt-1 text-xs text-slate">{demoPassword ? "One click to explore each role." : "Pick an account to fill the email, then enter the demo password."}</p>
+          <p className="mt-1 text-xs text-slate">One click to explore each role. Demo staff accounts are view only.</p>
           <ul className="mt-3 space-y-1.5">
             {DEMO_ACCOUNTS.map((a) => (
-              <li key={a.email}>
-                <button type="button" disabled={pending}
-                  onClick={() => { setMode("password"); setEmail(a.email); if (demoPassword) { setPassword(demoPassword); submitPassword(a.email, demoPassword); } }}
+              <li key={a.key}>
+                <button type="button" disabled={pending} onClick={() => demoLogin(a.key)}
                   className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left transition hover:bg-cream">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-deep text-gold"><a.icon className="size-4" /></span>
                   <span className="min-w-0 flex-1"><span className="block text-sm font-semibold">{a.label}</span><span className="block truncate text-xs text-slate">{a.desc}</span></span>

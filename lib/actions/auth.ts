@@ -7,9 +7,11 @@ import { env } from "@/lib/env";
 import { fail, type ActionResult } from "@/lib/errors";
 import { fieldErrors } from "@/lib/validation";
 import { homeFor, safeNext, type AppRole } from "@/lib/routes";
+import { headers } from "next/headers";
+import { DEMO_ACCOUNTS, isDemoKey } from "@/lib/demo";
 
 const emailSchema = z.email("Please enter a valid email address.");
-const passwordSchema = z.string().min(8, "Use at least 8 characters.").max(72);
+const passwordSchema = z.string().min(10, "Use at least 10 characters.").max(72);
 
 async function landingFor(next?: string | null): Promise<string> {
   const supabase = await createClient();
@@ -26,6 +28,29 @@ export async function signIn(input: { email: string; password: string; next?: st
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) return fail(error.code === "email_not_confirmed" ? "Please confirm your email first. Check your inbox." : "Email or password is incorrect.");
   return { ok: true, data: { redirectTo: await landingFor(input.next) } };
+}
+
+// Best-effort per-instance throttle for one-click demo sign-in (Supabase Auth adds its own limits).
+const demoHits = new Map<string, { n: number; at: number }>();
+function demoThrottled(ip: string): boolean {
+  const now = Date.now();
+  const h = demoHits.get(ip);
+  if (!h || now - h.at > 60_000) { demoHits.set(ip, { n: 1, at: now }); return false; }
+  h.n += 1;
+  return h.n > 10;
+}
+
+/** One-click demo sign-in. The shared demo password stays on the server (DEMO_PASSWORD). */
+export async function demoSignIn(key: string): Promise<ActionResult<{ redirectTo: string }>> {
+  if (process.env.NEXT_PUBLIC_DEMO_MODE !== "1" || !process.env.DEMO_PASSWORD) return fail("Demo sign-in is turned off.");
+  if (!isDemoKey(key)) return fail("Unknown demo account.");
+  const h = await headers();
+  const ip = (h.get("x-forwarded-for") ?? "").split(",")[0]!.trim() || "local";
+  if (demoThrottled(ip)) return fail("Too many attempts. Please wait a minute and try again.");
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signInWithPassword({ email: DEMO_ACCOUNTS[key], password: process.env.DEMO_PASSWORD });
+  if (error) return fail("Demo sign-in is unavailable right now.");
+  return { ok: true, data: { redirectTo: await landingFor() } };
 }
 
 export async function signUp(input: { name: string; email: string; password: string; phone?: string; next?: string }): Promise<ActionResult<{ needsConfirmation: boolean; redirectTo: string }>> {

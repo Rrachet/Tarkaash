@@ -19,7 +19,7 @@ Every push to the production branch builds and deploys automatically. GitHub Act
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_…` | Browser-safe; row level security protects data. No service-role key is used anywhere. |
 | `NEXT_PUBLIC_SITE_URL` | `https://tarkaash.vercel.app` | Used in auth email links. Change if you add a domain. |
 | `NEXT_PUBLIC_DEMO_MODE` | `1` | Shows demo-account buttons on `/login`. **Remove for real launch.** |
-| `NEXT_PUBLIC_DEMO_PASSWORD` | demo password | Enables one-click demo sign-in. **Remove for real launch.** |
+| `DEMO_PASSWORD` | demo password (sensitive, server only) | Used by the one-click demo sign-in on the server. Never exposed to the browser. **Remove for real launch.** |
 
 After changing env vars, redeploy (Vercel → Deployments → ⋯ → Redeploy).
 
@@ -58,7 +58,7 @@ Checks after any database change:
 
 ## Going from demo to real launch (checklist, spec §12)
 
-- [ ] Remove `NEXT_PUBLIC_DEMO_MODE` and `NEXT_PUBLIC_DEMO_PASSWORD`; redeploy.
+- [ ] Remove `NEXT_PUBLIC_DEMO_MODE` and `DEMO_PASSWORD`; redeploy.
 - [ ] Rotate passwords of all `@example.com` demo accounts (or delete them) and remove demo data (`is_demo = true`) when ready.
 - [ ] Create real admin accounts: sign up normally, then `update profiles set role = 'admin' where email = '…'` in the SQL editor.
 - [ ] Configure SMTP, then turn *Confirm email* back on.

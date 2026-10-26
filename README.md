@@ -41,4 +41,4 @@ Database setup, roles and the SQL acceptance test are documented in [`supabase/R
 
 All providers, prices, reviews, verification states, fees and metrics are illustrative sample data (flagged `is_demo`) until validated. Images are from Unsplash under the Unsplash License. Product photos are used as vendor avatars. Founder photos come from the client deck and should be replaced with approved high-resolution versions.
 
-**Before a real launch:** remove `NEXT_PUBLIC_DEMO_MODE` and `NEXT_PUBLIC_DEMO_PASSWORD` from the Vercel environment, rotate the demo account passwords, and approve fees, verification wording, privacy terms and contact details in Admin → Settings.
+**Before a real launch:** remove `NEXT_PUBLIC_DEMO_MODE` and `DEMO_PASSWORD` from the Vercel environment, rotate the demo account passwords, and approve fees, verification wording, privacy terms and contact details in Admin → Settings.

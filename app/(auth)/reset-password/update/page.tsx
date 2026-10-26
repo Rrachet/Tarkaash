@@ -23,7 +23,7 @@ export default function UpdatePasswordPage() {
         });
       }}>
         {error && <FormMessage>{error}</FormMessage>}
-        <Field label="New password" name="password" hint="At least 8 characters."><Input name="password" type="password" autoComplete="new-password" /></Field>
+        <Field label="New password" name="password" hint="At least 10 characters."><Input name="password" type="password" autoComplete="new-password" /></Field>
         <Field label="Confirm password" name="confirm"><Input name="confirm" type="password" autoComplete="new-password" /></Field>
         <Button type="submit" size="lg" loading={pending} className="w-full">Update password</Button>
       </form>
