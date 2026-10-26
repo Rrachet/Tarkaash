@@ -61,8 +61,9 @@ const res = await fetch(`${app}/api/export/ledger?range=30d`, { headers: { cooki
 const body = await res.text();
 check(res.status === 200 && body.includes("recognized_on,type,amount_inr"), `admin can export ledger CSV (${body.split("\n").length - 2} rows)`);
 const vres = await fetch(`${app}/api/export/ledger?range=30d`, { headers: { cookie: meera.cookie } });
-const vbody = await vres.text();
-check(vbody.split("\r\n").filter(Boolean).length === 2, "vendor ledger export is empty (staff only)");
+check(vres.status === 403, `vendor is refused the ledger export (${vres.status})`);
+const ures = await fetch(`${app}/api/export/users`, { headers: { cookie: meera.cookie } });
+check(ures.status === 403, `vendor is refused the users export (${ures.status})`);
 const ores = await fetch(`${app}/api/export/orders?range=30d`, { headers: { cookie: meera.cookie } });
 const obody = await ores.text();
 check(ores.status === 200 && !obody.includes("Wings in Air") && obody.includes("Meera"), "vendor order export contains only own orders");
