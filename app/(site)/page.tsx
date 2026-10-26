@@ -52,16 +52,16 @@ export default async function HomePage() {
             </p>
 
             <form action="/services" method="get" role="search" style={{ "--d": "480ms" } as React.CSSProperties}
-              className="group/search mt-8 flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:rounded-full ring-0 ring-gold/0 transition-[box-shadow] duration-500 focus-within:ring-4 focus-within:ring-gold/35">
-              <label className="flex flex-1 items-center gap-3 px-4">
+              className="group/search mt-8 flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:rounded-full lg:flex-col lg:items-stretch lg:rounded-2xl xl:flex-row xl:items-center xl:rounded-full ring-0 ring-gold/0 transition-[box-shadow] duration-500 focus-within:ring-4 focus-within:ring-gold/35">
+              <label className="flex min-w-0 flex-1 items-center gap-3 px-4">
                 <Search className="size-5 shrink-0 text-teal" aria-hidden />
                 <RotatingSearchInput name="q" label="What service do you need?" examples={SEARCH_EXAMPLES}
                   className="h-12 w-full bg-transparent text-[15px] text-ink placeholder:text-slate/70 focus:outline-none" />
               </label>
-              <label className="flex items-center gap-2 border-line px-4 sm:border-l">
+              <label className="flex items-center gap-2 border-line px-4 sm:border-l lg:border-l-0 lg:border-t lg:pt-1 xl:border-l xl:border-t-0 xl:pt-0">
                 <MapPin className="size-5 shrink-0 text-gold-600" aria-hidden />
                 <span className="sr-only">Locality</span>
-                <select name="locality" defaultValue="" className="h-12 w-full bg-transparent text-[15px] text-ink focus:outline-none sm:w-40">
+                <select name="locality" defaultValue="" className="h-12 w-full bg-transparent text-[15px] text-ink focus:outline-none sm:w-40 lg:w-full xl:w-40">
                   <option value="">All areas</option>
                   {LOCALITIES.map((l) => <option key={l}>{l}</option>)}
                 </select>

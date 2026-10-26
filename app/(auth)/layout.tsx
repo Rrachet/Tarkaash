@@ -37,7 +37,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
       </aside>
-      <main id="main" className="flex flex-col bg-cream">
+      <main id="main" className="flex min-w-0 flex-col bg-cream">
         <div className="flex items-center justify-between bg-teal-deep px-5 py-3 lg:hidden">
           <Logo className="h-12" />
         </div>

@@ -36,7 +36,7 @@ export async function SiteHeader() {
           ) : (
             <Link href="/login" className="hidden h-11 items-center rounded-full px-4 text-sm font-medium text-white/90 hover:bg-white/10 md:flex">Sign in</Link>
           )}
-          <ButtonLink href="/list-your-service" variant="gold" size="sm" className="btn-sheen hidden sm:inline-flex">List Your Service</ButtonLink>
+          <ButtonLink href="/list-your-service" variant="gold" size="sm" className="btn-sheen max-sm:hidden">List Your Service</ButtonLink>
           <MobileMenu items={NAV} signedIn={!!viewer} portal={portal} />
         </div>
       </div>
