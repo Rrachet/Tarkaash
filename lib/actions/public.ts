@@ -1,5 +1,8 @@
 "use server";
 
+import { cookies } from "next/headers";
+import { ENQUIRY_COOKIE, type EnquirySummary } from "@/lib/enquiry-summary";
+
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { enquirySchema, ticketSchema, fieldErrors, type EnquiryInput, type TicketInput } from "@/lib/validation";
@@ -33,6 +36,21 @@ export async function submitEnquiry(input: EnquiryInput): Promise<ActionResult<{
   });
   if (error) return fail(friendlyError(error));
   const r = data as { id: string; ref_code: string; duplicate: boolean };
+
+  // Remember a summary of what this browser just sent, so the confirmation page can show it
+  // to a guest without reading the enquiry from the database (guests cannot, by design).
+  const [vendor, service] = await Promise.all([
+    v.vendorId ? supabase.from("vendors").select("name, slug").eq("id", v.vendorId).maybeSingle() : Promise.resolve({ data: null }),
+    v.serviceId ? supabase.from("services").select("title").eq("id", v.serviceId).maybeSingle() : Promise.resolve({ data: null }),
+  ]);
+  const summary: EnquirySummary = {
+    ref: r.ref_code, duplicate: r.duplicate, vendor: vendor.data ?? null, service: service.data?.title ?? null,
+    preferredDate: v.preferredDate ?? null, preferredTime: v.preferredTime ?? null, locality: v.locality ?? null,
+    assist: v.assistOptIn, at: new Date().toISOString(),
+  };
+  (await cookies()).set(ENQUIRY_COOKIE, Buffer.from(JSON.stringify(summary)).toString("base64url"), {
+    httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", path: "/enquiry", maxAge: 60 * 60 * 24 * 7,
+  });
   return { ok: true, data: { id: r.id, refCode: r.ref_code, duplicate: r.duplicate } };
 }
 

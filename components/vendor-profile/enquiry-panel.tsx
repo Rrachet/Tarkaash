@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Send, ShieldCheck, Gift, CheckCircle2, Copy, Info, PhoneOff, Route, ClipboardList } from "lucide-react";
 import { submitEnquiry } from "@/lib/actions/public";
@@ -34,6 +35,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
   const [formError, setFormError] = useState<string | null>(null);
   const [done, setDone] = useState<{ refCode: string; duplicate: boolean } | null>(null);
   const [pending, start] = useTransition();
+  const router = useRouter();
   const [request, setRequest] = useState("");
   const [assistOn, setAssistOn] = useState(false);
   const selected = useMemo(() => services.find((s) => s.id === selectedId), [services, selectedId]);
@@ -82,6 +84,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
       });
       if (res.ok) {
         setDone(res.data);
+        router.push(`/enquiry/${encodeURIComponent(res.data.refCode)}`);
       } else {
         setErrors(res.fieldErrors ?? {});
         setFormError(res.error);

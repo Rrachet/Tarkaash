@@ -63,7 +63,7 @@ export default async function AccountPage() {
                         <div>
                           <p className="font-semibold">{e.services?.title ?? "Custom request"}{vendor && <span className="font-normal text-slate"> · {vendor.name}</span>}</p>
                           <p className="flex flex-wrap items-center gap-x-3 text-xs text-slate">
-                            <span className="inline-flex items-center gap-1 font-mono"><Hash className="size-3" />{e.ref_code}</span>
+                            <Link href={`/enquiry/${e.ref_code}`} className="inline-flex items-center gap-1 font-mono text-teal hover:underline"><Hash className="size-3" />{e.ref_code}</Link>
                             <span>{timeAgo(e.created_at)}</span>
                             {e.preferred_date && <span className="inline-flex items-center gap-1"><CalendarDays className="size-3" />{formatDate(e.preferred_date)}</span>}
                           </p>

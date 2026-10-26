@@ -1,5 +1,6 @@
 // Full end-to-end flow through the real UI.
-// Usage: DEMO_PASSWORD=... APP_URL=http://localhost:3000 node scripts/e2e.mjs
+// Usage: DEMO_PASSWORD=... E2E_ADMIN_EMAIL=... E2E_ADMIN_PASSWORD=... APP_URL=http://localhost:3000 node scripts/e2e.mjs
+// The admin must be a full (not view-only) admin: the demo admin cannot assign enquiries.
 // Creates one real enquiry/order named "E2E Test Customer" (clean up afterwards if needed).
 import { createRequire } from "node:module";
 const { chromium } = createRequire(import.meta.url)("playwright"); // uses the locally installed Playwright
@@ -19,10 +20,10 @@ async function session(width = 1280) {
   page.on("pageerror", (e) => console.log("   page error:", e.message));
   return { ctx, page };
 }
-async function signIn(page, email) {
+async function signIn(page, email, password = PW) {
   await page.goto(`${APP}/login`, { waitUntil: "networkidle" });
   await page.fill("input[name=email]", email);
-  await page.fill("input[name=password]", PW);
+  await page.fill("input[name=password]", password ?? PW);
   await page.click("button[type=submit]");
   await page.waitForURL((u) => !u.pathname.startsWith("/login"), { timeout: 60000 });
 }
@@ -50,15 +51,18 @@ const d = new Date(Date.now() + 4 * 864e5).toISOString().slice(0, 10);
 await guest.page.fill("input[name=preferred_date]", d);
 await guest.page.check("input[name=consent]");
 await guest.page.getByRole("button", { name: /Send enquiry/ }).click();
+await guest.page.waitForURL(/\/enquiry\/TK-/, { timeout: 30000 });
 await guest.page.getByText("Enquiry sent to Tarkaash").waitFor({ timeout: 30000 });
-const ref = (await guest.page.locator("p.font-mono").first().innerText()).trim();
+const ref = (await guest.page.locator("[data-ref]").first().getAttribute("data-ref")).trim();
+await guest.page.reload({ waitUntil: "networkidle" });
+if (!(await guest.page.getByText("What you asked for").isVisible())) throw new Error("confirmation details missing after reload");
 await shot(guest.page, "1-confirmation");
 log(`Enquiry submitted, reference ${ref}`);
 await guest.ctx.close();
 
 // 2. Admin assigns from the queue
 const admin = await session();
-await signIn(admin.page, "tarkaash.admin@example.com");
+await signIn(admin.page, process.env.E2E_ADMIN_EMAIL ?? "tarkaash.admin@example.com", process.env.E2E_ADMIN_PASSWORD);
 await admin.page.goto(`${APP}/admin/enquiries?tab=all&q=${ref}`, { waitUntil: "networkidle" });
 await admin.page.getByText(ref).first().click();
 await admin.page.waitForURL(/\/admin\/enquiries\//);
