@@ -28,7 +28,6 @@ export async function SiteFooter() {
       <div className="relative border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Tarkkash. Har Hunar Ko Ek Pehchaan.</p>
-          <p>Demo environment. Prices, reviews, metrics and fees shown are illustrative.</p>
         </div>
       </div>
     </footer>

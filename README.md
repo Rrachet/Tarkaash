@@ -6,7 +6,7 @@
 
 **A managed local-services marketplace for Hyderabad.** Customers discover trusted independent providers (home bakers, home kitchens, tutors, beauticians, repair technicians, travel planners) and send one enquiry. Tarkkash coordinates it with the provider and tracks it from request to payment.
 
-[**Live demo**](https://www.tarkkash.com) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
+[**Live site**](https://www.tarkkash.com) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
 
 [![CI](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs)
@@ -214,14 +214,12 @@ npm run dev                  # http://localhost:3000
 | `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase publishable key (safe for the browser; RLS protects data) |
 | `NEXT_PUBLIC_SITE_URL` | Public origin, used for canonical URLs, sitemap and auth redirects |
-| `NEXT_PUBLIC_DEMO_MODE` | `1` shows one-click demo accounts on the sign-in page |
-| `DEMO_PASSWORD` | Server-only password for those demo accounts (never sent to the browser) |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | `1` lets search engines index the site (keep `0` while demo data is live) |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional Search Console verification code |
 
 **Database:** apply the migrations in `supabase/migrations` in order, then optionally load the demo seed. Roles, the order lifecycle and the demo accounts are documented in [supabase/README.md](supabase/README.md).
 
-**Try it without installing:** open the [live demo](https://www.tarkkash.com/login) and use the one-click demo accounts (admin and finance are view only).
+**Live:** [www.tarkkash.com](https://www.tarkkash.com)
 
 ## Project structure
 
@@ -265,4 +263,4 @@ The app deploys to Vercel on every push; the database runs on Supabase in Mumbai
 
 Copyright © 2026 Tarkkash. All rights reserved. The source is published for portfolio and review purposes only; see [LICENSE](LICENSE).
 
-All providers, prices, reviews and metrics in the demo are illustrative sample data. Images are from Unsplash under the Unsplash License.
+Images are from Unsplash under the Unsplash License.

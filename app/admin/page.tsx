@@ -7,7 +7,7 @@ import { requireRole } from "@/lib/auth";
 import { resolveRange } from "@/lib/dates";
 import { formatDuration, formatINR, formatNumber, formatPercent } from "@/lib/format";
 import { StatCard, DataFreshness } from "@/components/ui/misc";
-import { SampleBadge, Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { LineTrend, Donut } from "@/components/charts/charts";
 import { PageTitle } from "@/components/portal/topbar";
 import { LOCALITIES } from "@/lib/content/site";
@@ -47,7 +47,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
           <button className="h-10 rounded-full bg-teal px-4 text-sm font-semibold text-white">Apply</button>
         </form>
       }>
-        Platform performance, vendor growth, service demand and revenue for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
+        Platform performance, vendor growth, service demand and revenue for {range.label.toLowerCase()}.
       </PageTitle>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -137,7 +137,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
           </div>
         </section>
       </div>
-      <div className="mt-4"><DataFreshness generatedAt={m.generated_at} label={`${range.from} to ${range.to}${cat ? ` · ${cat.name}` : ""}${sp.locality ? ` · ${sp.locality}` : ""}`} sample /></div>
+      <div className="mt-4"><DataFreshness generatedAt={m.generated_at} label={`${range.from} to ${range.to}${cat ? ` · ${cat.name}` : ""}${sp.locality ? ` · ${sp.locality}` : ""}`} /></div>
     </>
   );
 }

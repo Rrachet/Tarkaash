@@ -8,7 +8,7 @@ import { formatDate, formatINR } from "@/lib/format";
 import { PageTitle } from "@/components/portal/topbar";
 import { RangeTabs } from "@/components/portal/range-tabs";
 import { StatCard, DataFreshness } from "@/components/ui/misc";
-import { Badge, SampleBadge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { BarCompare } from "@/components/charts/charts";
 import { CostForm, ReconcileButton } from "@/components/admin/commercial-forms";
 
@@ -28,7 +28,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
   return (
     <>
       <PageTitle title="Commercial & P&L" actions={<div className="flex gap-2"><RangeTabs base="/admin/commercial" current={sp.range ?? "90d"} /><a href={`/api/export/ledger?range=${sp.range ?? "90d"}`} className="inline-flex h-10 items-center gap-1.5 rounded-full border border-line bg-white px-4 text-sm font-semibold"><Download className="size-4" />Ledger CSV</a></div>}>
-        Platform revenue is only fees and commission actually earned or recorded. Vendor order value is shown separately. <SampleBadge className="ml-1 align-middle" />
+        Platform revenue is only fees and commission actually earned or recorded. Vendor order value is shown separately.
       </PageTitle>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         <StatCard label="Vendor order value" value={formatINR(s.gmv)} sub="Not Tarkkash revenue" icon={<Wallet className="size-4" />} tone="sky" />
@@ -82,7 +82,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
           <CostForm />
         </section>
       </div>
-      <div className="mt-4"><DataFreshness generatedAt={s.generated_at} label={`${range.from} to ${range.to} · viewed as ${viewer.role}`} sample /></div>
+      <div className="mt-4"><DataFreshness generatedAt={s.generated_at} label={`${range.from} to ${range.to} · viewed as ${viewer.role}`} /></div>
     </>
   );
 }

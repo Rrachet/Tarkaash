@@ -217,7 +217,7 @@ export async function updateVendorListing(vendorId: string, input: z.input<typeo
     ...(v.primaryCategoryId ? { primary_category_id: v.primaryCategoryId } : {}),
   }, { count: "exact" }).eq("id", vendorId);
   if (error) return fail(friendlyError(error));
-  if (!count) return fail("You do not have permission to do that. Demo staff accounts are view only.");
+  if (!count) return fail("You do not have permission to do that. This account is view only.");
   revalidateAdmin();
   revalidatePath("/", "layout");
   return { ok: true, data: undefined };

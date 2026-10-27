@@ -7,7 +7,6 @@ import { getVendorBySlug, getPublicSettings, getViewerReactions } from "@/lib/da
 import { getViewer } from "@/lib/auth";
 import { sizedImage } from "@/lib/format";
 import { Avatar } from "@/components/ui/misc";
-import { SampleBadge } from "@/components/ui/badge";
 import { CategoryIcon } from "@/components/ui/category-icon";
 import { TrackEvent } from "@/components/marketing/track-event";
 import { VendorWorkspace } from "@/components/vendor-profile/workspace";
@@ -74,7 +73,6 @@ export default async function VendorPage({ params, searchParams }: { params: Par
                     <CategoryIcon icon={v.category.icon} className="size-3.5 text-gold" />{v.category.name}
                   </span>
                 )}
-                {v.is_demo && <SampleBadge className="border-gold/70 text-gold" />}
               </div>
               <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl">{v.name}</h1>
               {v.tagline && <p className="mt-1 text-lg text-white/85">{v.tagline}</p>}

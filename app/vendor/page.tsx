@@ -8,7 +8,7 @@ import { resolveRange } from "@/lib/dates";
 import { formatDuration, formatINR, formatNumber, formatPercent, timeAgo } from "@/lib/format";
 import { ORDER_STATUS } from "@/lib/status";
 import { StatCard, DataFreshness } from "@/components/ui/misc";
-import { StatusBadge, SampleBadge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/badge";
 import { AreaTrend, BarCompare, Donut } from "@/components/charts/charts";
 import { RangeTabs } from "@/components/portal/range-tabs";
 import { PageTitle } from "@/components/portal/topbar";
@@ -35,7 +35,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
           <a href={`/api/export/orders?range=${preset}`} className="h-10 rounded-full border border-line bg-white px-4 text-sm font-semibold leading-10 hover:border-teal/40">Download report</a>
         </div>
       }>
-        See how your business is performing on Tarkkash for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
+        See how your business is performing on Tarkkash for {range.label.toLowerCase()}.
       </PageTitle>
 
       {m.pending_response > 0 && (
@@ -124,7 +124,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
           </table>
         </div>
       </section>
-      <div className="mt-4"><DataFreshness generatedAt={m.generated_at} label={`${range.from} to ${range.to}`} sample /></div>
+      <div className="mt-4"><DataFreshness generatedAt={m.generated_at} label={`${range.from} to ${range.to}`} /></div>
     </>
   );
 }

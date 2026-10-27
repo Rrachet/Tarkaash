@@ -15,7 +15,7 @@ export function friendlyError(err: PgLikeError): string {
   const message = (err.message ?? "").trim();
   if (code === "42501") {
     if (/^not authori[sz]ed$/i.test(message) || /row-level security/i.test(message))
-      return "You do not have permission to do that. Demo staff accounts are view only.";
+      return "You do not have permission to do that. This account is view only.";
     if (!message || /permission denied/i.test(message)) return "You do not have access to do that.";
     return message;
   }

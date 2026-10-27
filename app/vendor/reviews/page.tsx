@@ -4,7 +4,7 @@ import { requireVendor } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { PageTitle } from "@/components/portal/topbar";
 import { RatingStars, EmptyState, StatCard } from "@/components/ui/misc";
-import { Badge, SampleBadge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { timeAgo } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Customer reviews" };
@@ -34,7 +34,6 @@ export default async function VendorReviewsPage() {
               {r.body && <p className="mt-2 text-sm text-ink/85">{r.body}</p>}
               <div className="mt-3 flex items-center gap-2 text-xs text-slate">{timeAgo(r.created_at)}
                 {r.status !== "approved" && <Badge tone={r.status === "pending" ? "gold" : "danger"}>{r.status === "pending" ? "In moderation" : "Not published"}</Badge>}
-                {r.is_demo && <SampleBadge />}
               </div>
             </li>
           ))}

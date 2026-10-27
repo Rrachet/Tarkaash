@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, MapPin, Hash, Gift, MessageSquareQuote, IndianRupee } from "lucide-react";
 import { ORDER_STATUS } from "@/lib/status";
 import { formatDate, formatDateTime, formatINR, formatSchedule, priceLabel } from "@/lib/format";
-import { StatusBadge, SampleBadge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/badge";
 import { OrderStepper } from "./order-stepper";
 import { OrderActions, ContactReveal } from "./order-actions";
 
@@ -25,7 +25,6 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-mono text-3xl font-semibold">{order.ref_code}</h1>
             <StatusBadge map={ORDER_STATUS} status={order.status} />
-            {order.is_demo && <SampleBadge />}
           </div>
           <p className="mt-1 text-sm text-slate">{order.title}{role === "admin" && order.vendors ? <> · <Link className="font-semibold text-teal hover:underline" href={`/vendors/${order.vendors.slug}`}>{order.vendors.name}</Link></> : null} · enquiry {e?.ref_code}</p>
         </div>

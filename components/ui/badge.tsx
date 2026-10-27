@@ -23,10 +23,3 @@ export function StatusBadge({ map, status }: { map: Record<string, { label: stri
   return <Badge tone={s.tone}>{s.label}</Badge>;
 }
 
-export function SampleBadge({ className }: { className?: string }) {
-  return (
-    <span title="Illustrative demo data, not yet validated" className={cn("inline-flex items-center rounded-full border border-dashed border-gold/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-gold-600", className)}>
-      Sample data
-    </span>
-  );
-}

@@ -10,7 +10,7 @@ import { getCategories, getFeaturedVendors, getPlatformStats } from "@/lib/data/
 import { VendorCard } from "@/components/marketing/vendor-card";
 import { CategoryIcon, CATEGORY_TINTS } from "@/components/ui/category-icon";
 import { ButtonLink } from "@/components/ui/button";
-import { SectionHeading, SampleBadgeInline } from "@/components/marketing/bits";
+import { SectionHeading } from "@/components/marketing/bits";
 import { HOME_IMAGES, LOCALITIES } from "@/lib/content/site";
 import { sizedImage } from "@/lib/format";
 import { PointerGlow } from "@/components/motion/pointer-glow";
@@ -201,7 +201,6 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-        <p className="mt-3 text-center"><SampleBadgeInline /></p>
       </section>
 
       {/* ---------- Popular in Hyderabad (internal links for local search) ---------- */}

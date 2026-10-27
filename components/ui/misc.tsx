@@ -76,11 +76,10 @@ export function StatCard({ label, value, sub, icon, tone = "teal", className }: 
   );
 }
 
-export function DataFreshness({ generatedAt, sample, label }: { generatedAt?: string; sample?: boolean; label?: string }) {
+export function DataFreshness({ generatedAt, label }: { generatedAt?: string; label?: string }) {
   return (
     <p className="text-xs text-slate">
       {label ? `${label} · ` : ""}Updated {generatedAt ? new Date(generatedAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" }) : "just now"}
-      {sample && " · includes sample data"}
     </p>
   );
 }

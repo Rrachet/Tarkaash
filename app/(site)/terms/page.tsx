@@ -16,7 +16,6 @@ export default function TermsPage() {
         <p>A verification badge means Tarkkash completed defined checks; it is not a guarantee of quality or outcome.</p>
         <h2>Reviews</h2>
         <p>Reviews can be left only for completed Tarkkash orders and are moderated.</p>
-        <p className="text-sm text-slate">This draft is provided for the client demo and must be approved before launch.</p>
       </div>
     </article>
   );

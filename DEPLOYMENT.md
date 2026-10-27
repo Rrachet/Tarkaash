@@ -18,8 +18,6 @@ Every push to the production branch builds and deploys automatically. GitHub Act
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://mimlefjoxiagejvyopfd.supabase.co` | |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_…` | Browser-safe; row level security protects data. No service-role key is used anywhere. |
 | `NEXT_PUBLIC_SITE_URL` | `https://www.tarkkash.com` | Canonical address: page links, sitemap, share previews and auth email links. |
-| `NEXT_PUBLIC_DEMO_MODE` | `1` | Shows demo-account buttons on `/login`. **Remove for real launch.** |
-| `DEMO_PASSWORD` | demo password (sensitive, server only) | Used by the one-click demo sign-in on the server. Never exposed to the browser. **Remove for real launch.** |
 
 After changing env vars, redeploy (Vercel → Deployments → ⋯ → Redeploy).
 
@@ -58,7 +56,6 @@ Checks after any database change:
 
 ## Going from demo to real launch (checklist, spec §12)
 
-- [ ] Remove `NEXT_PUBLIC_DEMO_MODE` and `DEMO_PASSWORD`; redeploy.
 - [ ] Rotate passwords of all `@example.com` demo accounts (or delete them) and remove demo data (`is_demo = true`) when ready.
 - [ ] Create real admin accounts: sign up normally, then `update profiles set role = 'admin' where email = '…'` in the SQL editor.
 - [ ] Configure SMTP, then turn *Confirm email* back on.
@@ -103,7 +100,6 @@ Pages built for search:
 - **Blocking:** Admin > Users & access can block an account (signed out, cannot sign in) or erase a person's personal data on request.
 - **Vendor content:** new or edited services, posts and photos wait in Admin > Content approval until approved (switch in Admin > Settings). Rejected items show the reason to the vendor.
 - **Removing a vendor:** Admin > Vendors > vendor > Danger zone. Open orders are cancelled and their enquiries return to the queue. Permanent deletion is allowed only when the vendor has no orders.
-- **Demo sign-in:** one-click buttons use the server-only `DEMO_PASSWORD`; it is never sent to the browser.
 - **Headers:** Content-Security-Policy, HSTS (2 years, preload), X-Frame-Options DENY, COOP, nosniff, strict referrer and permissions policies (`next.config.ts`).
 - **Dependencies:** CI fails on high or critical `npm audit` findings.
 

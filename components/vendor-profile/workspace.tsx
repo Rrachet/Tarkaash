@@ -7,7 +7,6 @@ import type { PublicService } from "@/lib/data/public";
 import { DELIVERY_LABELS, priceLabel, sizedImage, timeAgo } from "@/lib/format";
 import { Tabs } from "@/components/ui/tabs";
 import { RatingStars, EmptyState } from "@/components/ui/misc";
-import { SampleBadge } from "@/components/ui/badge";
 import { EnquiryPanel } from "./enquiry-panel";
 import { cn } from "@/lib/cn";
 
@@ -219,7 +218,6 @@ function Reviews({ reviews, rating }: { reviews: Props["reviews"]; rating: NonNu
               <RatingStars value={r.rating} />
             </div>
             {r.body && <p className="mt-3 text-sm leading-relaxed text-ink/90">{r.body}</p>}
-            {r.is_demo && <SampleBadge className="mt-3" />}
           </li>
         ))}
       </ul>

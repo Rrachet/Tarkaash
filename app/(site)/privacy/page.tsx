@@ -16,7 +16,6 @@ export default function PrivacyPage() {
         <p>Enquiry and order records are kept for as long as needed to provide the service and meet legal obligations. You can ask us to delete your personal data at any time via the contact page.</p>
         <h2>Your choices</h2>
         <p>You can update communication preferences from your account and request access, correction or deletion of your data.</p>
-        <p className="text-sm text-slate">This draft is provided for the client demo and must be approved before launch.</p>
       </div>
     </article>
   );

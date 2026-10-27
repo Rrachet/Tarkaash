@@ -6,7 +6,7 @@ import { requireRole } from "@/lib/auth";
 import { getEnquiryDetail } from "@/lib/data/admin";
 import { ENQUIRY_STATUS, ORDER_STATUS } from "@/lib/status";
 import { formatDate, formatDateTime, formatINR, priceLabel } from "@/lib/format";
-import { StatusBadge, SampleBadge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/badge";
 import { EnquiryAdminActions } from "@/components/admin/enquiry-actions";
 
 export const metadata: Metadata = { title: "Enquiry" };
@@ -28,7 +28,6 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <h1 className="font-mono text-3xl font-semibold">{e.ref_code}</h1>
         <StatusBadge map={ENQUIRY_STATUS} status={e.status} />
-        {e.is_demo && <SampleBadge />}
         <span className="text-sm text-slate">Received {formatDateTime(e.created_at)} via {e.source.replace("_", " ")}</span>
       </div>
 
