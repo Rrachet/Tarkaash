@@ -12,6 +12,8 @@ export default function PrivacyPage() {
         <p>When you send an enquiry or message we collect your name, phone and/or email, locality, the service requested, preferred dates and any details you provide. We also record anonymous usage events (such as profile views) to improve the service.</p>
         <h2>How we use it</h2>
         <p>To coordinate your enquiry, assign it to a provider, follow up, and keep a traceable record. Your contact details are shared only with the provider who accepts your order. We never sell personal data.</p>
+        <h2>Site analytics</h2>
+        <p>We use Vercel Web Analytics to count page views and measure page speed. It uses no cookies, does not track you across other sites, and only shows us aggregated numbers.</p>
         <h2>Retention</h2>
         <p>Enquiry and order records are kept for as long as needed to provide the service and meet legal obligations. You can ask us to delete your personal data at any time via the contact page.</p>
         <h2>Your choices</h2>

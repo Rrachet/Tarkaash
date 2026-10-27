@@ -4,6 +4,8 @@ import { ToastProvider } from "@/components/ui/toast";
 import { RevealObserver, MOTION_BOOT_SCRIPT } from "@/components/motion/reveal-observer";
 import { NavProgress } from "@/components/motion/nav-progress";
 import { Splash } from "@/components/brand/splash";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { BRAND, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/content/seo";
 import { indexingAllowed, organizationLd, siteUrl, websiteLd } from "@/lib/seo";
@@ -57,6 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ToastProvider>{children}</ToastProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
