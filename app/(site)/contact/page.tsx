@@ -7,15 +7,15 @@ import { getPublicSettings } from "@/lib/data/public";
 import { HOME_IMAGES } from "@/lib/content/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "Contact Tarkaash | Support, Listings and Partnerships in Hyderabad",
-  description: "Get in touch with Tarkaash for help with an enquiry, listing your business, or partnerships in Hyderabad.",
+  title: "Contact Tarkkash | Support, Listings and Partnerships in Hyderabad",
+  description: "Get in touch with Tarkkash for help with an enquiry, listing your business, or partnerships in Hyderabad.",
   path: "/contact",
 });
 
 const TOPICS = [
-  { topic: "listing", icon: Store, t: "List my service", d: "I want to create a vendor listing on Tarkaash." },
+  { topic: "listing", icon: Store, t: "List my service", d: "I want to create a vendor listing on Tarkkash." },
   { topic: "support", icon: Headset, t: "Customer support", d: "I need help with an enquiry or booking." },
-  { topic: "feature", icon: Lightbulb, t: "Feature suggestion", d: "I have an idea to make Tarkaash better." },
+  { topic: "feature", icon: Lightbulb, t: "Feature suggestion", d: "I have an idea to make Tarkkash better." },
   { topic: "partnership", icon: Handshake, t: "Partnership / collaboration", d: "I want to explore a partnership." },
   { topic: "general", icon: MessageSquare, t: "General enquiry", d: "Any other question or feedback." },
 ];
@@ -46,7 +46,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <section className="container-page grid gap-8 py-16 lg:grid-cols-[1.3fr_1fr]">
         <div data-reveal="left" className="card p-6 sm:p-8">
           <h2 className="text-3xl font-semibold">Send us a message</h2>
-          <p className="mt-1 text-slate">Fill in the details and the right Tarkaash team will get back to you.</p>
+          <p className="mt-1 text-slate">Fill in the details and the right Tarkkash team will get back to you.</p>
           <ContactForm initialTopic={sp.topic} initialMessage={sp.message} />
         </div>
         <div data-reveal="right" className="card p-6 sm:p-8">

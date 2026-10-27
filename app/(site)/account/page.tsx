@@ -47,7 +47,7 @@ export default async function AccountPage() {
           <h2 className="flex items-center gap-2 text-2xl font-semibold"><Inbox className="size-6 text-gold-600" />My enquiries</h2>
           {!enquiries?.length ? (
             <EmptyState className="mt-4" icon={<Inbox className="size-6" />} title="No enquiries yet" action={<ButtonLink href="/services">Explore services</ButtonLink>}>
-              When you enquire through Tarkaash, you can track every step here.
+              When you enquire through Tarkkash, you can track every step here.
             </EmptyState>
           ) : (
             <ul className="mt-4 space-y-4">
@@ -83,7 +83,7 @@ export default async function AccountPage() {
                       </ol>
                     )}
                     <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3 text-sm">
-                      <span className="text-slate">{order?.agreed_amount ? <>Agreed price <strong className="text-ink">{formatINR(order.agreed_amount)}</strong></> : e.status === "new" ? "Tarkaash is reviewing your request" : "Awaiting price confirmation"}</span>
+                      <span className="text-slate">{order?.agreed_amount ? <>Agreed price <strong className="text-ink">{formatINR(order.agreed_amount)}</strong></> : e.status === "new" ? "Tarkkash is reviewing your request" : "Awaiting price confirmation"}</span>
                       <div className="flex items-center gap-3">
                         {vendor?.slug && <Link href={`/vendors/${vendor.slug}`} className="font-semibold text-teal hover:underline">View provider</Link>}
                         {order && ["completed", "payment_recorded", "submitted", "closed"].includes(order.status) && !reviewed.has(order.id) && (

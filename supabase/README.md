@@ -1,4 +1,4 @@
-# Tarkaash backend (Supabase)
+# Tarkkash backend (Supabase)
 
 Postgres + Auth + Storage on Supabase. Every privileged write goes through a `SECURITY DEFINER` function that checks the caller's role, validates input and writes an audit trail, so the web app only needs the **publishable key**. No service-role key is used by the app.
 
@@ -20,6 +20,7 @@ Run the migrations in order against a fresh project (SQL editor, `psql`, or the 
 | `migrations/0010_copy_cleanup.sql` | Notification wording without long dashes |
 | `migrations/0011_vendor_removed_status.sql` | Adds the `removed` vendor status |
 | `migrations/0012_security_admin.sql` | View-only staff, account blocking, vendor content approval, vendor removal, user management and data erasure |
+| `migrations/0013_brand_spelling.sql` | Brand spelling fix: rewrites stored text and function messages to "Tarkkash" |
 
 Then optionally load demo data:
 
@@ -42,7 +43,7 @@ Vendors never see other vendors' records or the customer list; customer contact 
 
 ## Order lifecycle
 
-`new → accepted | declined → in_progress → completed → payment_recorded → submitted → closed` (plus `cancelled` from accepted/in progress). Allowed moves live in `order_transitions`. A decline sends the enquiry back to the admin queue. Closing books the commission and any Tarkaash Assist fee in `platform_ledger` exactly once.
+`new → accepted | declined → in_progress → completed → payment_recorded → submitted → closed` (plus `cancelled` from accepted/in progress). Allowed moves live in `order_transitions`. A decline sends the enquiry back to the admin queue. Closing books the commission and any Tarkkash Assist fee in `platform_ledger` exactly once.
 
 ## Demo accounts (after seeding)
 

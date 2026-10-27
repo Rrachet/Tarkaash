@@ -23,7 +23,7 @@ export default async function DataCentre() {
     { title: "Orders and money", items: [
       { label: "Orders", count: c.orders, icon: ClipboardList, href: "/admin/orders", csv: `orders?${year}`, note: "Every order and its lifecycle" },
       { label: "Payments", count: c.payments, icon: Wallet, csv: `payments?${year}`, note: "Payments recorded by vendors" },
-      { label: "Ledger", count: c.platform_ledger, icon: Receipt, href: "/admin/commercial", csv: `ledger?${year}`, note: "Commission and fees booked by Tarkaash" },
+      { label: "Ledger", count: c.platform_ledger, icon: Receipt, href: "/admin/commercial", csv: `ledger?${year}`, note: "Commission and fees booked by Tarkkash" },
       { label: "Costs", count: c.cost_entries, icon: Receipt, href: "/admin/commercial", note: "Direct and operating costs" },
     ] },
     { title: "People", items: [
@@ -45,7 +45,7 @@ export default async function DataCentre() {
   return (
     <>
       <PageTitle title="Data & exports">
-        Everything entered on Tarkaash is stored in one secure database. Open any area or download it as a spreadsheet (CSV). Exports are staff only.
+        Everything entered on Tarkkash is stored in one secure database. Open any area or download it as a spreadsheet (CSV). Exports are staff only.
       </PageTitle>
       <div className="space-y-8">
         {groups.map((g) => (

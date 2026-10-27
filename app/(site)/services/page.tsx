@@ -19,7 +19,7 @@ export default async function ServicesPage({ searchParams }: { searchParams: SP 
   return (
     <ExploreView categories={categories} vendors={vendors} sp={sp} active={null}
       heading="Explore local services in Hyderabad"
-      intro="Independent providers across Hyderabad, with every enquiry coordinated by Tarkaash."
+      intro="Independent providers across Hyderabad, with every enquiry coordinated by Tarkkash."
       crumbs={[{ href: "/", label: "Home" }, { label: "Explore services" }]} />
   );
 }

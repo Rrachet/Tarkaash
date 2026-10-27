@@ -1,14 +1,14 @@
 <div align="center">
 
-<img src="public/brand/tarkaash-logo-color.png" alt="Tarkaash" width="260" />
+<img src="public/brand/tarkaash-logo-color.png" alt="Tarkkash" width="260" />
 
 ### Good services. Closer to home.
 
-**A managed local-services marketplace for Hyderabad.** Customers discover trusted independent providers (home bakers, home kitchens, tutors, beauticians, repair technicians, travel planners) and send one enquiry. Tarkaash coordinates it with the provider and tracks it from request to payment.
+**A managed local-services marketplace for Hyderabad.** Customers discover trusted independent providers (home bakers, home kitchens, tutors, beauticians, repair technicians, travel planners) and send one enquiry. Tarkkash coordinates it with the provider and tracks it from request to payment.
 
 [**Live demo**](https://www.tarkkash.com) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
 
-[![CI](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkaash/actions/workflows/ci.yml)
+[![CI](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs)
 ![React 19](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
@@ -16,7 +16,7 @@
 ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Hosted_on-Vercel-000?logo=vercel)
 
-<img src="docs/screenshots/home.webp" alt="Tarkaash home page" width="100%" />
+<img src="docs/screenshots/home.webp" alt="Tarkkash home page" width="100%" />
 
 </div>
 
@@ -24,7 +24,7 @@
 
 ## Contents
 
-- [Why Tarkaash](#why-tarkaash)
+- [Why Tarkkash](#why-tarkkash)
 - [Product tour](#product-tour)
 - [Features](#features)
 - [Architecture](#architecture)
@@ -37,13 +37,13 @@
 - [Roadmap](#roadmap)
 - [License](#license)
 
-## Why Tarkaash
+## Why Tarkkash
 
 Finding a reliable home baker, tiffin service or tutor in an Indian city usually means WhatsApp forwards and unanswered calls. Independent providers, many of them women running businesses from home, have skills but little visibility and no tools.
 
-Tarkaash sits in the middle as a **managed marketplace**:
+Tarkkash sits in the middle as a **managed marketplace**:
 
-| For customers | For providers | For the Tarkaash team |
+| For customers | For providers | For the Tarkkash team |
 | --- | --- | --- |
 | Browse checked local providers by need and neighbourhood | A professional profile with services, prices and photos | One queue for every enquiry, with assignment and follow-up |
 | One enquiry, a reference ID, and someone who follows up | Coordinated enquiries instead of cold calls | Full order lifecycle, payments and commission ledger |
@@ -60,7 +60,7 @@ Tarkaash sits in the middle as a **managed marketplace**:
   </tr>
   <tr>
     <td><img src="docs/screenshots/vendor-dashboard.webp" alt="Vendor dashboard" /><br/><sub><b>Vendor portal.</b> Views, enquiries, conversion, response time, earnings and followers.</sub></td>
-    <td><img src="docs/screenshots/vendor-orders.webp" alt="Vendor orders" /><br/><sub><b>Order lifecycle.</b> Accept, deliver, record payment and submit to Tarkaash, every step audited.</sub></td>
+    <td><img src="docs/screenshots/vendor-orders.webp" alt="Vendor orders" /><br/><sub><b>Order lifecycle.</b> Accept, deliver, record payment and submit to Tarkkash, every step audited.</sub></td>
   </tr>
   <tr>
     <td><img src="docs/screenshots/admin-analytics.webp" alt="Admin analytics" /><br/><sub><b>Admin analytics.</b> Funnel, outcomes, category demand, top vendors and revenue with CSV export.</sub></td>
@@ -83,17 +83,17 @@ Tarkaash sits in the middle as a **managed marketplace**:
 ### Customers
 - Search by keyword, category and neighbourhood; filter and sort providers
 - Rich vendor profiles: services with indicative prices, lead times and delivery options, reviews, gallery, updates
-- Guided enquiries with category-specific fields (cake size, tiffin plan, trip details), consent and an optional paid **Tarkaash Assist**
+- Guided enquiries with category-specific fields (cake size, tiffin plan, trip details), consent and an optional paid **Tarkkash Assist**
 - Instant reference ID, a private confirmation page with live progress, and an account area for every enquiry and order
 - Verified reviews only from customers with completed orders; like and follow providers
 
 ### Providers (vendor portal)
 - Dashboard: profile views, enquiries, acceptance rate, median response time, completed value, followers, rating
-- Orders: accept or decline, agree price and schedule, deliver, record payment, submit to Tarkaash; customer contact revealed only after acceptance
+- Orders: accept or decline, agree price and schedule, deliver, record payment, submit to Tarkkash; customer contact revealed only after acceptance
 - Manage services, photos (Supabase Storage), profile and posts to followers, with approval status shown on each item
 - Payouts and earnings, reviews and notifications
 
-### Tarkaash team (admin console)
+### Tarkkash team (admin console)
 - **Enquiry queue** with assignment, notes, reassignment on decline and a full event timeline
 - **Orders** across all vendors, closing an order books commission and fees into a ledger exactly once
 - **Vendors**: onboarding approval, a verification checklist that controls the badge, listing edits, suspend, reactivate or remove (open orders are cancelled and re-queued)
@@ -202,8 +202,8 @@ See [SECURITY.md](SECURITY.md) for the full model and how to report a vulnerabil
 **Prerequisites:** Node.js 22 and a Supabase project.
 
 ```bash
-git clone https://github.com/Rrachet/Tarkaash.git
-cd Tarkaash
+git clone https://github.com/Rrachet/Tarkkash.git
+cd Tarkkash
 npm install
 cp .env.example .env.local   # then fill in the values below
 npm run dev                  # http://localhost:3000
@@ -257,12 +257,12 @@ The app deploys to Vercel on every push; the database runs on Supabase in Mumbai
 
 - Email and WhatsApp notifications for customers and vendors (Resend, WhatsApp Business API)
 - Online payments and automated vendor payouts
-- Customer-facing order chat coordinated by Tarkaash
+- Customer-facing order chat coordinated by Tarkkash
 - Expansion beyond Hyderabad with city-level landing pages
 - Vendor subscription plans and promoted listings
 
 ## License
 
-Copyright © 2026 Tarkaash. All rights reserved. The source is published for portfolio and review purposes only; see [LICENSE](LICENSE).
+Copyright © 2026 Tarkkash. All rights reserved. The source is published for portfolio and review purposes only; see [LICENSE](LICENSE).
 
 All providers, prices, reviews and metrics in the demo are illustrative sample data. Images are from Unsplash under the Unsplash License.

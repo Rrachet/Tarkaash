@@ -7,13 +7,13 @@ export const ORDER_STATUS: Record<string, { label: string; tone: Tone }> = {
   in_progress: { label: "In progress", tone: "teal" },
   completed: { label: "Service delivered", tone: "mint" },
   payment_recorded: { label: "Payment recorded", tone: "mint" },
-  submitted: { label: "Submitted to Tarkaash", tone: "gold" },
+  submitted: { label: "Submitted to Tarkkash", tone: "gold" },
   closed: { label: "Closed", tone: "slate" },
   cancelled: { label: "Cancelled", tone: "danger" },
 };
 
 export const ENQUIRY_STATUS: Record<string, { label: string; tone: Tone }> = {
-  new: { label: "With Tarkaash", tone: "gold" },
+  new: { label: "With Tarkkash", tone: "gold" },
   assigned: { label: "Sent to provider", tone: "teal" },
   in_fulfilment: { label: "In progress", tone: "teal" },
   closed: { label: "Completed", tone: "mint" },
@@ -70,7 +70,7 @@ export const VENDOR_ACTIONS: Record<string, { to: string; label: string; variant
     { to: "completed", label: "Mark service delivered", variant: "primary" },
     { to: "cancelled", label: "Cancel order", variant: "ghost", needsNote: true },
   ],
-  payment_recorded: [{ to: "submitted", label: "Submit to Tarkaash", variant: "gold" }],
+  payment_recorded: [{ to: "submitted", label: "Submit to Tarkkash", variant: "gold" }],
 };
 
 export const ADMIN_ACTIONS: Record<string, { to: string; label: string; variant: "primary" | "gold" | "danger" | "ghost"; needsNote?: boolean }[]> = {

@@ -52,7 +52,7 @@ await guest.page.fill("input[name=preferred_date]", d);
 await guest.page.check("input[name=consent]");
 await guest.page.getByRole("button", { name: /Send enquiry/ }).click();
 await guest.page.waitForURL(/\/enquiry\/TK-/, { timeout: 30000 });
-await guest.page.getByText("Enquiry sent to Tarkaash").waitFor({ timeout: 30000 });
+await guest.page.getByText("Enquiry sent to Tarkkash").waitFor({ timeout: 30000 });
 const ref = (await guest.page.locator("[data-ref]").first().getAttribute("data-ref")).trim();
 await guest.page.reload({ waitUntil: "networkidle" });
 if (!(await guest.page.getByText("What you asked for").isVisible())) throw new Error("confirmation details missing after reload");
@@ -104,10 +104,10 @@ await vendor.page.fill("input[name=reference]", "UPI-E2E-0001");
 await vendor.page.getByRole("button", { name: /^Record payment$/ }).last().click();
 await vendor.page.waitForTimeout(2000);
 log("UPI payment needed a reference, then recorded");
-await click(/Submit to Tarkaash/);
-await vendor.page.getByText("Submitted. Tarkaash will verify").waitFor();
+await click(/Submit to Tarkkash/);
+await vendor.page.getByText("Submitted. Tarkkash will verify").waitFor();
 await shot(vendor.page, "3-submitted");
-log("Submitted to Tarkaash");
+log("Submitted to Tarkkash");
 
 // Cross-vendor isolation
 const other = await session();

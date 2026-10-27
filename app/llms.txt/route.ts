@@ -14,7 +14,7 @@ export async function GET() {
     `> ${BRAND.name} (${BRAND.slogan}) is a local services platform in ${BRAND.city}, ${BRAND.region}, ${BRAND.country}. Customers discover trusted independent providers and send one enquiry; the ${BRAND.name} team coordinates it with the provider and follows up until the service is delivered.`,
     "",
     "Key facts:",
-    "- Free for customers to browse and enquire. Customers pay the provider's price; an optional Tarkaash Assist fee is shown upfront.",
+    "- Free for customers to browse and enquire. Customers pay the provider's price; an optional Tarkkash Assist fee is shown upfront.",
     "- Every enquiry gets a reference ID. Customer contact details are shared only with the provider who accepts the order.",
     "- Verified badges appear only after identity, service area and quality checks.",
     `- Areas: ${LOCALITY_PAGES.map((l) => l.name).join(", ")}.`,

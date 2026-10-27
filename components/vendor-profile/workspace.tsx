@@ -81,7 +81,7 @@ export function VendorWorkspace({ vendor, services, media, updates, reviews, rat
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 p-3 backdrop-blur lg:hidden">
         <button type="button" onClick={() => panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
           className="flex h-12 w-full items-center justify-center rounded-full bg-teal font-semibold text-white shadow-[var(--shadow-lift)]">
-          Enquire through Tarkaash
+          Enquire through Tarkkash
         </button>
       </div>
       <aside ref={panelRef} className="scroll-mt-24 pb-20 lg:sticky lg:top-24 lg:self-start lg:pb-0">
@@ -134,7 +134,7 @@ function ServiceRow({ s, selected, onSelect }: { s: PublicService; selected: boo
             {selected ? <><CheckCircle2 className="size-4" />Selected</> : <>Enquire<ChevronRight className="size-4" /></>}
           </button>
         </div>
-        <p className="text-[11px] text-slate/80">Prices are indicative and confirmed by the provider through Tarkaash.</p>
+        <p className="text-[11px] text-slate/80">Prices are indicative and confirmed by the provider through Tarkkash.</p>
       </div>
     </article>
   );
@@ -207,7 +207,7 @@ function Reviews({ reviews, rating }: { reviews: Props["reviews"]; rating: NonNu
           ))}
         </div>
       </div>
-      <p className="text-xs text-slate">Only customers with a completed Tarkaash order can leave a review. Reviews are moderated.</p>
+      <p className="text-xs text-slate">Only customers with a completed Tarkkash order can leave a review. Reviews are moderated.</p>
       <ul className="grid gap-4 sm:grid-cols-2" data-stagger>
         {reviews.slice(0, shown).map((r) => (
           <li key={r.id} className="rounded-2xl border border-line bg-white p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]">
@@ -238,7 +238,7 @@ function SupportLocal({ name }: { name: string }) {
       <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-teal-deep text-gold"><MessageCircleHeart className="size-7" /></span>
       <div>
         <p className="font-display text-xl font-semibold">A small step for you, a big support for {name.split(" ")[0]?.replace(/'s$/, "")}.</p>
-        <p className="mt-1 text-sm text-ink/80">By choosing Tarkaash, you&apos;re not just getting a great service. You&apos;re helping local talent grow.</p>
+        <p className="mt-1 text-sm text-ink/80">By choosing Tarkkash, you&apos;re not just getting a great service. You&apos;re helping local talent grow.</p>
       </div>
     </div>
   );

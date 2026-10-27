@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
-export const metadata: Metadata = pageMeta({ title: "Privacy Notice", description: "How Tarkaash collects, uses and protects your information.", path: "/privacy" });
+export const metadata: Metadata = pageMeta({ title: "Privacy Notice", description: "How Tarkkash collects, uses and protects your information.", path: "/privacy" });
 export default function PrivacyPage() {
   return (
     <article className="container-page max-w-3xl py-16">
       <p className="eyebrow">Draft, pending legal review</p>
       <h1 className="mt-3 text-4xl font-semibold">Privacy notice</h1>
       <div className="mt-8 space-y-6 leading-relaxed text-ink/85 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold">
-        <p>Tarkaash (“we”) coordinates enquiries between customers and independent local providers. This notice explains what we collect and why.</p>
+        <p>Tarkkash (“we”) coordinates enquiries between customers and independent local providers. This notice explains what we collect and why.</p>
         <h2>What we collect</h2>
         <p>When you send an enquiry or message we collect your name, phone and/or email, locality, the service requested, preferred dates and any details you provide. We also record anonymous usage events (such as profile views) to improve the service.</p>
         <h2>How we use it</h2>

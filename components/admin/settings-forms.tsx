@@ -32,20 +32,20 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
 
   return (
     <fieldset disabled={!canEdit || pending} className="grid gap-6 xl:grid-cols-2">
-      <Card title="Tarkaash Assist fee" row={settings.assist} approved={!!a.approved}>
+      <Card title="Tarkkash Assist fee" row={settings.assist} approved={!!a.approved}>
         <form onSubmit={save("assist", (fd) => ({ enabled: on(fd, "enabled"), fee: num(fd, "fee"), currency: "INR", approved: on(fd, "approved"), label: String(fd.get("label")) }))} className="space-y-3">
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="Label" name="label"><Input name="label" defaultValue={String(a.label ?? "Tarkaash Assist")} /></Field>
+            <Field label="Label" name="label"><Input name="label" defaultValue={String(a.label ?? "Tarkkash Assist")} /></Field>
             <Field label="Fee (₹)" name="fee"><Input name="fee" type="number" min={0} defaultValue={Number(a.fee ?? 0)} /></Field>
           </div>
-          <Checkbox name="enabled" defaultChecked={!!a.enabled} label="Offer Tarkaash Assist on enquiry forms" />
+          <Checkbox name="enabled" defaultChecked={!!a.enabled} label="Offer Tarkkash Assist on enquiry forms" />
           <Checkbox name="approved" defaultChecked={!!a.approved} label="Fee approved by product owner" />
           <Button type="submit" size="sm">Save</Button>
         </form>
       </Card>
       <Card title="Commission" row={settings.commission} approved={!!c.approved}>
         <form onSubmit={save("commission", (fd) => ({ pct: num(fd, "pct"), approved: on(fd, "approved") }))} className="space-y-3">
-          <Field label="Commission on closed orders (%)" name="pct" hint="Booked to the ledger when Tarkaash closes an order."><Input name="pct" type="number" min={0} max={50} step="0.5" defaultValue={Number(c.pct ?? 0)} /></Field>
+          <Field label="Commission on closed orders (%)" name="pct" hint="Booked to the ledger when Tarkkash closes an order."><Input name="pct" type="number" min={0} max={50} step="0.5" defaultValue={Number(c.pct ?? 0)} /></Field>
           <Checkbox name="approved" defaultChecked={!!c.approved} label="Commission approved by product owner" />
           <Button type="submit" size="sm">Save</Button>
         </form>

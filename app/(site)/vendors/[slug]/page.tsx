@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const roleTitle = role.charAt(0).toUpperCase() + role.slice(1);
   return pageMeta({
     title: `${v.name}: ${roleTitle} in ${area}`,
-    description: `${v.name}${v.tagline ? `, ${v.tagline}` : ""}. ${services ? `${services} and more. ` : ""}Trusted ${role} in ${area}. Send an enquiry through Tarkaash.`.slice(0, 300),
+    description: `${v.name}${v.tagline ? `, ${v.tagline}` : ""}. ${services ? `${services} and more. ` : ""}Trusted ${role} in ${area}. Send an enquiry through Tarkkash.`.slice(0, 300),
     path: `/vendors/${v.slug}`,
     keywords: [`${v.name}`, `${role} in ${v.locality ?? v.city}`, ...(seo?.keywords.slice(0, 3) ?? [])],
     image: v.cover_url ? sizedImage(v.cover_url, 1200, 630)! : undefined,

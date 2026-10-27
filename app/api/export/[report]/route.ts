@@ -122,7 +122,7 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ report:
     }
   }
 
-  const preface = `# Tarkaash ${report} export, ${range.from} to ${range.to}, exported ${exportedAt}. Rows marked sample_data are illustrative.\r\n`;
+  const preface = `# Tarkkash ${report} export, ${range.from} to ${range.to}, exported ${exportedAt}. Rows marked sample_data are illustrative.\r\n`;
   return new NextResponse(preface + toCsv(headers, rows), {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",

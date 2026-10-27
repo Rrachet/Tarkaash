@@ -31,7 +31,7 @@ export default async function CommercialPage({ searchParams }: { searchParams: P
         Platform revenue is only fees and commission actually earned or recorded. Vendor order value is shown separately. <SampleBadge className="ml-1 align-middle" />
       </PageTitle>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <StatCard label="Vendor order value" value={formatINR(s.gmv)} sub="Not Tarkaash revenue" icon={<Wallet className="size-4" />} tone="sky" />
+        <StatCard label="Vendor order value" value={formatINR(s.gmv)} sub="Not Tarkkash revenue" icon={<Wallet className="size-4" />} tone="sky" />
         <StatCard label="Platform revenue" value={formatINR(s.revenue)} sub={`${formatINR(s.revenue_actual)} actual · ${formatINR(s.revenue_accrued)} accrued`} icon={<IndianRupee className="size-4" />} tone="gold" />
         <StatCard label="Contribution" value={formatINR(s.contribution)} sub={`After ${formatINR(s.direct_costs)} direct costs`} icon={<TrendingUp className="size-4" />} tone="mint" />
         <StatCard label="Operating result" value={formatINR(s.operating_result)} sub={`After ${formatINR(s.operating_costs)} operating costs`} icon={<Scale className="size-4" />} tone={s.operating_result < 0 ? "rose" : "teal"} />

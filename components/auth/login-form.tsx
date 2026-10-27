@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 const DEMO_ACCOUNTS: { key: DemoKey; label: string; desc: string; icon: typeof Store }[] = [
-  { key: "admin", label: "Tarkaash admin (view only)", desc: "Enquiry queue, analytics, P&L", icon: ShieldCheck },
+  { key: "admin", label: "Tarkkash admin (view only)", desc: "Enquiry queue, analytics, P&L", icon: ShieldCheck },
   { key: "meera", label: "Vendor: Meera's Home Baking", desc: "Orders, services, analytics", icon: Store },
   { key: "rohan", label: "Vendor: Rohan's Home Kitchen", desc: "A second vendor (isolated data)", icon: Store },
   { key: "priya", label: "Customer: Priya", desc: "My enquiries and saved providers", icon: User },
@@ -66,7 +66,7 @@ export function LoginForm({ next, linkError, demo, notice }: { next?: string; li
   return (
     <div>
       <h1 className="text-4xl font-semibold">Welcome back</h1>
-      <p className="mt-2 text-slate">Sign in to manage your enquiries, orders and business on Tarkaash.</p>
+      <p className="mt-2 text-slate">Sign in to manage your enquiries, orders and business on Tarkkash.</p>
 
       <div role="tablist" className="mt-8 grid grid-cols-2 rounded-full bg-cream-200 p-1">
         {(["password", "code"] as const).map((m) => (
@@ -110,7 +110,7 @@ export function LoginForm({ next, linkError, demo, notice }: { next?: string; li
       </div>
 
       <p className="mt-8 text-center text-sm text-slate">
-        New to Tarkaash? <Link href={`/signup${next ? `?next=${encodeURIComponent(next)}` : ""}`} className="font-semibold text-teal hover:underline">Create an account</Link>
+        New to Tarkkash? <Link href={`/signup${next ? `?next=${encodeURIComponent(next)}` : ""}`} className="font-semibold text-teal hover:underline">Create an account</Link>
         {" · "}<Link href="/list-your-service" className="font-semibold text-gold-600 hover:underline">Register as a vendor</Link>
       </p>
 

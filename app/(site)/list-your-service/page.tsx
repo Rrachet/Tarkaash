@@ -11,8 +11,8 @@ import { HOME_IMAGES } from "@/lib/content/site";
 import { sizedImage } from "@/lib/format";
 
 export const metadata: Metadata = pageMeta({
-  title: "List Your Business Online in Hyderabad | Grow with Tarkaash",
-  description: "Home bakers, home kitchens, tutors, beauticians and local service businesses: list your business on Tarkaash and get coordinated enquiries from customers in Hyderabad. No upfront listing fee during the pilot.",
+  title: "List Your Business Online in Hyderabad | Grow with Tarkkash",
+  description: "Home bakers, home kitchens, tutors, beauticians and local service businesses: list your business on Tarkkash and get coordinated enquiries from customers in Hyderabad. No upfront listing fee during the pilot.",
   path: "/list-your-service",
   keywords: ["list your business online Hyderabad", "get orders for home bakers", "grow home business India", "register home business online"],
 });
@@ -33,11 +33,11 @@ export default async function ListYourServicePage() {
         <div className="container-page relative grid items-center gap-10 py-16 lg:grid-cols-2 lg:py-20">
           <div className="hero-seq">
             <p className="eyebrow">Vendor portal</p>
-            <h1 style={{ "--d": "120ms" } as React.CSSProperties} className="mt-4 text-4xl font-semibold leading-tight sm:text-6xl">Grow your business <span className="text-shine">with Tarkaash</span></h1>
+            <h1 style={{ "--d": "120ms" } as React.CSSProperties} className="mt-4 text-4xl font-semibold leading-tight sm:text-6xl">Grow your business <span className="text-shine">with Tarkkash</span></h1>
             <p style={{ "--d": "240ms" } as React.CSSProperties} className="mt-5 max-w-xl text-lg text-white/80">Join a trusted community that connects your skills with real customers nearby. No upfront listing fee during the pilot.</p>
             <ul style={{ "--d": "360ms" } as React.CSSProperties} className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
-                { i: Users, t: "More customers", d: "Reach new and local customers" }, { i: TrendingUp, t: "Higher visibility", d: "Get discovered on Tarkaash" },
+                { i: Users, t: "More customers", d: "Reach new and local customers" }, { i: TrendingUp, t: "Higher visibility", d: "Get discovered on Tarkkash" },
                 { i: ShieldCheck, t: "Secure & transparent", d: "Clear orders and payment records" }, { i: LayoutDashboard, t: "Your dashboard", d: "Views, enquiries and earnings" },
               ].map(({ i: I, t, d }) => (
                 <li key={t} className="flex gap-3"><span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold text-teal-deep"><I className="size-5" /></span><div><p className="font-semibold">{t}</p><p className="text-sm text-white/70">{d}</p></div></li>
@@ -54,7 +54,7 @@ export default async function ListYourServicePage() {
         <div>
           <h2 className="text-3xl font-semibold">How onboarding works</h2>
           <ol className="mt-6 space-y-5" data-stagger="left">
-            {["Create your account and tell us about your business.", "Tarkaash reviews your details and verifies identity, area and any licence your category needs.", "Add services, prices and photos from your vendor portal.", "Go live. Tarkaash starts sending you coordinated enquiries."].map((s, i) => (
+            {["Create your account and tell us about your business.", "Tarkkash reviews your details and verifies identity, area and any licence your category needs.", "Add services, prices and photos from your vendor portal.", "Go live. Tarkkash starts sending you coordinated enquiries."].map((s, i) => (
               <li key={s} className="flex gap-4"><span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal font-bold text-white">{i + 1}</span><p className="pt-1.5">{s}</p></li>
             ))}
           </ol>
@@ -64,7 +64,7 @@ export default async function ListYourServicePage() {
             <div className="text-center">
               {existing.status === "active" ? <CheckCircle2 className="mx-auto size-12 text-success" /> : <Clock className="mx-auto size-12 text-gold-600" />}
               <h2 className="mt-4 text-2xl font-semibold">{existing.name}</h2>
-              <p className="mt-2 text-slate">{existing.status === "active" ? "Your listing is live." : "Your application is with the Tarkaash team. We'll be in touch soon."}</p>
+              <p className="mt-2 text-slate">{existing.status === "active" ? "Your listing is live." : "Your application is with the Tarkkash team. We'll be in touch soon."}</p>
               <ButtonLink href="/vendor" className="mt-6">Open vendor portal</ButtonLink>
             </div>
           ) : viewer ? (

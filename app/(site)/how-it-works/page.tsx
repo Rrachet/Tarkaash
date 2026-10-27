@@ -8,31 +8,31 @@ import { FaqSection } from "@/components/marketing/faq";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "How Tarkaash Works | Book Trusted Local Services in Hyderabad",
-  description: "See how Tarkaash coordinates every enquiry: discover local providers in Hyderabad, send one enquiry with a reference ID, and get the service delivered. For customers and providers.",
+  title: "How Tarkkash Works | Book Trusted Local Services in Hyderabad",
+  description: "See how Tarkkash coordinates every enquiry: discover local providers in Hyderabad, send one enquiry with a reference ID, and get the service delivered. For customers and providers.",
   path: "/how-it-works",
-  keywords: ["how to book local services Hyderabad", "how Tarkaash works", "list my business online Hyderabad"],
+  keywords: ["how to book local services Hyderabad", "how Tarkkash works", "list my business online Hyderabad"],
 });
 
 const CUSTOMER = [
   { i: Search, t: "Discover providers", d: "Search by need, category and locality. Profiles show services, indicative prices, lead times and checked details." },
-  { i: MessageSquareText, t: "Enquire through Tarkaash", d: "Pick a service and tell us your date and requirements. You get a reference ID instantly." },
-  { i: UserCheck, t: "We coordinate", d: "Tarkaash confirms details and assigns the enquiry to the provider (or a suitable alternative if they're unavailable)." },
-  { i: ClipboardCheck, t: "Service delivered", d: "Your provider confirms price and schedule, delivers, and records the order with Tarkaash." },
+  { i: MessageSquareText, t: "Enquire through Tarkkash", d: "Pick a service and tell us your date and requirements. You get a reference ID instantly." },
+  { i: UserCheck, t: "We coordinate", d: "Tarkkash confirms details and assigns the enquiry to the provider (or a suitable alternative if they're unavailable)." },
+  { i: ClipboardCheck, t: "Service delivered", d: "Your provider confirms price and schedule, delivers, and records the order with Tarkkash." },
   { i: Star, t: "Review & rebook", d: "Leave a verified review after completion and save providers you love." },
 ];
 const VENDOR = [
-  { i: Store, t: "List your business", d: "Create a profile with services, prices, photos and your service area. Tarkaash reviews it before going live." },
-  { i: Inbox, t: "Receive coordinated enquiries", d: "Accept or decline assigned enquiries. Declined requests go back to Tarkaash for reassignment." },
-  { i: Wallet, t: "Complete and record", d: "Track every order from acceptance to payment recorded and submission to Tarkaash." },
+  { i: Store, t: "List your business", d: "Create a profile with services, prices, photos and your service area. Tarkkash reviews it before going live." },
+  { i: Inbox, t: "Receive coordinated enquiries", d: "Accept or decline assigned enquiries. Declined requests go back to Tarkkash for reassignment." },
+  { i: Wallet, t: "Complete and record", d: "Track every order from acceptance to payment recorded and submission to Tarkkash." },
   { i: BarChart3, t: "Grow with insight", d: "See profile views, enquiries, conversion, followers and your most popular services." },
 ];
 
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHero eyebrow="How Tarkaash works" title="One enquiry. One point of contact. Real local providers." image={HOME_IMAGES.hero[1]}>
-        Tarkaash sits between customers and independent providers to keep every request clear, coordinated and traceable.
+      <PageHero eyebrow="How Tarkkash works" title="One enquiry. One point of contact. Real local providers." image={HOME_IMAGES.hero[1]}>
+        Tarkkash sits between customers and independent providers to keep every request clear, coordinated and traceable.
       </PageHero>
       <Flow title="For customers" steps={CUSTOMER} />
       <Flow title="For providers" steps={VENDOR} tone="gold" />

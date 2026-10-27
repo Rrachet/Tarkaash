@@ -101,7 +101,7 @@ export function ExploreView({ categories, vendors, sp, active, heading, intro, c
           <EmptyState icon={<SearchX className="size-6" />} title="No providers match yet"
             action={<div className="flex flex-wrap justify-center gap-2">
               <ButtonLink href="/services" variant="outline" size="sm">See all providers</ButtonLink>
-              <ButtonLink href={`/contact?topic=general&message=${encodeURIComponent(`I'm looking for: ${sp.q ?? active?.name ?? "a service"}${sp.locality ? ` in ${sp.locality}` : ""}`)}`} size="sm">Ask Tarkaash to find one</ButtonLink>
+              <ButtonLink href={`/contact?topic=general&message=${encodeURIComponent(`I'm looking for: ${sp.q ?? active?.name ?? "a service"}${sp.locality ? ` in ${sp.locality}` : ""}`)}`} size="sm">Ask Tarkkash to find one</ButtonLink>
             </div>}>
             Try a broader keyword, another area, or one of these:{" "}
             {["cake", "tiffin", "tuition", "cleaning", "makeup"].map((s, i) => (

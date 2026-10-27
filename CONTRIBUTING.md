@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve Tarkaash. This guide covers local setup and the conventions the project follows.
+Thanks for helping improve Tarkkash. This guide covers local setup and the conventions the project follows.
 
 ## Setup
 

@@ -35,13 +35,13 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
           <a href={`/api/export/orders?range=${preset}`} className="h-10 rounded-full border border-line bg-white px-4 text-sm font-semibold leading-10 hover:border-teal/40">Download report</a>
         </div>
       }>
-        See how your business is performing on Tarkaash for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
+        See how your business is performing on Tarkkash for {range.label.toLowerCase()}. <SampleBadge className="ml-1 align-middle" />
       </PageTitle>
 
       {m.pending_response > 0 && (
         <Link href="/vendor/orders?filter=new" className="mb-6 flex items-center gap-4 rounded-2xl border border-gold/50 bg-gold-pale/60 p-4 transition hover:bg-gold-pale">
           <span className="flex size-11 items-center justify-center rounded-xl bg-gold text-teal-deep"><AlertCircle className="size-5" /></span>
-          <div className="flex-1"><p className="font-semibold">{m.pending_response} new {m.pending_response === 1 ? "enquiry needs" : "enquiries need"} your response</p><p className="text-sm text-ink/70">Quick responses improve your visibility on Tarkaash.</p></div>
+          <div className="flex-1"><p className="font-semibold">{m.pending_response} new {m.pending_response === 1 ? "enquiry needs" : "enquiries need"} your response</p><p className="text-sm text-ink/70">Quick responses improve your visibility on Tarkkash.</p></div>
           <ArrowRight className="size-5 text-teal" />
         </Link>
       )}
@@ -94,7 +94,7 @@ export default async function VendorDashboard({ searchParams }: { searchParams: 
           </div>
           <div className="mt-auto rounded-2xl bg-teal-deep p-4 text-white">
             <p className="flex items-center gap-2 font-semibold"><Sparkles className="size-4 text-gold" />Your business is growing</p>
-            <p className="mt-1 text-sm text-white/75">{m.completed} orders completed and {formatINR(m.payments_recorded)} recorded through Tarkaash this period.</p>
+            <p className="mt-1 text-sm text-white/75">{m.completed} orders completed and {formatINR(m.payments_recorded)} recorded through Tarkkash this period.</p>
           </div>
         </section>
       </div>

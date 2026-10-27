@@ -17,7 +17,7 @@ export default async function VendorReviewsPage() {
   const avg = approved.length ? approved.reduce((s, r) => s + r.rating, 0) / approved.length : null;
   return (
     <>
-      <PageTitle title="Customer reviews">Only customers with completed Tarkaash orders can review. Tarkaash moderates every review.</PageTitle>
+      <PageTitle title="Customer reviews">Only customers with completed Tarkkash orders can review. Tarkkash moderates every review.</PageTitle>
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         <StatCard label="Average rating" value={avg ? `${avg.toFixed(1)} ★` : "N/A"} icon={<Star className="size-4" />} tone="gold" />
         <StatCard label="Published reviews" value={approved.length} />

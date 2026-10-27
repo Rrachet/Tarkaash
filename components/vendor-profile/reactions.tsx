@@ -33,7 +33,7 @@ export function ReactionButtons({ vendorId, name, initial }: { vendorId: string;
   };
 
   const share = async () => {
-    const data = { title: name, text: `${name} on Tarkaash`, url: location.href };
+    const data = { title: name, text: `${name} on Tarkkash`, url: location.href };
     try {
       if (navigator.share) await navigator.share(data);
       else { await navigator.clipboard.writeText(location.href); toast("success", "Link copied"); }

@@ -22,7 +22,7 @@ export default async function FollowersPage() {
   ]);
   return (
     <>
-      <PageTitle title="Followers & updates">Share news, seasonal offers and availability with people who follow you. New posts appear publicly once Tarkaash approves them.</PageTitle>
+      <PageTitle title="Followers & updates">Share news, seasonal offers and availability with people who follow you. New posts appear publicly once Tarkkash approves them.</PageTitle>
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         <StatCard label="Followers" value={followers.count ?? 0} icon={<Users className="size-4" />} />
         <StatCard label="Update subscribers" value={subscribers.count ?? 0} icon={<BellRing className="size-4" />} tone="gold" />

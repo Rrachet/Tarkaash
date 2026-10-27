@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!loc) return { title: "Area not found" };
   return pageMeta({
     title: `Local Services in ${loc.name}, Hyderabad | Home Bakers, Tiffins, Tutors`,
-    description: `Find trusted local services in ${loc.name}, Hyderabad: home bakers, tiffin services, home tutors, beauticians, cleaning and repairs near you. Send one enquiry through Tarkaash.`,
+    description: `Find trusted local services in ${loc.name}, Hyderabad: home bakers, tiffin services, home tutors, beauticians, cleaning and repairs near you. Send one enquiry through Tarkkash.`,
     path: `/hyderabad/${loc.slug}`,
     keywords: [`services in ${loc.name}`, `home bakers ${loc.name}`, `tiffin service ${loc.name}`, `tutors in ${loc.name}`, `${loc.name} Hyderabad services near me`],
   });
@@ -35,10 +35,10 @@ export default async function LocalityPage({ params }: { params: Params }) {
   const nearby = (NEARBY[loc.name] ?? []).map((n) => ({ name: n, slug: localitySlug(n) }));
   const faqs = [
     { q: `What local services are available in ${loc.name}?`, a: present.length
-      ? `Tarkaash lists ${vendors.length} local ${vendors.length === 1 ? "provider" : "providers"} serving ${loc.name}, covering ${present.map((c) => c.name.toLowerCase()).join(", ")}.`
-      : `Tarkaash is adding providers in ${loc.name}. Send an enquiry and the team will find a provider from a nearby area.` },
-    { q: `How do I book a service in ${loc.name}?`, a: "Open a provider's profile, choose a service and send one enquiry with your date and requirements. Tarkaash confirms the details and coordinates with the provider." },
-    { q: `Is there a fee to use Tarkaash in ${loc.name}?`, a: "Browsing and enquiring is free. You pay the provider's price. An optional Tarkaash Assist add on is shown before you send an enquiry." },
+      ? `Tarkkash lists ${vendors.length} local ${vendors.length === 1 ? "provider" : "providers"} serving ${loc.name}, covering ${present.map((c) => c.name.toLowerCase()).join(", ")}.`
+      : `Tarkkash is adding providers in ${loc.name}. Send an enquiry and the team will find a provider from a nearby area.` },
+    { q: `How do I book a service in ${loc.name}?`, a: "Open a provider's profile, choose a service and send one enquiry with your date and requirements. Tarkkash confirms the details and coordinates with the provider." },
+    { q: `Is there a fee to use Tarkkash in ${loc.name}?`, a: "Browsing and enquiring is free. You pay the provider's price. An optional Tarkkash Assist add on is shown before you send an enquiry." },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default async function LocalityPage({ params }: { params: Params }) {
         itemListLd(`Local services in ${loc.name}, Hyderabad`, vendors),
       ]} />
       <PageHero eyebrow={`Hyderabad · ${loc.name}`} title={<>Local services in {loc.name}, Hyderabad</>} image={HOME_IMAGES.hero[0]}>
-        Trusted home bakers, home kitchens, tutors, beauty professionals and repair experts who serve {loc.name}. One enquiry, coordinated by Tarkaash.
+        Trusted home bakers, home kitchens, tutors, beauty professionals and repair experts who serve {loc.name}. One enquiry, coordinated by Tarkkash.
       </PageHero>
 
       {present.length > 0 && (
@@ -74,7 +74,7 @@ export default async function LocalityPage({ params }: { params: Params }) {
           </div>
         ) : (
           <EmptyState icon={<MapPin className="size-6" />} title={`We're adding providers in ${loc.name}`}
-            action={<ButtonLink href={`/contact?topic=general&message=${encodeURIComponent(`I'm looking for a service in ${loc.name}`)}`} size="sm">Ask Tarkaash to find one</ButtonLink>}>
+            action={<ButtonLink href={`/contact?topic=general&message=${encodeURIComponent(`I'm looking for a service in ${loc.name}`)}`} size="sm">Ask Tarkkash to find one</ButtonLink>}>
             Tell us what you need and we&apos;ll coordinate a provider from a nearby area.
           </EmptyState>
         )}

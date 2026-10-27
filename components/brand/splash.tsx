@@ -65,7 +65,7 @@ export function Splash() {
           <span className="splash-ring" />
           <KMark size={116} animated />
         </div>
-        <p className="splash-name font-display">Tarkaash</p>
+        <p className="splash-name font-display">Tarkkash</p>
         <p className="splash-tag">Har Hunar Ko Ek Pehchaan</p>
       </div>
     </div>

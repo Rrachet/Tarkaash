@@ -40,7 +40,7 @@ export function VendorCard({ v, className, priority }: { v: VendorCardData; clas
           {v.verification === "verified" ? (
             <span className="inline-flex items-center gap-1 font-semibold text-teal"><BadgeCheck className="size-4 text-teal" aria-hidden />Profile details checked</span>
           ) : (
-            <span className="text-slate">Tarkaash-listed provider</span>
+            <span className="text-slate">Tarkkash-listed provider</span>
           )}
           {v.locality && <span className="inline-flex items-center gap-1 text-slate"><MapPin className="size-3.5" aria-hidden />{v.locality}</span>}
         </div>

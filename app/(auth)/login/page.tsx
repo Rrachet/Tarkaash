@@ -6,6 +6,6 @@ export const metadata: Metadata = { title: "Sign in" };
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string; error?: string; denied?: string }> }) {
   const sp = await searchParams;
   const demo = process.env.NEXT_PUBLIC_DEMO_MODE === "1";
-  const notice = sp.error === "suspended" ? "This account has been suspended. Contact Tarkaash support if you think this is a mistake." : undefined;
+  const notice = sp.error === "suspended" ? "This account has been suspended. Contact Tarkkash support if you think this is a mistake." : undefined;
   return <LoginForm next={sp.next} linkError={sp.error === "link"} demo={demo && !!process.env.DEMO_PASSWORD} notice={notice} />;
 }

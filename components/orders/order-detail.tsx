@@ -48,7 +48,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
                 {details.map(([k, v]) => <div key={k} className="rounded-full bg-cream-200 px-3 py-1 text-xs"><dt className="inline font-semibold">{DETAIL_LABELS[k] ?? k}:</dt> <dd className="inline">{String(v)}</dd></div>)}
               </dl>
             )}
-            {e?.assist_opt_in && <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-gold-pale px-3 py-1 text-xs font-semibold text-[#7a5210]"><Gift className="size-3.5" />Customer opted into Tarkaash Assist ({formatINR(e.assist_fee)})</p>}
+            {e?.assist_opt_in && <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-gold-pale px-3 py-1 text-xs font-semibold text-[#7a5210]"><Gift className="size-3.5" />Customer opted into Tarkkash Assist ({formatINR(e.assist_fee)})</p>}
           </section>
 
           <section className="card p-5">
@@ -83,7 +83,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
               {history.map((h) => (
                 <li key={h.id} className="relative">
                   <span className="absolute -left-[31px] top-1 size-3.5 rounded-full border-2 border-white bg-teal ring-2 ring-teal/20" />
-                  <p className="text-sm"><span className="font-semibold">{ORDER_STATUS[h.to_status]?.label ?? h.to_status}</span> <span className="text-slate">by {h.actor_role === "admin" ? "Tarkaash" : "vendor"}</span></p>
+                  <p className="text-sm"><span className="font-semibold">{ORDER_STATUS[h.to_status]?.label ?? h.to_status}</span> <span className="text-slate">by {h.actor_role === "admin" ? "Tarkkash" : "vendor"}</span></p>
                   {h.note && <p className="mt-0.5 text-sm text-ink/80">“{h.note}”</p>}
                   <p className="text-xs text-slate">{formatDateTime(h.created_at)}</p>
                 </li>
@@ -96,7 +96,7 @@ export function OrderDetailView({ data, role, backHref }: { data: Detail; role: 
           <OrderActions orderId={order.id} status={order.status} role={role} agreedAmount={order.agreed_amount} scheduledFor={order.scheduled_for} scope={order.scope} notes={order.notes} />
           <ContactReveal orderId={order.id} status={order.status} />
           <div className="rounded-2xl bg-teal-deep p-5 text-white">
-            <p className="font-display text-lg font-semibold">Tarkaash order promise</p>
+            <p className="font-display text-lg font-semibold">Tarkkash order promise</p>
             <ul className="mt-3 space-y-2 text-sm text-white/80">
               <li>• One order record: enquiry, acceptance, delivery and payment in one place.</li>
               <li>• Clear completion trail, auditable with timestamps.</li>

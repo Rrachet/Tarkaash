@@ -22,7 +22,7 @@ export default async function VendorOrdersPage({ searchParams }: { searchParams:
 
   return (
     <>
-      <PageTitle title="Orders & bookings">Every order from acceptance to completion, managed through Tarkaash.</PageTitle>
+      <PageTitle title="Orders & bookings">Every order from acceptance to completion, managed through Tarkkash.</PageTitle>
       <div className="mb-5 flex gap-2 overflow-x-auto scrollbar-none">
         {Object.entries(ORDER_FILTERS).map(([k, f]) => (
           <Link key={k} href={`/vendor/orders?filter=${k}`} aria-current={filter === k ? "page" : undefined}
@@ -33,7 +33,7 @@ export default async function VendorOrdersPage({ searchParams }: { searchParams:
         ))}
       </div>
       {orders.length === 0 ? (
-        <EmptyState icon={<ClipboardList className="size-6" />} title="No orders here">Orders assigned to you by Tarkaash will appear in this list.</EmptyState>
+        <EmptyState icon={<ClipboardList className="size-6" />} title="No orders here">Orders assigned to you by Tarkkash will appear in this list.</EmptyState>
       ) : (
         <div className="card overflow-hidden">
           <ul className="divide-y divide-line">

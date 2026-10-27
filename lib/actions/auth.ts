@@ -21,7 +21,7 @@ async function rejectIfBlocked(): Promise<string | null> {
   const { data } = await supabase.from("profiles").select("blocked_at").eq("id", user.id).single();
   if (!data?.blocked_at) return null;
   await supabase.auth.signOut();
-  return "This account has been suspended. Contact Tarkaash support if you think this is a mistake.";
+  return "This account has been suspended. Contact Tarkkash support if you think this is a mistake.";
 }
 
 async function landingFor(next?: string | null): Promise<string> {

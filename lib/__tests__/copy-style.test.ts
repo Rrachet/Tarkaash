@@ -21,4 +21,10 @@ describe("copy style", () => {
     );
     expect(offenders).toEqual([]);
   });
+
+  it("spells the brand Tarkkash", () => {
+    const old = ["Tar", "kaash"].join("");
+    const offenders = ROOTS.flatMap(files).filter((f) => readFileSync(f, "utf8").includes(old));
+    expect(offenders).toEqual([]);
+  });
 });

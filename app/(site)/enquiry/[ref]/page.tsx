@@ -33,7 +33,7 @@ type View = {
 };
 
 const STEPS = [
-  { key: "received", title: "Received by Tarkaash", body: "Your request is safely with our team." },
+  { key: "received", title: "Received by Tarkkash", body: "Your request is safely with our team." },
   { key: "assigned", title: "Sent to the provider", body: "We check details and assign it to the right provider." },
   { key: "confirmed", title: "Confirmed", body: "The provider accepts and confirms price, date and details." },
   { key: "done", title: "Completed", body: "Service delivered. You can leave a review from your account." },
@@ -96,7 +96,7 @@ export default async function EnquiryConfirmation({ params }: { params: Params }
             <span className="relative flex size-20 animate-pop items-center justify-center rounded-full bg-gold text-teal-deep"><CheckCircle2 className="size-10" /></span>
           </span>
           <h1 className="mt-6 text-4xl font-semibold sm:text-5xl" style={{ "--d": "120ms" } as React.CSSProperties}>
-            {view?.live ? "Your enquiry" : "Enquiry sent to Tarkaash"}
+            {view?.live ? "Your enquiry" : "Enquiry sent to Tarkkash"}
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-white/80" style={{ "--d": "220ms" } as React.CSSProperties}>
             {view?.duplicate ? "We already had this enquiry, so we didn't create a second one. Here are its details."
@@ -112,7 +112,7 @@ export default async function EnquiryConfirmation({ params }: { params: Params }
             <p className="text-xs font-semibold uppercase tracking-widest text-slate">Your reference ID</p>
             <p data-ref={ref} className="mt-2 font-mono text-3xl font-bold tracking-wider text-teal-deep sm:text-4xl">{ref}</p>
             <CopyRef value={ref} />
-            <p className="mx-auto mt-3 max-w-sm text-xs text-slate">Keep this handy. Quote it whenever you contact Tarkaash about this request.</p>
+            <p className="mx-auto mt-3 max-w-sm text-xs text-slate">Keep this handy. Quote it whenever you contact Tarkkash about this request.</p>
           </section>
 
           {view ? (
@@ -121,11 +121,11 @@ export default async function EnquiryConfirmation({ params }: { params: Params }
               <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                 <Detail icon={Store} label="Provider" value={view.vendor
                   ? <Link href={`/vendors/${view.vendor.slug}`} className="font-semibold text-teal hover:underline">{view.vendor.name}</Link>
-                  : "Tarkaash will match a provider"} />
+                  : "Tarkkash will match a provider"} />
                 <Detail icon={Package} label="Service" value={view.service ?? "Custom request"} />
                 <Detail icon={CalendarDays} label="Preferred date" value={view.preferredDate ? `${formatDate(view.preferredDate)}${view.preferredTime ? `, ${view.preferredTime}` : ""}` : "Flexible"} />
                 <Detail icon={MapPin} label="Area" value={view.locality ?? "Not given"} />
-                {view.assist && <Detail icon={Gift} label="Tarkaash Assist" value="Included" />}
+                {view.assist && <Detail icon={Gift} label="Tarkkash Assist" value="Included" />}
                 {view.createdAt && <Detail icon={Clock} label="Sent" value={formatDate(view.createdAt)} />}
               </dl>
               {view.order && (

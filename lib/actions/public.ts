@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 import { enquirySchema, ticketSchema, fieldErrors, type EnquiryInput, type TicketInput } from "@/lib/validation";
 import { friendlyError, fail, type ActionResult } from "@/lib/errors";
 
-/** Customer enquiry through Tarkaash. Works signed in or as a guest; idempotent per form instance. */
+/** Customer enquiry through Tarkkash. Works signed in or as a guest; idempotent per form instance. */
 export async function submitEnquiry(input: EnquiryInput): Promise<ActionResult<{ id: string; refCode: string; duplicate: boolean }>> {
   const parsed = enquirySchema.safeParse(input);
   if (!parsed.success) return fail("Please check the highlighted fields.", fieldErrors(parsed.error));

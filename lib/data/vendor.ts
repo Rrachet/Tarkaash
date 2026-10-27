@@ -16,7 +16,7 @@ export const ORDER_FILTERS: Record<string, { label: string; statuses: string[] }
   new: { label: "Needs response", statuses: ["new"] },
   active: { label: "Active", statuses: ["accepted", "in_progress", "completed"] },
   payment: { label: "To submit", statuses: ["payment_recorded"] },
-  submitted: { label: "With Tarkaash", statuses: ["submitted"] },
+  submitted: { label: "With Tarkkash", statuses: ["submitted"] },
   closed: { label: "Closed", statuses: ["closed"] },
   lost: { label: "Declined / cancelled", statuses: ["declined", "cancelled"] },
 };

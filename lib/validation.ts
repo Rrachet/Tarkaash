@@ -51,7 +51,7 @@ export const enquirySchema = z
     source: z.enum(["web", "mobile_web", "whatsapp_qr"]).default("web"),
     sessionId: optionalText(64),
   })
-  .refine((v) => v.email || v.phone, { message: "Please add a phone number or email so Tarkaash can reach you.", path: ["phone"] });
+  .refine((v) => v.email || v.phone, { message: "Please add a phone number or email so Tarkkash can reach you.", path: ["phone"] });
 export type EnquiryInput = z.input<typeof enquirySchema>;
 
 export const ticketSchema = z

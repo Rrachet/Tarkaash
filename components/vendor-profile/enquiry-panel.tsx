@@ -100,7 +100,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
             <span className="absolute inset-0 animate-ping rounded-full bg-gold/40 [animation-iteration-count:2]" aria-hidden />
             <span className="relative flex size-16 animate-pop items-center justify-center rounded-full bg-gold text-teal-deep"><CheckCircle2 className="size-8" /></span>
           </span>
-          <h2 className="mt-4 text-2xl font-semibold">Enquiry sent to Tarkaash</h2>
+          <h2 className="mt-4 text-2xl font-semibold">Enquiry sent to Tarkkash</h2>
           <p className="mt-1 text-sm text-white/80">{done.duplicate ? "We already have this enquiry. Here is its reference." : "Our team will coordinate with the provider and get back to you."}</p>
         </div>
         <div className="space-y-5 p-6">
@@ -113,7 +113,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
           </div>
           <ol className="space-y-3 text-sm">
             {[
-              "Tarkaash reviews your request and confirms details.",
+              "Tarkkash reviews your request and confirms details.",
               `We assign it to ${vendor.name} (or a suitable alternative).`,
               "You get confirmation of price, date and next steps.",
             ].map((s, i) => (
@@ -138,7 +138,7 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
     <div className="space-y-4">
       <form onSubmit={onSubmit} noValidate className="card overflow-hidden">
         <div className="border-b border-line bg-gradient-to-br from-mint/70 to-white px-6 py-5">
-          <h2 className="text-2xl font-semibold">Make your enquiry through Tarkaash</h2>
+          <h2 className="text-2xl font-semibold">Make your enquiry through Tarkkash</h2>
           <p className="mt-1 text-sm text-slate">Tell us what you need and we&apos;ll coordinate with {vendor.name.split(" ")[0]} for you.</p>
         </div>
         <div className="space-y-4 p-6">
@@ -208,19 +208,19 @@ export function EnquiryPanel({ vendor, services, selectedId, onSelect, assist, v
           )}
 
           <Checkbox name="consent" error={errors.consent}
-            label={<>I agree that Tarkaash may contact me about this enquiry and share the details needed with the assigned provider. See our <Link href="/privacy" className="font-semibold text-teal underline" target="_blank">privacy notice</Link>.</>} />
+            label={<>I agree that Tarkkash may contact me about this enquiry and share the details needed with the assigned provider. See our <Link href="/privacy" className="font-semibold text-teal underline" target="_blank">privacy notice</Link>.</>} />
 
           <Button type="submit" size="lg" loading={pending} className="w-full">
-            {!pending && <Send className="size-4" />}{pending ? "Sending…" : "Send enquiry to Tarkaash"}
+            {!pending && <Send className="size-4" />}{pending ? "Sending…" : "Send enquiry to Tarkkash"}
           </Button>
           <p className="flex items-start gap-2 rounded-xl bg-mint/60 p-3 text-xs text-teal-deep">
-            <Info className="mt-0.5 size-4 shrink-0" />Your request goes to the Tarkaash team first. We&apos;ll coordinate with the listed provider and keep you updated.
+            <Info className="mt-0.5 size-4 shrink-0" />Your request goes to the Tarkkash team first. We&apos;ll coordinate with the listed provider and keep you updated.
           </p>
         </div>
       </form>
 
       <div className="card p-5">
-        <h3 className="flex items-center gap-2 font-sans text-base font-semibold"><ShieldCheck className="size-5 text-teal" />Why enquire through Tarkaash?</h3>
+        <h3 className="flex items-center gap-2 font-sans text-base font-semibold"><ShieldCheck className="size-5 text-teal" />Why enquire through Tarkkash?</h3>
         <ul className="mt-3 space-y-2.5 text-sm text-ink/85">
           <li className="flex gap-2.5"><Route className="mt-0.5 size-4 shrink-0 text-gold-600" />One point of contact, no need to chase multiple providers</li>
           <li className="flex gap-2.5"><ClipboardList className="mt-0.5 size-4 shrink-0 text-gold-600" />Clear enquiry trail with a reference ID</li>

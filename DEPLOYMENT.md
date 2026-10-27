@@ -1,4 +1,4 @@
-# Tarkaash deployment and hosting runbook
+# Tarkkash deployment and hosting runbook
 
 ## Live environment
 
@@ -7,7 +7,7 @@
 | Website | https://www.tarkkash.com (GoDaddy domain; `tarkkash.com` and `tarkaash.vercel.app` redirect here. Vercel project `tarkaash`, team "Amar's projects") |
 | Functions region | `bom1` Mumbai, next to the database |
 | Database / Auth / Storage | Supabase project `tarkaash` (`mimlefjoxiagejvyopfd`, ap-south-1 Mumbai) |
-| Source | GitHub `Rrachet/Tarkaash`, branch `main` (Vercel production branch) |
+| Source | GitHub `Rrachet/Tarkkash`, branch `main` (Vercel production branch) |
 
 Every push to the production branch builds and deploys automatically. GitHub Actions runs lint, typecheck, unit tests and build on each push.
 
@@ -62,7 +62,7 @@ Checks after any database change:
 - [ ] Rotate passwords of all `@example.com` demo accounts (or delete them) and remove demo data (`is_demo = true`) when ready.
 - [ ] Create real admin accounts: sign up normally, then `update profiles set role = 'admin' where email = '…'` in the SQL editor.
 - [ ] Configure SMTP, then turn *Confirm email* back on.
-- [ ] Approve in Admin → Settings: Tarkaash Assist fee, commission %, contact details (tick "confirmed" to publish).
+- [ ] Approve in Admin → Settings: Tarkkash Assist fee, commission %, contact details (tick "confirmed" to publish).
 - [ ] Approve verification checklist and badge wording; complete checks for each real vendor.
 - [ ] Legal review of `/privacy` and `/terms`; data retention and deletion process.
 - [ ] Replace founder photos with approved high-resolution images (`public/images/founders/`) and vendor images with vendor-owned photos.
@@ -80,21 +80,21 @@ The site ships with full SEO (keyword-targeted category and area pages, structur
 
 Before flipping indexing on:
 1. Replace demo vendors and reviews with real ones (or remove rows where `is_demo = true`).
-2. Custom domain: done (`www.tarkkash.com`). Optionally also buy the brand spelling (`tarkaash.com` / `tarkaash.in`) and redirect it to the main address.
+2. Custom domain: done (`www.tarkkash.com`).
 3. Confirm contact details in Admin > Settings so they appear on the Contact page.
 
 Go live:
 1. In Vercel, set `NEXT_PUBLIC_ALLOW_INDEXING=1` and redeploy. `/robots.txt` then allows crawlers (including AI search bots) and links the sitemap.
 2. Add the site to Google Search Console, set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`, and submit `/sitemap.xml`. Do the same in Bing Webmaster Tools (Bing also feeds ChatGPT search).
-3. Create a Google Business Profile for Tarkaash in Hyderabad with the same name, logo and description as the site.
-4. List Tarkaash consistently on Justdial, Sulekha, IndiaMART, LinkedIn and Instagram. Consistent details help both local ranking and AI answers.
-5. Encourage providers to link to their Tarkaash profile from Instagram and WhatsApp Business.
+3. Create a Google Business Profile for Tarkkash in Hyderabad with the same name, logo and description as the site.
+4. List Tarkkash consistently on Justdial, Sulekha, IndiaMART, LinkedIn and Instagram. Consistent details help both local ranking and AI answers.
+5. Encourage providers to link to their Tarkkash profile from Instagram and WhatsApp Business.
 
 Pages built for search:
 - `/services/<category>`: one landing page per category, for example "Home Bakers and Custom Cakes in Hyderabad", with an intro, provider list, area links and FAQs. Copy lives in `lib/content/seo.ts`.
 - `/hyderabad/<area>`: one page per neighbourhood (Kondapur, Gachibowli, Madhapur and more). Only areas with providers are listed in the sitemap.
 - `/vendors/<slug>`: LocalBusiness structured data with services and prices. Star ratings are marked up only for real (non-demo) providers.
-- `/llms.txt`: plain text summary of Tarkaash, its categories, areas, providers and FAQs for AI assistants.
+- `/llms.txt`: plain text summary of Tarkkash, its categories, areas, providers and FAQs for AI assistants.
 
 ## Security model
 

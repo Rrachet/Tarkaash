@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Tarkaash design tokens (spec §1). Teal is primary; gold is accent only. */
+/* Tarkkash design tokens (spec §1). Teal is primary; gold is accent only. */
 @theme {
   --color-teal-deep: #003b3c;
   --color-teal: #004b4b;

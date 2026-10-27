@@ -42,7 +42,7 @@ export default async function EnquiryDetailPage({ params }: { params: Promise<{ 
               {e.preferred_date && <span className="inline-flex items-center gap-1 rounded-full bg-cream-200 px-3 py-1"><CalendarDays className="size-3.5" />{formatDate(e.preferred_date)}{e.preferred_time ? ` · ${e.preferred_time}` : ""}</span>}
               {e.locality && <span className="inline-flex items-center gap-1 rounded-full bg-cream-200 px-3 py-1"><MapPin className="size-3.5" />{e.locality}</span>}
               {details.map(([k, v]) => <span key={k} className="rounded-full bg-cream-200 px-3 py-1"><strong className="capitalize">{k.replace(/_/g, " ")}:</strong> {String(v)}</span>)}
-              {e.assist_opt_in && <span className="inline-flex items-center gap-1 rounded-full bg-gold-pale px-3 py-1 font-semibold text-[#7a5210]"><Gift className="size-3.5" />Tarkaash Assist · {formatINR(e.assist_fee)}</span>}
+              {e.assist_opt_in && <span className="inline-flex items-center gap-1 rounded-full bg-gold-pale px-3 py-1 font-semibold text-[#7a5210]"><Gift className="size-3.5" />Tarkkash Assist · {formatINR(e.assist_fee)}</span>}
             </div>
           </section>
 

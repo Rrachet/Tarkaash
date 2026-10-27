@@ -14,20 +14,20 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
-  title: { default: "Tarkaash | Trusted Local Services in Hyderabad", template: "%s | Tarkaash" },
+  title: { default: "Tarkkash | Trusted Local Services in Hyderabad", template: "%s | Tarkkash" },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
   applicationName: BRAND.name,
   category: "Local services",
   openGraph: {
-    title: "Tarkaash | Har Hunar Ko Ek Pehchaan",
+    title: "Tarkkash | Har Hunar Ko Ek Pehchaan",
     description: SITE_DESCRIPTION,
     siteName: BRAND.name,
     locale: "en_IN",
     type: "website",
     url: "/",
   },
-  twitter: { card: "summary_large_image", title: "Tarkaash | Trusted local services in Hyderabad", description: SITE_DESCRIPTION },
+  twitter: { card: "summary_large_image", title: "Tarkkash | Trusted local services in Hyderabad", description: SITE_DESCRIPTION },
   robots: indexingAllowed()
     ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
     : { index: false, follow: false, googleBot: { index: false, follow: false } },

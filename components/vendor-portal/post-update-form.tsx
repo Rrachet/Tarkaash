@@ -24,7 +24,7 @@ export function PostUpdateForm({ vendorId }: { vendorId: string }) {
     }}>
       <h2 className="flex items-center gap-2 font-sans text-base font-semibold"><Megaphone className="size-5 text-gold-600" />Post an update</h2>
       <Field label="Headline" name="title"><Input name="title" placeholder="e.g. Diwali hampers now open" maxLength={120} /></Field>
-      <Field label="Details" name="body"><Textarea name="body" placeholder="Limited slots each day. Enquire through Tarkaash." maxLength={1000} /></Field>
+      <Field label="Details" name="body"><Textarea name="body" placeholder="Limited slots each day. Enquire through Tarkkash." maxLength={1000} /></Field>
       <Button type="submit" loading={pending}>Post update</Button>
     </form>
   );

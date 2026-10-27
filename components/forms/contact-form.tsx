@@ -56,7 +56,7 @@ export function ContactForm({ initialTopic, initialMessage }: { initialTopic?: s
         </Field>
       </div>
       <Field label="Message" name="message" required error={fe.message}><Textarea name="message" defaultValue={initialMessage} placeholder="Tell us more…" error={fe.message} /></Field>
-      <Checkbox name="consent" error={fe.consent} label={<>I agree to Tarkaash storing my details to respond to this message (<Link href="/privacy" className="font-semibold text-teal underline">privacy notice</Link>).</>} />
+      <Checkbox name="consent" error={fe.consent} label={<>I agree to Tarkkash storing my details to respond to this message (<Link href="/privacy" className="font-semibold text-teal underline">privacy notice</Link>).</>} />
       <Button type="submit" size="lg" loading={pending}>{!pending && <Send className="size-4" />}Send message</Button>
     </form>
   );

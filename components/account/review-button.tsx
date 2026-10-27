@@ -21,7 +21,7 @@ export function ReviewButton({ orderId, vendorName }: { orderId: string; vendorN
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="font-semibold text-gold-600 hover:underline">Leave a review</button>
-      <Dialog open={open} onClose={() => setOpen(false)} title={`Review ${vendorName}`} description="Reviews are checked by Tarkaash before they appear.">
+      <Dialog open={open} onClose={() => setOpen(false)} title={`Review ${vendorName}`} description="Reviews are checked by Tarkkash before they appear.">
         <div className="space-y-4">
           {error && <FormMessage>{error}</FormMessage>}
           <div className="flex gap-1" role="radiogroup" aria-label="Rating">

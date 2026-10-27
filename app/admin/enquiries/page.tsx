@@ -45,7 +45,7 @@ export default async function EnquiryQueue({ searchParams }: { searchParams: Pro
                     <span className="block truncate text-sm text-slate">{e.request}</span>
                   </span>
                   <span className="text-sm"><span className="block text-slate">{e.assigned?.name ? "Assigned to" : "Requested"}</span><span className="font-semibold">{e.assigned?.name ?? e.requested?.name ?? "Any provider"}</span></span>
-                  <span className="flex flex-wrap items-center gap-1.5"><StatusBadge map={ENQUIRY_STATUS} status={e.status} />{e.assist_opt_in && <Gift className="size-4 text-gold-600" aria-label="Tarkaash Assist" />}<span className="w-full text-xs text-slate">{e.preferred_date ? `For ${formatDate(e.preferred_date)}` : ""}</span></span>
+                  <span className="flex flex-wrap items-center gap-1.5"><StatusBadge map={ENQUIRY_STATUS} status={e.status} />{e.assist_opt_in && <Gift className="size-4 text-gold-600" aria-label="Tarkkash Assist" />}<span className="w-full text-xs text-slate">{e.preferred_date ? `For ${formatDate(e.preferred_date)}` : ""}</span></span>
                   <ChevronRight className="hidden size-5 text-slate md:block" />
                 </Link>
               </li>

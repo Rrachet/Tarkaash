@@ -12,7 +12,7 @@ type Props = {
   title?: string;
 };
 
-/** The Tarkaash "क" mark: gold Devanagari Ka on a deep-teal tile (same artwork as the favicon). */
+/** The Tarkkash "क" mark: gold Devanagari Ka on a deep-teal tile (same artwork as the favicon). */
 export function KMark({ size = 48, animated = false, bare = false, className, title }: Props) {
   return (
     <svg

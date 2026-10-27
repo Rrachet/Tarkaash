@@ -107,7 +107,7 @@ export function UserActions({ user, isSelf, readOnly }: {
         description="They are signed out and cannot sign in or use the site until unblocked." confirmLabel="Block account" pending={pending}
         onConfirm={(r) => run(() => setUserBlocked(user.id, true, r), "Account blocked", () => setDialog(null))} />
       <ReasonDialog open={dialog === "erase"} onClose={() => setDialog(null)} title={`Erase ${user.name}'s personal data`} danger confirmText="ERASE"
-        description="Removes their name, phone and email from Tarkaash records (for data deletion requests) and blocks the account. This cannot be undone. Order records stay for accounting, anonymised."
+        description="Removes their name, phone and email from Tarkkash records (for data deletion requests) and blocks the account. This cannot be undone. Order records stay for accounting, anonymised."
         confirmLabel="Erase data" pending={pending}
         onConfirm={(r) => run(() => eraseUser(user.id, r), "Personal data erased", () => setDialog(null))} />
     </div>
@@ -127,7 +127,7 @@ export function VendorDangerZone({ vendorId, name, status, readOnly }: { vendorI
       <p className="mt-1 text-xs text-slate">For vendors who post inappropriate content, mistreat customers or break the terms.</p>
       <div className="mt-4 grid gap-2">
         {status === "active" && (
-          <Button variant="outline" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "paused", "Your listing has been suspended by Tarkaash. Please contact support."), "Vendor suspended")}>
+          <Button variant="outline" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "paused", "Your listing has been suspended by Tarkkash. Please contact support."), "Vendor suspended")}>
             <PauseCircle className="size-4" />Suspend (hide temporarily)
           </Button>
         )}

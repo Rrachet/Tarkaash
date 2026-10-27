@@ -56,20 +56,20 @@ export function OrderActions({ orderId, status, role, agreedAmount, scheduledFor
         {editable && <Button variant="outline" className="w-full" onClick={() => setEditOpen(true)}><Pencil className="size-4" />Edit price & schedule</Button>}
         {actions.length === 0 && !canPay && !editable && (
           <p className="flex items-center gap-2 rounded-xl bg-cream px-3 py-2.5 text-sm text-slate">
-            <CheckCircle2 className="size-4 text-success" />{status === "submitted" ? "Submitted. Tarkaash will verify and close this order." : "No further action needed."}
+            <CheckCircle2 className="size-4 text-success" />{status === "submitted" ? "Submitted. Tarkkash will verify and close this order." : "No further action needed."}
           </p>
         )}
       </div>
-      {status === "submitted" && role === "vendor" && <p className="mt-3 text-xs text-slate">Tarkaash reviews the record and closes the order.</p>}
+      {status === "submitted" && role === "vendor" && <p className="mt-3 text-xs text-slate">Tarkkash reviews the record and closes the order.</p>}
 
-      <Dialog open={!!noteFor} onClose={() => setNoteFor(null)} title={noteFor?.label ?? ""} description="Add a short reason. Tarkaash uses this to reassign or follow up.">
+      <Dialog open={!!noteFor} onClose={() => setNoteFor(null)} title={noteFor?.label ?? ""} description="Add a short reason. Tarkkash uses this to reassign or follow up.">
         <div className="space-y-4">
           <Textarea name="note" value={note} onChange={(e) => setNote(e.target.value)} placeholder="e.g. Fully booked on the requested date" />
           <Button variant="danger" className="w-full" loading={pending} disabled={note.trim().length < 3} onClick={() => noteFor && move(noteFor.to, note)}>Confirm</Button>
         </div>
       </Dialog>
 
-      <Dialog open={editOpen} onClose={() => setEditOpen(false)} title="Price & schedule" description="Agreed with the customer through Tarkaash.">
+      <Dialog open={editOpen} onClose={() => setEditOpen(false)} title="Price & schedule" description="Agreed with the customer through Tarkkash.">
         <form className="space-y-4" noValidate onSubmit={(e) => {
           e.preventDefault();
           const fd = new FormData(e.currentTarget);

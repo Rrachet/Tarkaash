@@ -69,7 +69,7 @@ export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: strin
       <aside className="space-y-6">
         <div className="card p-5">
           <h2 className="font-sans text-base font-semibold">Verification</h2>
-          <p className="mt-1 text-sm text-slate">Tarkaash completes these checks before showing a badge. Contact support to start verification.</p>
+          <p className="mt-1 text-sm text-slate">Tarkkash completes these checks before showing a badge. Contact support to start verification.</p>
           <ul className="mt-3 space-y-2 text-sm">
             {[["identity", "Identity document checked"], ["address", "Address & service area confirmed"], ["licence", "Category licence checked"], ["quality", "Sample work reviewed"]].map(([k, l]) => (
               <li key={k} className="flex items-center gap-2">{checks[k!] ? <BadgeCheck className="size-4 text-success" /> : <Circle className="size-4 text-line" />}{l}</li>
@@ -78,7 +78,7 @@ export function ProfileEditor({ vendor, media }: { vendor: V; media: { id: strin
         </div>
         <div className="card p-5">
           <h2 className="font-sans text-base font-semibold">Gallery</h2>
-          <p className="mt-0.5 text-xs text-slate">New photos appear on your public profile after Tarkaash approves them.</p>
+          <p className="mt-0.5 text-xs text-slate">New photos appear on your public profile after Tarkkash approves them.</p>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {media.map((m) => (
               <div key={m.id} className="group relative aspect-square overflow-hidden rounded-lg bg-cream-200">

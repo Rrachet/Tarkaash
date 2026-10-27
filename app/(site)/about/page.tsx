@@ -10,10 +10,10 @@ import { FaqSection } from "@/components/marketing/faq";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "About Tarkaash | Founders and Vision",
-  description: "Tarkaash is a Hyderabad local services platform founded by Dr. Ankita Mishra and Shailesh Srivastava to help independent entrepreneurs and home businesses get discovered. Har Hunar Ko Ek Pehchaan.",
+  title: "About Tarkkash | Founders and Vision",
+  description: "Tarkkash is a Hyderabad local services platform founded by Dr. Ankita Mishra and Shailesh Srivastava to help independent entrepreneurs and home businesses get discovered. Har Hunar Ko Ek Pehchaan.",
   path: "/about",
-  keywords: ["Tarkaash founders", "support local businesses Hyderabad", "home business platform India"],
+  keywords: ["Tarkkash founders", "support local businesses Hyderabad", "home business platform India"],
 });
 
 const STRENGTH_ICONS = [[Brain, LineChart, Lightbulb], [Settings2, FileText, BarChart3]];
@@ -23,7 +23,7 @@ export default function AboutPage() {
     <>
       <PageHero eyebrow="Our story" title={<>Meet the Founders</>} image={HOME_IMAGES.aboutHero}>
         <p className="font-display text-2xl text-white">Two different journeys. A shared belief that every skill and service deserves a bigger stage.</p>
-        <p className="mt-3">Tarkaash was founded to help independent entrepreneurs get discovered and to make it easy for customers to find trusted local services, all in one place.</p>
+        <p className="mt-3">Tarkkash was founded to help independent entrepreneurs get discovered and to make it easy for customers to find trusted local services, all in one place.</p>
       </PageHero>
 
       <section className="container-page -mt-10 relative z-10">
@@ -42,7 +42,7 @@ export default function AboutPage() {
 
       <section className="container-page pt-16 sm:pt-20" aria-labelledby="glance-title">
         <div data-reveal className="card p-6 sm:p-8">
-          <h2 id="glance-title" className="text-2xl font-semibold sm:text-3xl">Tarkaash at a glance</h2>
+          <h2 id="glance-title" className="text-2xl font-semibold sm:text-3xl">Tarkkash at a glance</h2>
           <dl className="mt-6 grid gap-x-10 gap-y-5 sm:grid-cols-2">
             {ABOUT_FACTS.map((f) => (
               <div key={f.k} className="border-l-2 border-gold pl-4">
@@ -83,7 +83,7 @@ export default function AboutPage() {
           <div className="relative max-w-2xl">
             <p className="eyebrow">Our vision</p>
             <h2 className="mt-3 text-4xl font-semibold sm:text-5xl">Har Hunar Ko Ek Pehchaan</h2>
-            <p className="mt-4 text-lg text-white/85">We believe every skill, service and small business has the potential to create value in someone&apos;s life. Tarkaash is our way of building a more connected, supportive and opportunity-rich community, one neighbourhood at a time.</p>
+            <p className="mt-4 text-lg text-white/85">We believe every skill, service and small business has the potential to create value in someone&apos;s life. Tarkkash is our way of building a more connected, supportive and opportunity-rich community, one neighbourhood at a time.</p>
             <ButtonLink href="/list-your-service" variant="gold" size="lg" className="mt-8">Be part of the journey <ArrowRight className="size-4" /></ButtonLink>
           </div>
         </div>

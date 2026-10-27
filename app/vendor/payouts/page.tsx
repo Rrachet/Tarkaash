@@ -20,10 +20,10 @@ export default async function PayoutsPage() {
   const sum = (f: (r: (typeof rows)[number]) => boolean) => rows.filter(f).reduce((s, r) => s + Number(r.amount), 0);
   return (
     <>
-      <PageTitle title="Payouts & earnings">Payments you&apos;ve recorded against Tarkaash orders.</PageTitle>
+      <PageTitle title="Payouts & earnings">Payments you&apos;ve recorded against Tarkkash orders.</PageTitle>
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         <StatCard label="Total recorded" value={formatINR(sum(() => true))} icon={<IndianRupee className="size-4" />} tone="mint" />
-        <StatCard label="Verified by Tarkaash" value={formatINR(sum((r) => r.status === "verified"))} icon={<Wallet className="size-4" />} />
+        <StatCard label="Verified by Tarkkash" value={formatINR(sum((r) => r.status === "verified"))} icon={<Wallet className="size-4" />} />
         <StatCard label="Awaiting verification" value={formatINR(sum((r) => r.status === "recorded"))} icon={<Clock className="size-4" />} tone="gold" />
       </div>
       <p className="mb-4 flex items-start gap-2 rounded-xl bg-gold-pale/60 p-3 text-sm text-[#6b4710]"><Info className="mt-0.5 size-4 shrink-0" />Customers currently pay you directly. Platform fees and settlement terms are pending approval and will appear here once confirmed.</p>

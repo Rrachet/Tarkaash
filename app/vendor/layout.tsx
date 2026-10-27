@@ -8,7 +8,7 @@ import { PortalSidebar, type NavItem } from "@/components/portal/sidebar";
 import { PortalTopbar } from "@/components/portal/topbar";
 import { Avatar, Logo } from "@/components/ui/misc";
 
-export const metadata: Metadata = { title: { default: "Vendor portal", template: "%s | Vendor portal | Tarkaash" }, robots: PRIVATE_ROBOTS };
+export const metadata: Metadata = { title: { default: "Vendor portal", template: "%s | Vendor portal | Tarkkash" }, robots: PRIVATE_ROBOTS };
 
 export default async function VendorLayout({ children }: { children: React.ReactNode }) {
   const viewer = await requireVendor();

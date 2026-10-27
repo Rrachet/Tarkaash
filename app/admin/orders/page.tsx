@@ -20,7 +20,7 @@ export default async function AdminOrders({ searchParams }: { searchParams: Prom
   const { rows, total } = await getAdminOrders(status, page);
   return (
     <>
-      <PageTitle title="Orders">Submitted orders wait for Tarkaash verification before closing. Closing books commission and fees.</PageTitle>
+      <PageTitle title="Orders">Submitted orders wait for Tarkkash verification before closing. Closing books commission and fees.</PageTitle>
       <div className="mb-5 flex gap-2 overflow-x-auto scrollbar-none">
         {FILTERS.map((f) => <Link key={f} href={`/admin/orders?status=${f}`} className={cn("inline-flex min-h-10 shrink-0 items-center rounded-full border px-4 text-sm font-semibold", status === f ? "border-teal bg-teal text-white" : "border-line bg-white")}>{f === "all" ? "All" : ORDER_STATUS[f]?.label}</Link>)}
       </div>

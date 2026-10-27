@@ -43,8 +43,8 @@ export function MobileMenu({ items, signedIn, portal }: { items: { href: string;
         "transition-[opacity,visibility] duration-300", open ? "visible opacity-100" : "invisible opacity-0")}>
       <div className="pattern-jaali pointer-events-none absolute inset-0 opacity-25" aria-hidden />
       <div className="relative flex h-[76px] shrink-0 items-center justify-between border-b border-white/10 px-4 sm:px-6">
-        <Link href="/" onClick={() => setOpen(false)} className="inline-flex h-[54px]" aria-label="Tarkaash home">
-          <Image src="/brand/tarkaash-logo-gold.webp" alt="Tarkaash" width={900} height={440} className="h-full w-auto" />
+        <Link href="/" onClick={() => setOpen(false)} className="inline-flex h-[54px]" aria-label="Tarkkash home">
+          <Image src="/brand/tarkaash-logo-gold.webp" alt="Tarkkash" width={900} height={440} className="h-full w-auto" />
         </Link>
         <button ref={closeRef} type="button" onClick={() => setOpen(false)} aria-label="Close menu"
           className="flex size-11 items-center justify-center rounded-full text-white hover:bg-white/10">

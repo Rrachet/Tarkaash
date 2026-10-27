@@ -10,5 +10,5 @@ export default async function VendorNotificationsPage() {
   const { vendorId } = await requireVendor();
   const supabase = await createClient();
   const { data } = await supabase.from("notifications").select("id, title, body, link, read_at, created_at").eq("audience", "vendor").eq("vendor_id", vendorId).order("created_at", { ascending: false }).limit(100);
-  return (<><PageTitle title="Notifications">New assignments, status changes and messages from Tarkaash.</PageTitle><NotificationsList items={data ?? []} /></>);
+  return (<><PageTitle title="Notifications">New assignments, status changes and messages from Tarkkash.</PageTitle><NotificationsList items={data ?? []} /></>);
 }

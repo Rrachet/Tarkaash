@@ -33,7 +33,7 @@ export default async function UsersPage({ searchParams }: { searchParams: Promis
   return (
     <>
       <PageTitle title="Users & access" actions={<a href={EXPORT_URL} download className="inline-flex h-10 items-center gap-1.5 rounded-full border border-line bg-white px-4 text-sm font-semibold hover:border-teal/40"><Download className="size-4" />Export CSV</a>}>
-        Every account on Tarkaash. Change roles, block people who misuse the platform, or erase personal data on request. Every action is recorded in the audit log.
+        Every account on Tarkkash. Change roles, block people who misuse the platform, or erase personal data on request. Every action is recorded in the audit log.
       </PageTitle>
 
       <div className="mb-5 flex flex-wrap items-center gap-3">

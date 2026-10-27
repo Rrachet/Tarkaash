@@ -1,4 +1,4 @@
--- Tarkaash demo seed.
+-- Tarkkash demo seed.
 -- Every row created here has is_demo = true and is shown in the app with a "Sample data" label.
 -- Prices, reviews, verification states, fees and metrics are illustrative until validated.
 --
@@ -52,8 +52,8 @@ $$;
 do $$
 declare pw text := current_setting('seed.password');
 begin
-  perform pg_temp.seed_user('tarkaash.admin@example.com', 'Tarkaash Admin', pw, 'admin');
-  perform pg_temp.seed_user('tarkaash.finance@example.com', 'Tarkaash Finance', pw, 'finance');
+  perform pg_temp.seed_user('tarkaash.admin@example.com', 'Tarkkash Admin', pw, 'admin');
+  perform pg_temp.seed_user('tarkaash.finance@example.com', 'Tarkkash Finance', pw, 'finance');
   perform pg_temp.seed_user('priya.customer@example.com', 'Priya Sharma', pw, 'customer');
   for i in 1..60 loop
     perform pg_temp.seed_user('demo.customer' || i || '@example.com', 'Demo Customer ' || i,
@@ -394,7 +394,7 @@ begin
         returning id into v_ord;
 
         insert into public.order_status_history (order_id, from_status, to_status, actor_role, note, created_at)
-        values (v_ord, null, 'new', 'admin', 'Assigned by Tarkaash', t_assigned);
+        values (v_ord, null, 'new', 'admin', 'Assigned by Tarkkash', t_assigned);
 
         if v_final = 'declined' then
           update public.orders set declined_at = t_resp where id = v_ord;
@@ -470,7 +470,7 @@ begin
           values ('assist_fee', v_ord, v_enq, m.vendor_id, 49, 8,
                   case when t_done < now() - interval '30 days' then 'actual' else 'accrued' end,
                   case when t_done < now() - interval '30 days' then 'reconciled' else 'pending' end,
-                  (t_done at time zone 'Asia/Kolkata')::date, 'Tarkaash Assist fee (₹8 coordination cost)', true, t_done);
+                  (t_done at time zone 'Asia/Kolkata')::date, 'Tarkkash Assist fee (₹8 coordination cost)', true, t_done);
         end if;
 
         if random() < 0.35 then
@@ -478,7 +478,7 @@ begin
           values (m.vendor_id, v_ord, v_cust, v_user, split_part(v_name, ' ', 1),
                   case when m.slug = 'utsav-events-and-decor' then 2 + floor(random() * 3)::int
                        when random() < 0.7 then 5 when random() < 0.8 then 4 else 3 end,
-                  pg_temp.pick(array['Lovely experience, everything was on time.','Great quality and very polite.','Good service, would book again.','Tarkaash coordination made it easy.','Exactly what we asked for.','Slight delay but the result was worth it.']),
+                  pg_temp.pick(array['Lovely experience, everything was on time.','Great quality and very polite.','Good service, would book again.','Tarkkash coordination made it easy.','Exactly what we asked for.','Slight delay but the result was worth it.']),
                   'approved', true, t_done + interval '1 day');
         end if;
       end loop;
@@ -516,7 +516,7 @@ begin
           t + interval '2 days 18 hours', t + interval '2 days 20 hours', t + interval '3 days', true, t + interval '10 minutes')
   returning id into v_ord;
   insert into public.order_status_history (order_id, from_status, to_status, actor_role, note, created_at) values
-    (v_ord, null, 'new', 'admin', 'Assigned by Tarkaash', t + interval '10 minutes'),
+    (v_ord, null, 'new', 'admin', 'Assigned by Tarkkash', t + interval '10 minutes'),
     (v_ord, 'new', 'accepted', 'vendor', null, t + interval '40 minutes'),
     (v_ord, 'accepted', 'in_progress', 'vendor', null, t + interval '1 day'),
     (v_ord, 'in_progress', 'completed', 'vendor', 'Delivered to customer', t + interval '2 days 18 hours'),
@@ -528,7 +528,7 @@ begin
   insert into public.platform_ledger (txn_type, order_id, enquiry_id, vendor_id, amount, basis, recognized_on, note, is_demo)
   values ('commission', v_ord, v_enq, v_meera, 125, 'accrued', (t + interval '3 days')::date, '10% commission on closed order', true);
 
-  -- open enquiry still with Tarkaash
+  -- open enquiry still with Tarkkash
   insert into public.enquiries (customer_id, user_id, requested_vendor_id, category_id, request, preferred_date, preferred_time,
                                 locality, details, status, is_demo, created_at)
   values (v_cust, v_user, (select id from public.vendors where slug = 'wings-in-air-tours-and-travel'),

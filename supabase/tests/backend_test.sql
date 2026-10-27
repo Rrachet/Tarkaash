@@ -170,7 +170,7 @@ begin
     ok := false;
   exception when insufficient_privilege then ok := true;
   end;
-  results := results || format('%s vendor cannot close; only Tarkaash can', case when ok then 'PASS' else 'FAIL' end);
+  results := results || format('%s vendor cannot close; only Tarkkash can', case when ok then 'PASS' else 'FAIL' end);
   if not ok then fails := fails + 1; end if;
 
   begin

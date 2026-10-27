@@ -30,7 +30,7 @@ export function VendorAdminControls({ vendorId, status, checks, checkList, canEd
         <h2 className="flex items-center gap-2 font-sans text-base font-semibold"><Power className="size-5 text-teal" />Listing status</h2>
         <div className="mt-3 grid grid-cols-2 gap-2">
           {status !== "active" && <Button className="col-span-2" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "active", "Your listing is approved and live."), "Vendor approved and live")}>Approve & publish</Button>}
-          {status === "active" && <Button variant="outline" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "paused", "Listing paused by Tarkaash."), "Listing paused")}>Pause</Button>}
+          {status === "active" && <Button variant="outline" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "paused", "Listing paused by Tarkkash."), "Listing paused")}>Pause</Button>}
           {status !== "rejected" && <Button variant="ghost" className="text-danger" loading={pending} onClick={() => run(() => setVendorStatus(vendorId, "rejected", "Application not approved."), "Marked as rejected")}>Reject</Button>}
         </div>
       </section>
@@ -51,7 +51,7 @@ export function VendorAdminControls({ vendorId, status, checks, checkList, canEd
       </section>
       <section className="card p-5">
         <h2 className="flex items-center gap-2 font-sans text-base font-semibold"><UserPlus className="size-5 text-gold-600" />Add team member</h2>
-        <p className="mt-1 text-xs text-slate">They must have a Tarkaash account first.</p>
+        <p className="mt-1 text-xs text-slate">They must have a Tarkkash account first.</p>
         <div className="mt-3 flex gap-2">
           <Input name="memberEmail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@example.com" />
           <Button loading={pending} disabled={!email} onClick={() => run(() => linkVendorMember(vendorId, email), "Member added")}>Add</Button>

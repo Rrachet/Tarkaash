@@ -33,7 +33,7 @@ export default async function AdminAnalytics({ searchParams }: { searchParams: S
 
   return (
     <>
-      <PageTitle title="Tarkaash admin analytics" actions={
+      <PageTitle title="Tarkkash admin analytics" actions={
         <form className="flex flex-wrap items-center gap-2" action="/admin">
           <select name="range" defaultValue={preset} aria-label="Date range" className="h-10 rounded-full border border-line bg-white px-3 text-sm">
             <option value="7d">Last 7 days</option><option value="30d">Last 30 days</option><option value="90d">Last 90 days</option>

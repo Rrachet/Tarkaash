@@ -19,8 +19,8 @@ export const PRIVATE_ROBOTS: Metadata["robots"] = { index: false, follow: false 
 /** Canonical + Open Graph for a public page. */
 export function pageMeta(opts: { title: string; description: string; path: string; keywords?: string[]; image?: string; absoluteTitle?: boolean }): Metadata {
   return {
-    // Titles that already name the brand skip the "| Tarkaash" suffix.
-    title: opts.absoluteTitle || opts.title.includes("Tarkaash") ? { absolute: opts.title } : opts.title,
+    // Titles that already name the brand skip the "| Tarkkash" suffix.
+    title: opts.absoluteTitle || opts.title.includes("Tarkkash") ? { absolute: opts.title } : opts.title,
     description: opts.description,
     keywords: opts.keywords,
     alternates: { canonical: opts.path },

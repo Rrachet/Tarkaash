@@ -1,6 +1,6 @@
 # Architecture
 
-Tarkaash is a Next.js 16 application on Vercel backed by Supabase (Postgres, Auth, Storage). The defining design choice: **the database is the security and business-rules boundary**. The web tier holds no privileged credentials.
+Tarkkash is a Next.js 16 application on Vercel backed by Supabase (Postgres, Auth, Storage). The defining design choice: **the database is the security and business-rules boundary**. The web tier holds no privileged credentials.
 
 ## System overview
 
@@ -97,7 +97,7 @@ Supporting tables: `order_transitions` (allowed state changes), `analytics_event
 
 ## Order lifecycle
 
-`new → accepted | declined → in_progress → completed → payment_recorded → submitted → closed`, plus `cancelled` from accepted or in progress. Allowed moves live in `order_transitions` and are enforced by `transition_order`. A decline returns the enquiry to the admin queue. Closing books commission and any Tarkaash Assist fee in `platform_ledger` exactly once.
+`new → accepted | declined → in_progress → completed → payment_recorded → submitted → closed`, plus `cancelled` from accepted or in progress. Allowed moves live in `order_transitions` and are enforced by `transition_order`. A decline returns the enquiry to the admin queue. Closing books commission and any Tarkkash Assist fee in `platform_ledger` exactly once.
 
 ## Analytics
 

@@ -19,8 +19,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="relative flex h-full flex-col p-12">
           <Logo className="h-20" />
           <div className="hero-seq mt-auto max-w-md">
-            <p className="eyebrow">Tarkaash platform</p>
-            <h2 style={{ "--d": "120ms" } as React.CSSProperties} className="mt-3 text-5xl font-semibold leading-tight">Grow your business <span className="text-shine">with Tarkaash</span></h2>
+            <p className="eyebrow">Tarkkash platform</p>
+            <h2 style={{ "--d": "120ms" } as React.CSSProperties} className="mt-3 text-5xl font-semibold leading-tight">Grow your business <span className="text-shine">with Tarkkash</span></h2>
             <p style={{ "--d": "240ms" } as React.CSSProperties} className="mt-4 text-white/80">Be part of a trusted community that connects your skills and services with real people and real opportunities.</p>
             <ul style={{ "--d": "360ms" } as React.CSSProperties} className="mt-8 grid grid-cols-2 gap-4 text-sm">
               {[
@@ -44,7 +44,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="flex flex-1 items-center justify-center px-5 py-10 sm:px-10">
           <div className="w-full max-w-md">{children}</div>
         </div>
-        <p className="pb-6 text-center text-xs text-slate"><Link href="/" className="hover:text-teal">← Back to Tarkaash</Link> · <Link href="/privacy" className="hover:text-teal">Privacy</Link></p>
+        <p className="pb-6 text-center text-xs text-slate"><Link href="/" className="hover:text-teal">← Back to Tarkkash</Link> · <Link href="/privacy" className="hover:text-teal">Privacy</Link></p>
       </main>
     </div>
   );

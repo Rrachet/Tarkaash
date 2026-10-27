@@ -11,12 +11,12 @@ export async function SiteFooter() {
         <div>
           <Logo className="h-16" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed">
-            Tarkaash helps you discover trusted local services and independent providers, with every enquiry coordinated by our team.
+            Tarkkash helps you discover trusted local services and independent providers, with every enquiry coordinated by our team.
           </p>
           <p className="mt-4 font-display text-lg text-gold">Real People · Real Skills · Real Community</p>
         </div>
         <FooterCol title="Explore" links={categories.slice(0, 6).map((c) => ({ href: `/services/${c.slug}`, label: c.name }))} />
-        <FooterCol title="Tarkaash" links={[
+        <FooterCol title="Tarkkash" links={[
           { href: "/how-it-works", label: "How it works" }, { href: "/about", label: "About us" },
           { href: "/contact", label: "Contact" }, { href: "/list-your-service", label: "List your service" },
         ]} />
@@ -27,7 +27,7 @@ export async function SiteFooter() {
       </div>
       <div className="relative border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Tarkaash. Har Hunar Ko Ek Pehchaan.</p>
+          <p>© {new Date().getFullYear()} Tarkkash. Har Hunar Ko Ek Pehchaan.</p>
           <p>Demo environment. Prices, reviews, metrics and fees shown are illustrative.</p>
         </div>
       </div>

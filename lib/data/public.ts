@@ -153,8 +153,8 @@ export const getPublicSettings = cache(async (): Promise<PublicSettings> => {
   const { data } = await supabase.from("settings").select("key, value").in("key", ["assist", "verification", "contact"]);
   const map = Object.fromEntries((data ?? []).map((r) => [r.key, r.value]));
   return {
-    assist: (map.assist as PublicSettings["assist"]) ?? { enabled: false, fee: 0, currency: "INR", approved: false, label: "Tarkaash Assist" },
-    verification: (map.verification as PublicSettings["verification"]) ?? { badge_label: "Tarkaash Verified", explanation: "", checks: [] },
+    assist: (map.assist as PublicSettings["assist"]) ?? { enabled: false, fee: 0, currency: "INR", approved: false, label: "Tarkkash Assist" },
+    verification: (map.verification as PublicSettings["verification"]) ?? { badge_label: "Tarkkash Verified", explanation: "", checks: [] },
     contact: (map.contact as PublicSettings["contact"]) ?? { email: null, phone: null, address: null, confirmed: false },
   };
 });

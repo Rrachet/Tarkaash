@@ -40,7 +40,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
 
       <section className="container-page grid gap-10 pb-4 lg:grid-cols-[1.4fr_1fr]">
         <div data-reveal>
-          <h2 className="text-2xl font-semibold sm:text-3xl">Why book {seo.noun} through Tarkaash</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Why book {seo.noun} through Tarkkash</h2>
           {seo.intro.map((p) => <p key={p.slice(0, 24)} className="mt-4 leading-relaxed text-ink/85">{p}</p>)}
         </div>
         <div data-reveal="right" className="card p-6">
