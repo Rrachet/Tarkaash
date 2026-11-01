@@ -52,8 +52,8 @@ $$;
 do $$
 declare pw text := current_setting('seed.password');
 begin
-  perform pg_temp.seed_user('tarkaash.admin@example.com', 'Tarkkash Admin', pw, 'admin');
-  perform pg_temp.seed_user('tarkaash.finance@example.com', 'Tarkkash Finance', pw, 'finance');
+  perform pg_temp.seed_user('tarkkash.admin@example.com', 'Tarkkash Admin', pw, 'admin');
+  perform pg_temp.seed_user('tarkkash.finance@example.com', 'Tarkkash Finance', pw, 'finance');
   perform pg_temp.seed_user('priya.customer@example.com', 'Priya Sharma', pw, 'customer');
   for i in 1..60 loop
     perform pg_temp.seed_user('demo.customer' || i || '@example.com', 'Demo Customer ' || i,

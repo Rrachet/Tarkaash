@@ -7,7 +7,7 @@ declare
   results text[] := '{}';
   fails int := 0;
   r jsonb; o public.orders; n int; ok boolean; msg text;
-  admin_id uuid := (select id from auth.users where email = 'tarkaash.admin@example.com');
+  admin_id uuid := (select id from auth.users where email = 'tarkkash.admin@example.com');
   meera_id uuid := (select id from auth.users where email = 'meera.baking@example.com');
   wings_id uuid := (select id from auth.users where email = 'wingsinair@example.com');
   rohan_id uuid := (select id from auth.users where email = 'rohan.kitchen@example.com');

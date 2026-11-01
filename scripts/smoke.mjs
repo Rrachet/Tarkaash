@@ -28,7 +28,7 @@ async function signIn(email) {
 const today = new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
 const from = new Date(Date.now() - 29 * 864e5).toISOString().slice(0, 10);
 
-const admin = await signIn("tarkaash.admin@example.com");
+const admin = await signIn("tarkkash.admin@example.com");
 check(!admin.error, "admin can sign in");
 const meera = await signIn("meera.baking@example.com");
 check(!meera.error, "vendor (Meera) can sign in");

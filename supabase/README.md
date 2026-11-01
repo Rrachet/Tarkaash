@@ -49,8 +49,8 @@ Vendors never see other vendors' records or the customer list; customer contact 
 
 All use the seed password you chose. Emails are on the reserved `example.com` domain.
 
-- `tarkaash.admin@example.com`: admin
-- `tarkaash.finance@example.com`: finance
+- `tarkkash.admin@example.com`: admin
+- `tarkkash.finance@example.com`: finance
 - `meera.baking@example.com`, `wingsinair@example.com`, `rohan.kitchen@example.com`, `brightsteps@example.com`: vendors
 - `priya.customer@example.com`: customer
 - `zoya.henna@example.com`: pending vendor application

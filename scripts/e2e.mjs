@@ -62,7 +62,7 @@ await guest.ctx.close();
 
 // 2. Admin assigns from the queue
 const admin = await session();
-await signIn(admin.page, process.env.E2E_ADMIN_EMAIL ?? "tarkaash.admin@example.com", process.env.E2E_ADMIN_PASSWORD);
+await signIn(admin.page, process.env.E2E_ADMIN_EMAIL ?? "tarkkash.admin@example.com", process.env.E2E_ADMIN_PASSWORD);
 await admin.page.goto(`${APP}/admin/enquiries?tab=all&q=${ref}`, { waitUntil: "networkidle" });
 await admin.page.getByText(ref).first().click();
 await admin.page.waitForURL(/\/admin\/enquiries\//);
