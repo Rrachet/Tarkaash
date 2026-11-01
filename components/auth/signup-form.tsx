@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { MailCheck } from "lucide-react";
 import { signUp } from "@/lib/actions/auth";
 import { Field, Input, Checkbox, FormMessage } from "@/components/ui/field";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Button } from "@/components/ui/button";
 
 export function SignupForm({ next }: { next?: string }) {
@@ -47,7 +48,7 @@ export function SignupForm({ next }: { next?: string }) {
         <Field label="Email" name="email" required error={fe.email}><Input name="email" type="email" autoComplete="email" error={fe.email} /></Field>
         <Field label="Mobile (optional)" name="phone"><Input name="phone" type="tel" autoComplete="tel" /></Field>
         <Field label="Password" name="password" required error={fe.password} hint="At least 10 characters.">
-          <Input name="password" type="password" autoComplete="new-password" error={fe.password} />
+          <PasswordInput name="password" autoComplete="new-password" error={fe.password} />
         </Field>
         <Checkbox name="terms" error={fe.terms} label={<>I agree to the <Link href="/terms" className="font-semibold text-teal underline">terms</Link> and <Link href="/privacy" className="font-semibold text-teal underline">privacy notice</Link>.</>} />
         <Button type="submit" size="lg" loading={pending} className="w-full">Create account</Button>
