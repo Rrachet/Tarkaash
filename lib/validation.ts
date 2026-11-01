@@ -74,7 +74,10 @@ export const vendorApplicationSchema = z.object({
   tagline: optionalText(120),
   description: optionalText(2000),
   serviceArea: optionalText(300),
-  phone,
+  fullName: optionalText(120),
+  phone: z.string().trim().min(1, "Please add a phone number for WhatsApp updates.").transform(cleanPhone)
+    .refine((v) => phoneRe.test(v), "Please enter a valid 10-digit phone number."),
+  address: z.string().trim().min(8, "Please enter your business address.").max(300),
 });
 export type VendorApplicationInput = z.input<typeof vendorApplicationSchema>;
 

@@ -7,6 +7,7 @@ import { getCategories } from "@/lib/data/public";
 import { createClient } from "@/lib/supabase/server";
 import { ButtonLink } from "@/components/ui/button";
 import { VendorApplicationForm } from "@/components/forms/vendor-application-form";
+import { GoogleButton } from "@/components/auth/google-button";
 import { HOME_IMAGES } from "@/lib/content/site";
 import { sizedImage } from "@/lib/format";
 
@@ -17,8 +18,14 @@ export const metadata: Metadata = pageMeta({
   keywords: ["list your business online Hyderabad", "get orders for home bakers", "grow home business India", "register home business online"],
 });
 
-export default async function ListYourServicePage() {
-  const [viewer, categories] = await Promise.all([getViewer(), getCategories()]);
+export default async function ListYourServicePage({ searchParams }: { searchParams: Promise<{ welcome?: string }> }) {
+  const [viewer, categories, sp] = await Promise.all([getViewer(), getCategories(), searchParams]);
+  let phone: string | null = null;
+  if (viewer && !viewer.vendorIds.length) {
+    const supabase = await createClient();
+    const { data } = await supabase.from("profiles").select("phone").eq("id", viewer.id).maybeSingle();
+    phone = data?.phone ?? null;
+  }
   let existing: { name: string; status: string } | null = null;
   if (viewer?.vendorIds.length) {
     const supabase = await createClient();
@@ -59,7 +66,7 @@ export default async function ListYourServicePage() {
             ))}
           </ol>
         </div>
-        <div data-reveal="right" className="card p-6 sm:p-8">
+        <div id="apply" data-reveal="right" className="card scroll-mt-24 p-6 sm:p-8">
           {existing ? (
             <div className="text-center">
               {existing.status === "active" ? <CheckCircle2 className="mx-auto size-12 text-success" /> : <Clock className="mx-auto size-12 text-gold-600" />}
@@ -69,15 +76,20 @@ export default async function ListYourServicePage() {
             </div>
           ) : viewer ? (
             <>
-              <h2 className="text-2xl font-semibold">Tell us about your business</h2>
+              {sp.welcome === "google" && (
+                <p className="mb-4 rounded-xl bg-mint px-4 py-3 text-sm text-ink" role="status">Signed in with Google as <strong>{viewer.email}</strong>. Add your phone and business address to finish.</p>
+              )}
+              <h2 className="text-2xl font-semibold">Complete your vendor profile</h2>
               <p className="mt-1 text-sm text-slate">Takes about 2 minutes. You can add services and photos after approval.</p>
-              <VendorApplicationForm categories={categories.map((c) => ({ id: c.id, name: c.name }))} />
+              <VendorApplicationForm categories={categories.map((c) => ({ id: c.id, name: c.name }))} defaults={{ fullName: viewer.name, email: viewer.email, phone }} />
             </>
           ) : (
             <div className="text-center">
               <h2 className="text-2xl font-semibold">Start your application</h2>
-              <p className="mt-2 text-slate">Create a free account first so you can track your application and manage your listing.</p>
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <p className="mt-2 text-slate">Sign in first so you can track your application and manage your listing.</p>
+              <GoogleButton className="mx-auto mt-6 max-w-sm" />
+              <p className="my-4 text-xs font-medium uppercase tracking-widest text-slate">or use email</p>
+              <div className="flex flex-wrap justify-center gap-3">
                 <ButtonLink href="/signup?next=/list-your-service" variant="gold" size="lg">Create account</ButtonLink>
                 <ButtonLink href="/login?next=/list-your-service" variant="outline" size="lg">I already have one</ButtonLink>
               </div>

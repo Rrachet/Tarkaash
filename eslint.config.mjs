@@ -4,7 +4,7 @@ import typescript from "eslint-config-next/typescript";
 const config = [
   ...coreWebVitals,
   ...typescript,
-  { ignores: [".next/**", "node_modules/**", "lib/types/database.ts", "next-env.d.ts"] },
+  { ignores: [".next/**", "node_modules/**", "supabase/functions/**", "lib/types/database.ts", "next-env.d.ts"] },
 ];
 
 export default config;

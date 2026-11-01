@@ -8,6 +8,7 @@ import { signIn, sendSignInCode, verifySignInCode } from "@/lib/actions/auth";
 import { Field, Input, FormMessage } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import { GoogleButton } from "@/components/auth/google-button";
 
 const iconInput = "pl-11";
 
@@ -113,9 +114,10 @@ export function LoginForm({ next, linkError, notice }: { next?: string; linkErro
         <div className="flex items-center gap-4 py-1 text-xs font-medium uppercase tracking-widest text-slate" aria-hidden>
           <span className="h-px flex-1 bg-line" /> or <span className="h-px flex-1 bg-line" />
         </div>
+        <GoogleButton />
         <button type="button" onClick={() => switchMode(mode === "password" ? "code" : "password")}
-          className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-line bg-white text-sm font-semibold text-ink transition hover:border-teal/40 hover:bg-cream">
-          {mode === "password" ? <><Mail className="size-4 text-teal" /> Email me a one-time code</> : <><Lock className="size-4 text-teal" /> Log in with password</>}
+          className="flex w-full items-center justify-center gap-2 text-sm font-semibold text-teal hover:underline">
+          {mode === "password" ? <><Mail className="size-4" /> Email me a one-time code instead</> : <><Lock className="size-4" /> Log in with password instead</>}
         </button>
       </div>
 

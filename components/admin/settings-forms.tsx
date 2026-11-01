@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { updateSetting, type SettingKey } from "@/lib/actions/admin";
+import { updateSetting, sendTestNotification, type SettingKey } from "@/lib/actions/admin";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Checkbox } from "@/components/ui/field";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +29,11 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
   const a = settings.assist?.value ?? {}; const c = settings.commission?.value ?? {}; const b = settings.boost_thresholds?.value ?? {};
   const ct = settings.contact?.value ?? {}; const en = settings.enquiry?.value ?? {};
   const md = settings.moderation?.value ?? { require_approval: true };
+  const nt = settings.notifications?.value ?? {};
+  const sendTest = () => start(async () => {
+    const r = await sendTestNotification();
+    if (r.ok) toast("success", "Test sent. Check your inbox, WhatsApp and the Delivery log."); else toast("error", r.error);
+  });
 
   return (
     <fieldset disabled={!canEdit || pending} className="grid gap-6 xl:grid-cols-2">
@@ -48,6 +53,30 @@ export function SettingsForms({ settings, canEdit }: { settings: Settings; canEd
           <Field label="Commission on closed orders (%)" name="pct" hint="Booked to the ledger when Tarkkash closes an order."><Input name="pct" type="number" min={0} max={50} step="0.5" defaultValue={Number(c.pct ?? 0)} /></Field>
           <Checkbox name="approved" defaultChecked={!!c.approved} label="Commission approved by product owner" />
           <Button type="submit" size="sm">Save</Button>
+        </form>
+      </Card>
+      <Card title="Email & WhatsApp notifications" row={settings.notifications} className="xl:col-span-2">
+        <form onSubmit={save("notifications", (fd) => ({
+          email_enabled: on(fd, "email_enabled"), whatsapp_enabled: on(fd, "whatsapp_enabled"),
+          demo_email: String(fd.get("demo_email") ?? "").trim() || null, demo_whatsapp: String(fd.get("demo_whatsapp") ?? "").trim() || null,
+        }))} className="space-y-3">
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            <Checkbox name="email_enabled" defaultChecked={nt.email_enabled !== false} label="Send email notifications" />
+            <Checkbox name="whatsapp_enabled" defaultChecked={nt.whatsapp_enabled !== false} label="Send WhatsApp notifications" />
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Demo inbox (email)" name="demo_email" hint="Notifications for demo accounts are delivered here.">
+              <Input name="demo_email" type="email" defaultValue={String(nt.demo_email ?? "")} placeholder="you@gmail.com" />
+            </Field>
+            <Field label="Demo WhatsApp number" name="demo_whatsapp" hint="Must be added as a recipient in Meta while using the test number.">
+              <Input name="demo_whatsapp" type="tel" defaultValue={String(nt.demo_whatsapp ?? "")} placeholder="98765 43210" />
+            </Field>
+          </div>
+          <p className="text-xs text-slate">Real vendors and customers always receive their own notifications. Every attempt is listed under Notifications → Delivery log.</p>
+          <div className="flex flex-wrap gap-3">
+            <Button type="submit" size="sm">Save</Button>
+            <Button type="button" size="sm" variant="outline" onClick={sendTest}>Send me a test notification</Button>
+          </div>
         </form>
       </Card>
       <Card title="Vendor content approval" row={settings.moderation}>

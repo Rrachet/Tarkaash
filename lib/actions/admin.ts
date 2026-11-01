@@ -109,6 +109,11 @@ const SETTING_SCHEMAS = {
   contact: z.object({ email: z.email().nullable(), phone: z.string().max(20).nullable(), address: z.string().max(200).nullable(), confirmed: z.boolean() }),
   enquiry: z.object({ auto_assign_requested_vendor: z.boolean(), max_per_contact_per_hour: z.number().int().min(1).max(100) }),
   moderation: z.object({ require_approval: z.boolean() }),
+  notifications: z.object({
+    email_enabled: z.boolean(), whatsapp_enabled: z.boolean(),
+    demo_email: z.email("Enter a valid email.").nullable(),
+    demo_whatsapp: z.string().regex(/^\+?[0-9 ]{10,16}$/, "Enter a valid mobile number.").nullable(),
+  }),
 } as const;
 export type SettingKey = keyof typeof SETTING_SCHEMAS;
 
@@ -242,5 +247,13 @@ export async function eraseUser(userId: string, why: string): Promise<ActionResu
   const { error } = await supabase.rpc("admin_erase_user", { p_user: userId, p_reason: r.data });
   if (error) return fail(friendlyError(error));
   revalidatePath("/admin/users");
+  return { ok: true, data: undefined };
+}
+
+/** Sends a test notification to the signed-in admin by email and WhatsApp (see Delivery log). */
+export async function sendTestNotification(): Promise<ActionResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("admin_send_test_notification");
+  if (error) return fail(friendlyError(error));
   return { ok: true, data: undefined };
 }

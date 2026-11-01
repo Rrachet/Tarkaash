@@ -55,6 +55,8 @@ export default async function AdminVendorDetail({ params }: { params: Promise<{ 
             <h2 className="font-sans text-base font-semibold">About</h2>
             <p className="mt-2 text-sm leading-relaxed">{v.description ?? "No description yet."}</p>
             <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+              <div><dt className="text-xs font-semibold uppercase text-slate">Phone (WhatsApp)</dt><dd>{v.phone ? <a href={`tel:${v.phone}`} className="text-teal hover:underline">{v.phone}</a> : "N/A"}</dd></div>
+              <div><dt className="text-xs font-semibold uppercase text-slate">Business address</dt><dd>{v.address ?? "N/A"}</dd></div>
               <div><dt className="text-xs font-semibold uppercase text-slate">Service area</dt><dd>{v.service_area.join(", ") || "N/A"}</dd></div>
               <div><dt className="text-xs font-semibold uppercase text-slate">Listing strength</dt><dd>{m.completeness}%</dd></div>
               <div><dt className="text-xs font-semibold uppercase text-slate">Key terms</dt><dd>{v.key_terms ?? "N/A"}</dd></div>

@@ -160,6 +160,7 @@ export async function applyAsVendor(input: VendorApplicationInput): Promise<Acti
     p: {
       business_name: v.businessName, category_id: v.categoryId, locality: v.locality, city: v.city,
       tagline: v.tagline ?? null, description: v.description ?? null, service_area: v.serviceArea ?? null, phone: v.phone ?? null,
+      address: v.address, full_name: v.fullName ?? null,
     },
   });
   if (error) return fail(friendlyError(error));

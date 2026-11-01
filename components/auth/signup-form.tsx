@@ -7,6 +7,7 @@ import { MailCheck } from "lucide-react";
 import { signUp } from "@/lib/actions/auth";
 import { Field, Input, Checkbox, FormMessage } from "@/components/ui/field";
 import { PasswordInput } from "@/components/ui/password-input";
+import { GoogleButton } from "@/components/auth/google-button";
 import { Button } from "@/components/ui/button";
 
 export function SignupForm({ next }: { next?: string }) {
@@ -31,7 +32,11 @@ export function SignupForm({ next }: { next?: string }) {
     <div>
       <h1 className="text-4xl font-semibold">Create your account</h1>
       <p className="mt-2 text-slate">Track your enquiries, save providers and get updates from businesses you follow.</p>
-      <form className="mt-8 space-y-4" noValidate onSubmit={(e) => {
+      <GoogleButton label="Sign up with Google" className="mt-6" />
+      <div className="mt-5 flex items-center gap-4 text-xs font-medium uppercase tracking-widest text-slate" aria-hidden>
+        <span className="h-px flex-1 bg-line" /> or with email <span className="h-px flex-1 bg-line" />
+      </div>
+      <form className="mt-5 space-y-4" noValidate onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
         if (fd.get("terms") !== "on") { setFe({ terms: "Please accept the terms to continue." }); return; }

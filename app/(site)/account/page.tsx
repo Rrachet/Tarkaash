@@ -11,6 +11,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { ENQUIRY_STATUS, ORDER_STATUS, ORDER_STEPS, ORDER_STEP_LABELS } from "@/lib/status";
 import { formatDate, formatINR, timeAgo } from "@/lib/format";
 import { ReviewButton } from "@/components/account/review-button";
+import { CommPrefs } from "@/components/account/comm-prefs";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = { title: "My account", robots: PRIVATE_ROBOTS };
@@ -18,14 +19,16 @@ export const metadata: Metadata = { title: "My account", robots: PRIVATE_ROBOTS 
 export default async function AccountPage() {
   const viewer = await requireViewer("/account");
   const supabase = await createClient();
-  const [{ data: enquiries }, { data: likes }, { data: follows }, { data: myReviews }] = await Promise.all([
+  const [{ data: enquiries }, { data: likes }, { data: follows }, { data: myReviews }, { data: customer }] = await Promise.all([
     supabase.from("enquiries")
       .select("id, ref_code, status, request, preferred_date, created_at, details, services(title), requested:vendors!enquiries_requested_vendor_id_fkey(name, slug, avatar_url), orders(id, ref_code, status, agreed_amount, scheduled_for, vendors(name, slug))")
       .order("created_at", { ascending: false }).limit(50),
     supabase.from("likes").select("vendors(id, name, slug, tagline, avatar_url)").eq("user_id", viewer.id),
     supabase.from("follows").select("vendors(id, name, slug, tagline, avatar_url)").eq("user_id", viewer.id),
     supabase.from("reviews").select("order_id").eq("user_id", viewer.id),
+    supabase.from("customers").select("comm_prefs, phone").eq("user_id", viewer.id).order("created_at", { ascending: false }).limit(1).maybeSingle(),
   ]);
+  const prefs = { email: true, sms: false, whatsapp: true, ...((customer?.comm_prefs ?? {}) as Record<string, boolean>) };
   const reviewed = new Set((myReviews ?? []).map((r) => r.order_id));
 
   return (
@@ -100,6 +103,7 @@ export default async function AccountPage() {
         </section>
 
         <aside className="space-y-6">
+          <CommPrefs initial={prefs} phone={customer?.phone ?? null} />
           <SavedList title="Saved providers" icon={<Heart className="size-5 text-gold-600" />} items={(likes ?? []).map((l) => l.vendors).filter(Boolean) as VendorMini[]} empty="Tap the heart on a profile to save it." />
           <SavedList title="Following for updates" icon={<BellRing className="size-5 text-gold-600" />} items={(follows ?? []).map((l) => l.vendors).filter(Boolean) as VendorMini[]} empty="Follow providers to hear about new offers." />
         </aside>

@@ -429,11 +429,58 @@ export type Database = {
           },
         ]
       }
+      notification_deliveries: {
+        Row: {
+          channel: string
+          created_at: string
+          detail: string | null
+          id: string
+          notification_id: string | null
+          provider_id: string | null
+          recipient: string
+          redirected_from: string | null
+          status: string
+        }
+        Insert: {
+          channel: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          notification_id?: string | null
+          provider_id?: string | null
+          recipient: string
+          redirected_from?: string | null
+          status: string
+        }
+        Update: {
+          channel?: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          notification_id?: string | null
+          provider_id?: string | null
+          recipient?: string
+          redirected_from?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_deliveries_notification_id_fkey"
+            columns: ["notification_id"]
+            isOneToOne: false
+            referencedRelation: "notifications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           audience: string
           body: string | null
           created_at: string
+          customer_id: string | null
+          dispatched_at: string | null
+          event: string | null
           id: string
           link: string | null
           read_at: string | null
@@ -445,6 +492,9 @@ export type Database = {
           audience: string
           body?: string | null
           created_at?: string
+          customer_id?: string | null
+          dispatched_at?: string | null
+          event?: string | null
           id?: string
           link?: string | null
           read_at?: string | null
@@ -456,6 +506,9 @@ export type Database = {
           audience?: string
           body?: string | null
           created_at?: string
+          customer_id?: string | null
+          dispatched_at?: string | null
+          event?: string | null
           id?: string
           link?: string | null
           read_at?: string | null
@@ -464,6 +517,13 @@ export type Database = {
           vendor_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "notifications_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "notifications_vendor_id_fkey"
             columns: ["vendor_id"]
@@ -1221,6 +1281,7 @@ export type Database = {
       }
       vendors: {
         Row: {
+          address: string | null
           avatar_url: string | null
           city: string
           cover_url: string | null
@@ -1234,6 +1295,7 @@ export type Database = {
           locality: string | null
           name: string
           owner_user_id: string | null
+          phone: string | null
           primary_category_id: string | null
           removed_at: string | null
           removed_reason: string | null
@@ -1248,6 +1310,7 @@ export type Database = {
           years_experience: number | null
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
           city?: string
           cover_url?: string | null
@@ -1261,6 +1324,7 @@ export type Database = {
           locality?: string | null
           name: string
           owner_user_id?: string | null
+          phone?: string | null
           primary_category_id?: string | null
           removed_at?: string | null
           removed_reason?: string | null
@@ -1275,6 +1339,7 @@ export type Database = {
           years_experience?: number | null
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
           city?: string
           cover_url?: string | null
@@ -1288,6 +1353,7 @@ export type Database = {
           locality?: string | null
           name?: string
           owner_user_id?: string | null
+          phone?: string | null
           primary_category_id?: string | null
           removed_at?: string | null
           removed_reason?: string | null
@@ -1445,6 +1511,7 @@ export type Database = {
         Args: { p_permanent?: boolean; p_reason: string; p_vendor: string }
         Returns: string
       }
+      admin_send_test_notification: { Args: never; Returns: undefined }
       admin_set_enquiry_status: {
         Args: {
           p_enquiry: string
@@ -1541,6 +1608,16 @@ export type Database = {
           p_title: string
           p_user: string
           p_vendor: string
+        }
+        Returns: undefined
+      }
+      notify_customer: {
+        Args: {
+          p_body: string
+          p_customer: string
+          p_event: string
+          p_link: string
+          p_title: string
         }
         Returns: undefined
       }

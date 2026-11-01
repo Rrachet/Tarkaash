@@ -6,7 +6,7 @@
 
 **A managed local-services marketplace for Hyderabad.** Customers discover trusted independent providers (home bakers, home kitchens, tutors, beauticians, repair technicians, travel planners) and send one enquiry. Tarkkash coordinates it with the provider and tracks it from request to payment.
 
-[**Live site**](https://www.tarkkash.com) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
+[**Live site**](https://www.tarkkash.com) · [Demo script](docs/DEMO.md) · [Architecture](docs/ARCHITECTURE.md) · [Security](SECURITY.md) · [Deployment runbook](DEPLOYMENT.md) · [Database](supabase/README.md)
 
 [![CI](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rrachet/Tarkkash/actions/workflows/ci.yml)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs)

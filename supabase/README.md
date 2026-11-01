@@ -21,6 +21,8 @@ Run the migrations in order against a fresh project (SQL editor, `psql`, or the 
 | `migrations/0011_vendor_removed_status.sql` | Adds the `removed` vendor status |
 | `migrations/0012_security_admin.sql` | View-only staff, account blocking, vendor content approval, vendor removal, user management and data erasure |
 | `migrations/0013_brand_spelling.sql` | Brand spelling fix: rewrites stored text and function messages to "Tarkkash" |
+| `migrations/0014_notifications_delivery.sql` | Email and WhatsApp delivery: customer notifications, delivery log, dispatch to the `notify-dispatch` Edge Function, vendor phone and address |
+| `migrations/0015_whatsapp_default.sql` | New customers get WhatsApp updates by default |
 
 Then optionally load demo data:
 
